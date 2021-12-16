@@ -13,13 +13,15 @@ SOURCES += \
     gamewindow.cpp \
     main.cpp \
     mainwindow.cpp \
-    presettingwindow.cpp
+    presettingwindow.cpp \
+    printercards.cpp
 
 HEADERS += \
     gameboard.h \
     gamewindow.h \
     mainwindow.h \
-    presettingwindow.h
+    presettingwindow.h \
+    printercards.h
 
 FORMS += \
     gamewindow.ui \

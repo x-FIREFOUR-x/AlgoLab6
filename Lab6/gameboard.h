@@ -4,6 +4,7 @@
 #include <QGraphicsView>
 #include <QGraphicsItem>
 #include <QVector>
+#include "printercards.h"
 
 class GameBoard: public QGraphicsView
 {
@@ -26,7 +27,7 @@ class GameBoard: public QGraphicsView
     bool player_win;        //гравець виграв
 
     QGraphicsScene *scene;  // покажчик на графічну сцену
-
+    PrinterCards printer;
 
 public:
     GameBoard(QWidget *parent = nullptr);

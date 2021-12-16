@@ -1,0 +1,10 @@
+release/gameboard.o
+release/gamewindow.o
+release/main.o
+release/mainwindow.o
+release/presettingwindow.o
+release/printercards.o
+release/qrc_res.o
+release/moc_gamewindow.o
+release/moc_mainwindow.o
+release/moc_presettingwindow.o

@@ -38,10 +38,9 @@ void GameBoard::set_parameters(int height, int width, bool g_with_pc)
     scene->setSceneRect(0,0,image_board.width(),image_board.height());
     scene->setBackgroundBrush(image_board);
 
-    QPixmap image_deck(":/image/PNG-cards/back.png");
-    image_deck = image_deck.scaled(width_card, height_card);
-    QGraphicsItem* g_item = scene->addPixmap(image_deck);
-    g_item->setPos(0, 0);
+    int x = width_side_px / 20;
+    int y = height_side_px/5 + 2*height_side_px/10;
+    printer.print_back(scene,x,y,width_card, height_card);
 }
 
 void GameBoard::set_parameters(int height, int width, bool g_with_pc, bool pc_first, int level_dif)
@@ -71,12 +70,12 @@ void GameBoard::set_parameters(int height, int width, bool g_with_pc, bool pc_fi
     scene->setSceneRect(0,0,image_board.width(),image_board.height());
     scene->setBackgroundBrush(image_board);
 
+    int x = width_side_px / 20;
+    int y = height_side_px/5 + 2*height_side_px/10;
+    printer.print_back(scene,x,y,width_card, height_card);
 
-    QPixmap image_deck(":/image/PNG-cards/back.png");
-    image_deck = image_deck.scaled(width_card, height_card);
-    QGraphicsItem* g_item = scene->addPixmap(image_deck);
-    g_item->setPos(0, 0);
-
+    printer.print_card(std::pair<int,int>(11,3), scene, 50,y, width_card, height_card);
+    printer.print_card(std::pair<int,int>(13,2), scene, 100,y, width_card, height_card);
 
     if(pc_first)
     {

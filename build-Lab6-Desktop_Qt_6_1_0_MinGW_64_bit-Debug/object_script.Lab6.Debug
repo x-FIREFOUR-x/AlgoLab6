@@ -1,0 +1,10 @@
+debug/gameboard.o
+debug/gamewindow.o
+debug/main.o
+debug/mainwindow.o
+debug/presettingwindow.o
+debug/printercards.o
+debug/qrc_res.o
+debug/moc_gamewindow.o
+debug/moc_mainwindow.o
+debug/moc_presettingwindow.o
