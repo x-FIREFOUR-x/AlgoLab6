@@ -1,3 +1,5 @@
+debug/cardsdeck.o
+debug/cardshands.o
 debug/gameboard.o
 debug/gamewindow.o
 debug/main.o

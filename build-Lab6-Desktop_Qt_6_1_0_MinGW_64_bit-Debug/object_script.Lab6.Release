@@ -1,3 +1,5 @@
+release/cardsdeck.o
+release/cardshands.o
 release/gameboard.o
 release/gamewindow.o
 release/main.o

@@ -23,14 +23,20 @@ GameBoard::~GameBoard()
     delete scene;
 }
 
-void GameBoard::set_parameters(int height, int width, bool g_with_pc)
+void GameBoard::parameters(int height, int width, bool g_with_pc)
 {
     height_side_px = height;
     width_side_px = width;
     game_with_pc = g_with_pc;
 
-    height_card = height/5;
-    width_card = height_card * 0.75;
+    int height_card = height/5;
+    int width_card = height_card * 0.75;
+    printer.set_side(width_card, height_card);
+
+    int x_deck = width_side_px / 20;
+    int y = height_side_px/5 + 2*height_side_px/10;
+    int x_top = width_side_px / 2;
+    printer.set_coordinate(x_deck, y, x_top, y);
 
     setFixedSize(width_side_px, height_side_px);
     QPixmap image_board(":/image/PNG-cards/table.png");
@@ -38,20 +44,21 @@ void GameBoard::set_parameters(int height, int width, bool g_with_pc)
     scene->setSceneRect(0,0,image_board.width(),image_board.height());
     scene->setBackgroundBrush(image_board);
 
-    int x = width_side_px / 20;
-    int y = height_side_px/5 + 2*height_side_px/10;
-    printer.print_back(scene,x,y,width_card, height_card);
+    printer.print_cards_deck(scene);
+    cards_deck.distribution(number_card_of_distrib, cards_hands1, cards_hands2);
+    pair<int,int> top_card = cards_deck.get_top_card();
+    printer.print_top_card(top_card, scene);
+}
+
+void GameBoard::set_parameters(int height, int width, bool g_with_pc)
+{
+   parameters(height, width, g_with_pc);
 }
 
 void GameBoard::set_parameters(int height, int width, bool g_with_pc, bool pc_first, int level_dif)
 {
-    height_side_px = height;
-    width_side_px = width;
+    parameters(height, width, g_with_pc);
 
-    height_card = height/5;
-    width_card = height_card * 0.75;
-
-    game_with_pc = g_with_pc;
     computer_first = pc_first;
     difficulty = level_dif;
     level_recur = difficulty;
@@ -63,19 +70,6 @@ void GameBoard::set_parameters(int height, int width, bool g_with_pc, bool pc_fi
         case 2: time_deley = 200; break;
         case 3: time_deley = 50; break;
     }
-
-    setFixedSize(width_side_px, height_side_px);
-    QPixmap image_board(":/image/PNG-cards/table.png");
-    image_board = image_board.scaled(this->width(),this->height());
-    scene->setSceneRect(0,0,image_board.width(),image_board.height());
-    scene->setBackgroundBrush(image_board);
-
-    int x = width_side_px / 20;
-    int y = height_side_px/5 + 2*height_side_px/10;
-    printer.print_back(scene,x,y,width_card, height_card);
-
-    printer.print_card(std::pair<int,int>(11,3), scene, 50,y, width_card, height_card);
-    printer.print_card(std::pair<int,int>(13,2), scene, 100,y, width_card, height_card);
 
     if(pc_first)
     {

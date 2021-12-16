@@ -5,14 +5,13 @@
 #include <QGraphicsItem>
 #include <QVector>
 #include "printercards.h"
+#include "cardshands.h"
+#include "cardsdeck.h"
 
 class GameBoard: public QGraphicsView
 {
     int height_side_px;        // розмір сторони в пікселях
     int width_side_px;        // розмір сторони в пікселях
-
-    int height_card;        // висота карти в пікселях
-    int width_card;        // ширина карти в пікселях
 
     bool game_with_pc;      //тип гри з комп'ютером чи два гравці
     bool computer_first;    // чи перший ходить компютер
@@ -27,7 +26,13 @@ class GameBoard: public QGraphicsView
     bool player_win;        //гравець виграв
 
     QGraphicsScene *scene;  // покажчик на графічну сцену
-    PrinterCards printer;
+    PrinterCards printer;   // рисувальщик карт
+
+    int number_card_of_distrib = 4;   // кількість карт при роздачі
+    CardsDeck cards_deck;             //колода карт
+    CardsHands cards_hands1;          // руки першого гравця
+    CardsHands cards_hands2;          // руки другого гравця
+
 
 public:
     GameBoard(QWidget *parent = nullptr);
@@ -38,7 +43,10 @@ public:
         //Метод, що використовується для встановлення розміру, ігрового поля і параметра g_with_pc(true) виклик при грі з пк і встановлення порядку ходу, рівня тяжкості
     void set_parameters(int height, int width, bool g_with_pc, bool pc_first, int level_dif);
 
+
 protected:
+         // встановлення спільних параметрів
+    void parameters(int height, int width, bool g_with_pc);
          // метод що реагує на клік миші по цьому класу віджету GameBoard на вікні GameWindow для ходу гравця
     virtual void mousePressEvent(QMouseEvent *event);
 
