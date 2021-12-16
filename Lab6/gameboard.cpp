@@ -46,8 +46,16 @@ void GameBoard::parameters(int height, int width, bool g_with_pc)
 
     printer.print_cards_deck(scene);
     cards_deck.distribution(number_card_of_distrib, cards_hands1, cards_hands2);
+
     pair<int,int> top_card = cards_deck.get_top_card();
     printer.print_top_card(top_card, scene);
+
+    cards_hands1.set_y(height_side_px/10);
+    cards_hands2.set_y(height_side_px - (height_side_px/10) - height_side_px/5);
+
+    cards_hands1.picture_cards_hands(printer, scene);
+    cards_hands2.picture_cards_hands(printer, scene);
+
 }
 
 void GameBoard::set_parameters(int height, int width, bool g_with_pc)

@@ -28,7 +28,7 @@ class GameBoard: public QGraphicsView
     QGraphicsScene *scene;  // покажчик на графічну сцену
     PrinterCards printer;   // рисувальщик карт
 
-    int number_card_of_distrib = 4;   // кількість карт при роздачі
+    int number_card_of_distrib = 6;   // кількість карт при роздачі
     CardsDeck cards_deck;             //колода карт
     CardsHands cards_hands1;          // руки першого гравця
     CardsHands cards_hands2;          // руки другого гравця
