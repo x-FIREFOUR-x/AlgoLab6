@@ -52,10 +52,11 @@ pair<int,int> CardsDeck::take_card()
     return card;
 }
 
-void CardsDeck::put_card(pair<int,int> card)
+void CardsDeck::put_card(pair<int,int> card, QGraphicsScene*& scene, PrinterCards& printer)
 {
     discarded_cards.push_back(top_card);
     top_card = card;
+    printer.print_cards_deck(scene);
 }
 
 pair<int,int> CardsDeck::get_top_card()

@@ -74,6 +74,9 @@ private:
 
         //хід взяти карту з колоди
     void take_card_with_deck();
+
+        //хід покласти карту
+    void put_card_in_top(int mouse_x, int mouse_y);
 };
 
 #endif // GAMEBOARD_H

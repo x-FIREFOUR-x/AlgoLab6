@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include <cardshands.h>
+#include <printercards.h>
 
 using namespace std;
 class CardsDeck
@@ -23,7 +24,7 @@ public:
     pair<int,int> take_card();
 
         //покласти карту
-    void put_card(pair<int,int> card);
+    void put_card(pair<int,int> card, QGraphicsScene*& scene, PrinterCards& printer);
 
         // отримати значення останньої покладеної карти
     pair<int,int> get_top_card();

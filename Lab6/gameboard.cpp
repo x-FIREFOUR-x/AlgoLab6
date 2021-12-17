@@ -109,32 +109,24 @@ void GameBoard::player_vs_player(int mouse_x, int mouse_y)
           }
           else
           {
-              if(current_player == 1)
-              {
-
-              }
-              else
-              {
-
-              }
+              put_card_in_top(mouse_x, mouse_y);
           }
 
       }
-      else
+
+      if(cards_hands1.get_count_cards() == 0)
       {
-            if(cards_hands1.get_count_cards() == 0)
-            {
-                QString text = "ПЕРЕМІГ ПЕРШИЙ ГРАВЕЦЬ";
-                QString title = "Ігра закінчилася";
-                QMessageBox:: about(this,title,text);
-            }
-            else
-            {
-                QString text = "ПЕРЕМІГ ДРУГИЙ ГРАВЕЦЬ";
-                QString title = "Ігра закінчилася";
-                QMessageBox:: about(this,title,text);
-            }
+          QString text = "ПЕРЕМІГ ПЕРШИЙ ГРАВЕЦЬ";
+          QString title = "Ігра закінчилася";
+          QMessageBox:: about(this,title,text);
       }
+      if(cards_hands2.get_count_cards() == 0)
+      {
+          QString text = "ПЕРЕМІГ ДРУГИЙ ГРАВЕЦЬ";
+          QString title = "Ігра закінчилася";
+          QMessageBox:: about(this,title,text);
+      }
+
 }
 
 void GameBoard::player_vs_computer(int mouse_x, int mouse_y)
@@ -399,4 +391,35 @@ void GameBoard::resizeEvent(QResizeEvent *event)
              printer.erase_cards_deck();
          }
      }
+ }
+ void GameBoard::put_card_in_top(int mouse_x, int mouse_y)
+ {
+     QGraphicsItem* ptr_chosen_card = itemAt(mouse_x,mouse_y);
+     pair<int,int> card;
+     if(current_player == 1)
+     {
+         bool succes_chosen = cards_hands1.pull_card_with_hands(ptr_chosen_card, card);
+         if (succes_chosen)
+         {
+             cards_deck.put_card(card, scene, printer);
+             ptr_chosen_card = nullptr;
+             cards_hands1.picture_cards_hands(printer, scene);
+             printer.print_top_card(card, scene);
+             current_player = 2;
+         }
+
+     }
+     else
+     {
+         bool succes_chosen = cards_hands2.pull_card_with_hands(ptr_chosen_card, card);
+         if (succes_chosen)
+         {
+             cards_deck.put_card(card, scene, printer);
+             ptr_chosen_card = nullptr;
+             cards_hands2.picture_cards_hands(printer, scene);
+             printer.print_top_card(card, scene);
+             current_player = 1;
+         }
+     }
+
  }

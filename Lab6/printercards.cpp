@@ -103,6 +103,9 @@ QGraphicsItem* PrinterCards::print_back(QGraphicsScene*& scene ,int x, int y)
 
  QGraphicsItem* PrinterCards::print_cards_deck(QGraphicsScene*& scene)
  {
+     delete ptr_card_deck;
+     ptr_card_deck = nullptr;
+
      QPixmap image_deck(":/image/PNG-cards/back.png");
      image_deck = image_deck.scaled(width, height);
      ptr_card_deck = scene->addPixmap(image_deck);
