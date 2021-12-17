@@ -402,14 +402,17 @@ void GameBoard::resizeEvent(QResizeEvent *event)
          bool succes_chosen = cards_hands1.get_chosen_card(ptr_chosen_card, card);
          if (succes_chosen)
          {
-             if(can_put_chosen_card(card))
+             if(can_put_chosen_card(card) || put_three)
              {
+                 if (put_three)
+                     put_three = false;
+
                  cards_hands1.pull_card_with_hands(ptr_chosen_card);
                  cards_deck.put_card(card, scene, printer);
                  ptr_chosen_card = nullptr;
                  cards_hands1.picture_cards_hands(printer, scene);
                  printer.print_top_card(card, scene);
-                 current_player = 2;
+                 assign_effect_card(card);
                  scene->update();
              }
 
@@ -421,14 +424,17 @@ void GameBoard::resizeEvent(QResizeEvent *event)
          bool succes_chosen = cards_hands2.get_chosen_card(ptr_chosen_card, card);
          if (succes_chosen)
          {
-             if(can_put_chosen_card(card))
+             if(can_put_chosen_card(card) || put_three)
              {
-                 cards_hands2.pull_card_with_hands(ptr_chosen_card);
+                 if (put_three)
+                     put_three = false;
+
+                cards_hands2.pull_card_with_hands(ptr_chosen_card);
                 cards_deck.put_card(card, scene, printer);
                 ptr_chosen_card = nullptr;
                 cards_hands2.picture_cards_hands(printer, scene);
                 printer.print_top_card(card, scene);
-                current_player = 1;
+                assign_effect_card(card);
                 scene->update();
              }
          }
@@ -452,5 +458,109 @@ void GameBoard::resizeEvent(QResizeEvent *event)
          }
      }
 
+     if (cards_deck.get_top_card().first == 15)
+     {
+         if(cards_deck.get_top_card().second == 0 && (card.second == 0 || card.second == 3 ))
+             correct_move = true;
+
+         if(cards_deck.get_top_card().second == 1 && (card.second == 1 || card.second == 2 ))
+             correct_move = true;
+     }
+
     return correct_move;
  }
+void GameBoard::assign_effect_card(pair<int,int> card)
+{
+    switch (card.first)
+    {
+        case 2: effect_two(); break;
+        case 3: effect_three(); break;
+        case 4: effect_four() ;break;
+        case 8: effect_eight(); break;
+        case 11: effect_jack(); break;
+        case 15: effect_joker(); break;
+        default:
+            if (current_player == 1)
+                current_player = 2;
+            else
+                current_player = 1;
+    }
+}
+
+void GameBoard::effect_two()
+{
+    if (current_player == 1)
+    {
+        current_player = 2;
+        pair<int,int> new_card = cards_deck.take_card();
+        cards_hands2.give_card(new_card);
+        cards_hands2.picture_cards_hands(printer,scene);
+        current_player =1;
+    }
+    else
+    {
+        current_player =1;
+        pair<int,int> new_card = cards_deck.take_card();
+        cards_hands1.give_card(new_card);
+        cards_hands1.picture_cards_hands(printer,scene);
+        current_player =2;
+    }
+
+}
+void GameBoard::effect_three()
+{
+    if (current_player == 1)
+    {
+        current_player =1;
+        put_three = true;
+    }
+    else
+    {
+        current_player = 2;
+        put_three = true;
+    }
+}
+void GameBoard::effect_four()
+{
+    if (current_player == 1)
+    {
+        current_player =2;
+    }
+    else
+    {
+        current_player = 1;
+    }
+}
+void GameBoard::effect_eight()
+{
+    if (current_player == 1)
+    {
+        current_player =2;
+    }
+    else
+    {
+        current_player = 1;
+    }
+}
+void GameBoard::effect_jack()
+{
+    if (current_player == 1)
+    {
+        current_player =1;
+    }
+    else
+    {
+        current_player = 2;
+    }
+}
+void GameBoard::effect_joker()
+{
+    if (current_player == 1)
+    {
+        current_player =2;
+    }
+    else
+    {
+        current_player = 1;
+    }
+}

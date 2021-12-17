@@ -33,6 +33,8 @@ class GameBoard: public QGraphicsView
     CardsHands cards_hands1;          // руки першого гравця
     CardsHands cards_hands2;          // руки другого гравця
 
+    bool put_three = false;
+
 
 public:
     GameBoard(QWidget *parent = nullptr);
@@ -80,6 +82,16 @@ private:
 
         //перевіряє чи вибрану карту можна покласти на верх минуло скинутої карти
     bool can_put_chosen_card(pair<int,int>);
+
+        // визначення ефекту покладеної карти
+    void assign_effect_card(pair<int,int> card);
+
+    void effect_two();
+    void effect_three();
+    void effect_four();
+    void effect_eight();
+    void effect_jack();
+    void effect_joker();
 };
 
 #endif // GAMEBOARD_H
