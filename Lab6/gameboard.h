@@ -33,8 +33,8 @@ class GameBoard: public QGraphicsView
     CardsHands cards_hands1;          // руки першого гравця
     CardsHands cards_hands2;          // руки другого гравця
 
-    bool put_three = false;
-
+    bool put_three = false;           // флажок спрацьовує при кладенні трійки
+    bool put_four = false;            // флажок спрацьовує при кладенні чітвірки
 
 public:
     GameBoard(QWidget *parent = nullptr);
@@ -86,11 +86,11 @@ private:
         // визначення ефекту покладеної карти
     void assign_effect_card(pair<int,int> card);
 
-    void effect_two();
-    void effect_three();
-    void effect_four();
+    void effect_two();          // активація ефекту коли кладуть 2
+    void effect_three();        // активація ефекту коли кладуть 3
+    void effect_four();         // активація ефекту коли кладуть 4
     void effect_eight();
-    void effect_jack();
+    void effect_jack();         // активація ефекту коли кладуть валєт
     void effect_joker();
 };
 

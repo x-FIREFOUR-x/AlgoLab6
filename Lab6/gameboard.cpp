@@ -369,28 +369,58 @@ void GameBoard::resizeEvent(QResizeEvent *event)
 
  void GameBoard::take_card_with_deck()
  {
-     if (cards_deck.is_card_no_in_players())
+     if (put_four)
      {
-         if(current_player == 1)
+            // ефект четвьорки
+        if(current_player == 1)
+        {
+            for (int i = 0; i < cards_deck.get_top_card().first; i++)
+            {
+                pair<int,int> new_card = cards_deck.take_card();
+                cards_hands1.give_card(new_card);
+                cards_hands1.picture_cards_hands(printer,scene);
+            }
+            put_four = false;
+            current_player =2;
+        }
+        else
+        {
+            for (int i = 0; i < cards_deck.get_top_card().first; i++)
+            {
+                pair<int,int> new_card = cards_deck.take_card();
+                cards_hands2.give_card(new_card);
+                cards_hands2.picture_cards_hands(printer,scene);
+            }
+            put_four = false;
+            current_player = 1;
+        }
+     }
+     else
+     {
+         if (cards_deck.is_card_no_in_players())
          {
-             pair<int,int> new_card = cards_deck.take_card();
-             cards_hands1.give_card(new_card);
-             cards_hands1.picture_cards_hands(printer,scene);
-             current_player =2;
-         }
-         else
-         {
-             pair<int,int> new_card = cards_deck.take_card();
-             cards_hands2.give_card(new_card);
-             cards_hands2.picture_cards_hands(printer,scene);
-             current_player = 1;
-         }
+             if(current_player == 1)
+             {
+                 pair<int,int> new_card = cards_deck.take_card();
+                 cards_hands1.give_card(new_card);
+                 cards_hands1.picture_cards_hands(printer,scene);
+                 current_player =2;
+             }
+             else
+             {
+                 pair<int,int> new_card = cards_deck.take_card();
+                 cards_hands2.give_card(new_card);
+                 cards_hands2.picture_cards_hands(printer,scene);
+                 current_player = 1;
+             }
 
-         if(!cards_deck.is_card_no_in_players())
-         {
-             printer.erase_cards_deck();
+             if(!cards_deck.is_card_no_in_players())
+             {
+                 printer.erase_cards_deck();
+             }
          }
      }
+
  }
  void GameBoard::put_card_in_top(int mouse_x, int mouse_y)
  {
@@ -458,13 +488,32 @@ void GameBoard::resizeEvent(QResizeEvent *event)
          }
      }
 
-     if (cards_deck.get_top_card().first == 15)
+     if (cards_deck.get_top_card().first == 15)         //якщо лежить джокер
      {
+         correct_move = false;
          if(cards_deck.get_top_card().second == 0 && (card.second == 0 || card.second == 3 ))
              correct_move = true;
 
          if(cards_deck.get_top_card().second == 1 && (card.second == 1 || card.second == 2 ))
              correct_move = true;
+     }
+
+     if(cards_deck.get_top_card().first == 8)   //якщо лежить 8
+     {
+          correct_move = false;
+          if (card.second == cards_deck.get_top_card().second)
+              correct_move = true;
+     }
+
+     if (put_four)              // якщо працює ефект четвьорки
+     {
+         correct_move = false;
+         if ((card.first == (cards_deck.get_top_card().first + 1)) && (card.second == cards_deck.get_top_card().second))
+         {
+             correct_move = true;
+             put_four = false;
+         }
+
      }
 
     return correct_move;
@@ -510,26 +559,20 @@ void GameBoard::effect_two()
 void GameBoard::effect_three()
 {
     if (current_player == 1)
-    {
         current_player =1;
-        put_three = true;
-    }
     else
-    {
         current_player = 2;
-        put_three = true;
-    }
+
+    put_three = true;
 }
 void GameBoard::effect_four()
 {
     if (current_player == 1)
-    {
         current_player =2;
-    }
     else
-    {
         current_player = 1;
-    }
+
+    put_four = true;
 }
 void GameBoard::effect_eight()
 {
