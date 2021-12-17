@@ -396,34 +396,61 @@ void GameBoard::resizeEvent(QResizeEvent *event)
  {
      QGraphicsItem* ptr_chosen_card = itemAt(mouse_x,mouse_y);
      pair<int,int> card;
+
      if(current_player == 1)
      {
-         bool succes_chosen = cards_hands1.pull_card_with_hands(ptr_chosen_card, card);
+         bool succes_chosen = cards_hands1.get_chosen_card(ptr_chosen_card, card);
          if (succes_chosen)
          {
-             cards_deck.put_card(card, scene, printer);
-             ptr_chosen_card = nullptr;
-             cards_hands1.picture_cards_hands(printer, scene);
-             printer.print_top_card(card, scene);
-             current_player = 2;
+             if(can_put_chosen_card(card))
+             {
+                 cards_hands1.pull_card_with_hands(ptr_chosen_card);
+                 cards_deck.put_card(card, scene, printer);
+                 ptr_chosen_card = nullptr;
+                 cards_hands1.picture_cards_hands(printer, scene);
+                 printer.print_top_card(card, scene);
+                 current_player = 2;
+                 scene->update();
+             }
 
-             scene->update();
          }
 
      }
      else
      {
-         bool succes_chosen = cards_hands2.pull_card_with_hands(ptr_chosen_card, card);
+         bool succes_chosen = cards_hands2.get_chosen_card(ptr_chosen_card, card);
          if (succes_chosen)
          {
-             cards_deck.put_card(card, scene, printer);
-             ptr_chosen_card = nullptr;
-             cards_hands2.picture_cards_hands(printer, scene);
-             printer.print_top_card(card, scene);
-             current_player = 1;
-
-             scene->update();
+             if(can_put_chosen_card(card))
+             {
+                 cards_hands2.pull_card_with_hands(ptr_chosen_card);
+                cards_deck.put_card(card, scene, printer);
+                ptr_chosen_card = nullptr;
+                cards_hands2.picture_cards_hands(printer, scene);
+                printer.print_top_card(card, scene);
+                current_player = 1;
+                scene->update();
+             }
          }
      }
 
+ }
+
+ bool GameBoard::can_put_chosen_card(pair<int,int> card)
+ {
+     bool correct_move = false;
+     if (card.first == 8 || card.first == 15)       // перевірка чи вибрана карта 8 чи джокер
+     {
+         correct_move = true;
+     }
+     else
+     {
+            // перевірка чи вибрана карта одного значення чи масті з верхньою
+         if ((card.first == cards_deck.get_top_card().first) || (card.second == cards_deck.get_top_card().second))
+         {
+             correct_move = true;
+         }
+     }
+
+    return correct_move;
  }

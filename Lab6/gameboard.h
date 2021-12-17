@@ -69,14 +69,17 @@ private:
     void player_move_first(int mouse_x, int mouse_y);
     void pc_move_second();
 
+
         //перевірка чи клік здійснено по колоді
     bool is_click_on_deck(int mouse_x, int mouse_y);
 
         //хід взяти карту з колоди
     void take_card_with_deck();
-
         //хід покласти карту
     void put_card_in_top(int mouse_x, int mouse_y);
+
+        //перевіряє чи вибрану карту можна покласти на верх минуло скинутої карти
+    bool can_put_chosen_card(pair<int,int>);
 };
 
 #endif // GAMEBOARD_H

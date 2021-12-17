@@ -20,6 +20,8 @@ PrinterCards::PrinterCards()
     push_namefile_bigcards("ace");
     namefile_cards.push_back("black_joker.png");
     namefile_cards.push_back("red_joker.png");
+
+    ptr_card_deck = nullptr;
 }
 
 void PrinterCards::set_coordinate(int x_deck, int y_deck, int x_top_c, int y_top_c)
