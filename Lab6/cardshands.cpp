@@ -34,3 +34,7 @@ void CardsHands::picture_cards_hands(PrinterCards& printer, QGraphicsScene*& sce
         x+=25;
     }
 }
+int CardsHands::get_count_cards()
+{
+    return cards_of_hands.size();
+}

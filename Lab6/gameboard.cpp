@@ -29,6 +29,8 @@ void GameBoard::parameters(int height, int width, bool g_with_pc)
     width_side_px = width;
     game_with_pc = g_with_pc;
 
+    finished = false;
+
     int height_card = height/5;
     int width_card = height_card * 0.75;
     printer.set_side(width_card, height_card);
@@ -44,7 +46,8 @@ void GameBoard::parameters(int height, int width, bool g_with_pc)
     scene->setSceneRect(0,0,image_board.width(),image_board.height());
     scene->setBackgroundBrush(image_board);
 
-    printer.print_cards_deck(scene);
+    QGraphicsItem* ptr_carddeck = printer.print_cards_deck(scene);
+
     cards_deck.distribution(number_card_of_distrib, cards_hands1, cards_hands2);
 
     pair<int,int> top_card = cards_deck.get_top_card();
@@ -72,13 +75,6 @@ void GameBoard::set_parameters(int height, int width, bool g_with_pc, bool pc_fi
     level_recur = difficulty;
     finished = false;
 
-    switch (difficulty)
-    {
-        case 1: time_deley = 400; break;
-        case 2: time_deley = 200; break;
-        case 3: time_deley = 50; break;
-    }
-
     if(pc_first)
     {
         //PainterCube::paint_first_cube(scene, 1 * size_cells, 0 * size_cells, size_cells, size_cells*2);
@@ -105,93 +101,40 @@ void GameBoard::mousePressEvent(QMouseEvent *event)
 
 void GameBoard::player_vs_player(int mouse_x, int mouse_y)
 {
-        //перевіряєм чи хід можливий
-    /*if(board.is_move(current_player))
-    {
+      if(cards_hands1.get_count_cards() != 0 && cards_hands2.get_count_cards() != 0 )
+      {
+          if (is_click_on_deck(mouse_x, mouse_y))
+          {
+              take_card_with_deck();
+          }
+          else
+          {
+              if(current_player == 1)
+              {
 
-            // перевірка якого гравця хід
-        if(current_player == 1)
-        {
-                int column_cells = mouse_x / size_cells;
-                int row_cell1;
-                int row_cell2;
+              }
+              else
+              {
 
-                    // визначення номерів двох вибраних клітинок
-                if (mouse_y % size_cells < size_cells/2)
-                {
-                    row_cell2 = mouse_y / size_cells;
-                    row_cell1 = row_cell2-1;
-                }
-                else
-                {
-                    row_cell1 = mouse_y / size_cells;
-                    row_cell2 = row_cell1+1;
-                }
+              }
+          }
 
-                int index1 =  row_cell1 * amount_point  + column_cells;
-                int index2 =  row_cell2 * amount_point  + column_cells;
-
-                    // перевірка можливості фарбування вибраних двох клітинок
-                if (row_cell1 >= 0 && row_cell2 < amount_point && board.is_cell_empty(index1) && board.is_cell_empty(index2))
-                {
-                    PainterCube::paint_first_cube(scene, column_cells * size_cells, row_cell1 * size_cells, size_cells, size_cells*2);
-                    board.set_adj_cells(index1, index2, current_player);
-                    current_player = 2;
-
-                }
-
-        }
-        else
-        {
-                int row_cells = mouse_y / size_cells;
-                int column_cell1;
-                int column_cell2;
-
-                    // визначення номерів двох вибраних клітинок
-                if (mouse_x % size_cells < size_cells/2)
-                {
-                    column_cell2 = mouse_x / size_cells;
-                    column_cell1 = column_cell2-1;
-                }
-                else
-                {
-                    column_cell1 = mouse_x / size_cells;
-                    column_cell2 = column_cell1+1;
-                }
-
-                int index1 =  row_cells * amount_point  + column_cell1;
-                int index2 =  row_cells * amount_point  + column_cell2;
-
-                    // перевірка можливості фарбування вибраних двох клітинок
-                if ((index1/amount_point == index2/amount_point ) && board.is_cell_empty(index1) && board.is_cell_empty(index2))
-                {
-                    PainterCube::paint_second_cube(scene, column_cell1 * size_cells, row_cells * size_cells, size_cells*2, size_cells);
-                    board.set_adj_cells(index1, index2, current_player);
-                    current_player = 1;
-                }
-
-        }
-
-    }
-
-        // перевіряєм чи ігра закінчена
-    if(!(board.is_move(current_player)))
-    {
-            // визначаєм переможця
-        if(current_player == 1)
-        {
-            QString text = "Переміг другий гравець(червоний)";
-            QString title = "Ігра закінчилася";
-            QMessageBox:: about(this,title,text);
-        }
-        else
-        {
-            QString text = "Переміг перший гравець(синій)";
-            QString title = "Ігра закінчилася";
-            QMessageBox:: about(this,title,text);
-        }
-    }*/
-
+      }
+      else
+      {
+            if(cards_hands1.get_count_cards() == 0)
+            {
+                QString text = "ПЕРЕМІГ ПЕРШИЙ ГРАВЕЦЬ";
+                QString title = "Ігра закінчилася";
+                QMessageBox:: about(this,title,text);
+            }
+            else
+            {
+                QString text = "ПЕРЕМІГ ДРУГИЙ ГРАВЕЦЬ";
+                QString title = "Ігра закінчилася";
+                QMessageBox:: about(this,title,text);
+            }
+      }
 }
 
 void GameBoard::player_vs_computer(int mouse_x, int mouse_y)
@@ -364,8 +307,6 @@ void GameBoard::player_move_first(int mouse_x, int mouse_y)
     }*/
 }
 
-
-
 void GameBoard::pc_move_second()
 {
    /* if(board.is_move(current_player))
@@ -417,3 +358,45 @@ void GameBoard::resizeEvent(QResizeEvent *event)
     fitInView(sceneRect(), Qt::IgnoreAspectRatio);
 }
 
+ bool GameBoard::is_click_on_deck(int mouse_x, int mouse_y)
+ {
+     int x_cards_deck = printer.get_x_cards_deck();
+     int y_cards_deck = printer.get_y_cards_deck();
+     int width_card = printer.get_width();
+     int height_card = printer.get_height();
+
+     if ((mouse_x <= x_cards_deck + width_card) && (mouse_x >= x_cards_deck))
+     {
+         if ((mouse_y <= y_cards_deck + height_card) && (mouse_y >= y_cards_deck))
+         {
+             return true;
+         }
+     }
+     return false;
+ }
+
+ void GameBoard::take_card_with_deck()
+ {
+     if (cards_deck.is_card_no_in_players())
+     {
+         if(current_player == 1)
+         {
+             pair<int,int> new_card = cards_deck.take_card();
+             cards_hands1.give_card(new_card);
+             cards_hands1.picture_cards_hands(printer,scene);
+             current_player =2;
+         }
+         else
+         {
+             pair<int,int> new_card = cards_deck.take_card();
+             cards_hands2.give_card(new_card);
+             cards_hands2.picture_cards_hands(printer,scene);
+             current_player = 1;
+         }
+
+         if(!cards_deck.is_card_no_in_players())
+         {
+             printer.erase_cards_deck();
+         }
+     }
+ }

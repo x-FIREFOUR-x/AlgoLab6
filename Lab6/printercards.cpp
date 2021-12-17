@@ -36,6 +36,36 @@ void PrinterCards::set_side(int width1, int height1)
     height = height1;
 }
 
+int PrinterCards::get_width()
+{
+    return width;
+}
+
+int PrinterCards::get_height()
+{
+    return height;
+}
+
+int PrinterCards::get_x_cards_deck()
+{
+    return x_cards_deck;
+}
+
+int PrinterCards::get_y_cards_deck()
+{
+    return y_cards_deck;
+}
+
+int PrinterCards::get_x_top_card()
+{
+    return x_top_card;
+}
+
+int PrinterCards::get_y_top_card()
+{
+    return y_top_card;
+}
+
 void PrinterCards::push_namefile_bigcards(std::string name)
 {
     namefile_cards.push_back(name + "_of_clubs.png");
@@ -75,10 +105,10 @@ QGraphicsItem* PrinterCards::print_back(QGraphicsScene*& scene ,int x, int y)
  {
      QPixmap image_deck(":/image/PNG-cards/back.png");
      image_deck = image_deck.scaled(width, height);
-     QGraphicsItem* ptr_gi_card = scene->addPixmap(image_deck);
-     ptr_gi_card->setPos(x_cards_deck, y_cards_deck);
+     ptr_card_deck = scene->addPixmap(image_deck);
+     ptr_card_deck->setPos(x_cards_deck, y_cards_deck);
 
-     return ptr_gi_card;
+     return ptr_card_deck;
  }
 
  QGraphicsItem* PrinterCards::print_top_card(std::pair<int,int> card ,QGraphicsScene*& scene)
@@ -95,4 +125,10 @@ QGraphicsItem* PrinterCards::print_back(QGraphicsScene*& scene ,int x, int y)
      QGraphicsItem* ptr_gi_card = scene->addPixmap(image_deck);
      ptr_gi_card->setPos(x_top_card, y_top_card);
      return ptr_gi_card;
+ }
+
+ void PrinterCards::erase_cards_deck()
+ {
+     delete ptr_card_deck;
+     ptr_card_deck = nullptr;
  }

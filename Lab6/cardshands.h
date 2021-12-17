@@ -15,8 +15,9 @@ private:
 public:
     CardsHands();
     void give_card(pair<int,int> card);         //дати карту в руки гравцю
-    void set_y(int y);
-    void picture_cards_hands(PrinterCards& printer, QGraphicsScene*& scene);
+    void set_y(int y);                          // встановити координату y малювання карт на столі
+    void picture_cards_hands(PrinterCards& printer, QGraphicsScene*& scene);    //намалювати карти на руках в гравця на столі
+    int get_count_cards();      //вернути кількість карт в гравця
 };
 
 #endif // CARDSHANDS_H

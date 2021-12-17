@@ -12,6 +12,7 @@ private:
     vector<pair<int,int>> deck_cards;               //колода
     pair<int,int> top_card;                         //остання покладена карта
     vector<pair<int,int>> discarded_cards;          //аокладены карти
+
 public:
     CardsDeck();
 
@@ -26,6 +27,12 @@ public:
 
         // отримати значення останньої покладеної карти
     pair<int,int> get_top_card();
+
+
+    int get_amount_card_in_deck();       //отримати кількість карт в колоді
+    int get_amount_descarded_card();     //отримати кількість скинутих карт(крім верхньої)
+    bool is_card_no_in_players();         // повертає true якщо є скинуті карти(крім верхньої) чи в колоді
+
 };
 
 #endif // CARDSDECK_H

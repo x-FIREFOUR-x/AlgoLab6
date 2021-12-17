@@ -19,6 +19,8 @@ private:
 
     int x_top_card;         //координата x малювання останньої покладеної карти колоди на gameboard
     int y_top_card;         //координата y малювання останньої покладеної карти колоди на gameboard
+
+    QGraphicsItem* ptr_card_deck;   //вказівник на малюнок колоди
 public:
     PrinterCards();
 
@@ -27,6 +29,15 @@ public:
 
 
     void set_side(int width, int height);
+
+    int get_width();
+    int get_height();
+
+    int get_x_cards_deck();
+    int get_y_cards_deck();
+
+    int get_x_top_card();
+    int get_y_top_card();
 
             // малювання рубашки карти на коордах x y розміру width height
     QGraphicsItem* print_back(QGraphicsScene*& scene, int x, int y);
@@ -39,6 +50,10 @@ public:
 
             // малювання верхньої карти (останньої покладеної карти розміру width height)
     QGraphicsItem* print_top_card(std::pair<int,int> card ,QGraphicsScene*& scene);
+
+            // стерти малюнок колоди
+    void erase_cards_deck();
+
 
 private:
     void push_namefile_bigcards(std::string name);

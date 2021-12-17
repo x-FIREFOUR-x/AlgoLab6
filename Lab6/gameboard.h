@@ -22,7 +22,7 @@ class GameBoard: public QGraphicsView
 
     int current_player;      //номер гравця чий хід
 
-    bool finished;          // гра закінчена
+    bool finished;          //гра закінчена
     bool player_win;        //гравець виграв
 
     QGraphicsScene *scene;  // покажчик на графічну сцену
@@ -68,6 +68,12 @@ private:
         // функція ходу гравця коли він ходить першим граючи з компютером і асинхронний виклик другого ходу компютера pc_move_second
     void player_move_first(int mouse_x, int mouse_y);
     void pc_move_second();
+
+        //перевірка чи клік здійснено по колоді
+    bool is_click_on_deck(int mouse_x, int mouse_y);
+
+        //хід взяти карту з колоди
+    void take_card_with_deck();
 };
 
 #endif // GAMEBOARD_H
