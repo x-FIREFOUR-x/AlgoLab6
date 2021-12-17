@@ -407,9 +407,7 @@ void GameBoard::resizeEvent(QResizeEvent *event)
              printer.print_top_card(card, scene);
              current_player = 2;
 
-             QPixmap image_board(":/image/PNG-cards/table.png");
-             image_board = image_board.scaled(this->width(),this->height());
-             scene->setBackgroundBrush(image_board);
+             scene->update();
          }
 
      }
@@ -424,9 +422,7 @@ void GameBoard::resizeEvent(QResizeEvent *event)
              printer.print_top_card(card, scene);
              current_player = 1;
 
-             QPixmap image_board(":/image/PNG-cards/table.png");
-             image_board = image_board.scaled(this->width(),this->height());
-             scene->setBackgroundBrush(image_board);
+             scene->update();
          }
      }
 
