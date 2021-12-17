@@ -406,6 +406,10 @@ void GameBoard::resizeEvent(QResizeEvent *event)
              cards_hands1.picture_cards_hands(printer, scene);
              printer.print_top_card(card, scene);
              current_player = 2;
+
+             QPixmap image_board(":/image/PNG-cards/table.png");
+             image_board = image_board.scaled(this->width(),this->height());
+             scene->setBackgroundBrush(image_board);
          }
 
      }
@@ -419,6 +423,10 @@ void GameBoard::resizeEvent(QResizeEvent *event)
              cards_hands2.picture_cards_hands(printer, scene);
              printer.print_top_card(card, scene);
              current_player = 1;
+
+             QPixmap image_board(":/image/PNG-cards/table.png");
+             image_board = image_board.scaled(this->width(),this->height());
+             scene->setBackgroundBrush(image_board);
          }
      }
 
