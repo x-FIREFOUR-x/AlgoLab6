@@ -52,13 +52,35 @@ pair<int,int> CardsDeck::take_card()
     return card;
 }
 
-void CardsDeck::put_card(pair<int,int> card)
+void CardsDeck::put_card(pair<int,int> card, QGraphicsScene*& scene, PrinterCards& printer)
 {
     discarded_cards.push_back(top_card);
     top_card = card;
+    printer.print_cards_deck(scene);
 }
 
 pair<int,int> CardsDeck::get_top_card()
 {
     return top_card;
+}
+
+int CardsDeck::get_amount_card_in_deck()
+{
+    return deck_cards.size();
+}
+int CardsDeck::get_amount_descarded_card()
+{
+    return discarded_cards.size();
+}
+
+bool CardsDeck::is_card_no_in_players()
+{
+    if (get_amount_card_in_deck() + get_amount_descarded_card() > 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }

@@ -56,5 +56,10 @@
         <file>PNG-cards/queen_of_spades.png</file>
         <file>PNG-cards/red_joker.png</file>
         <file>PNG-cards/table.png</file>
+        <file>PNG-cards/clubs.png</file>
+        <file>PNG-cards/diamonds.png</file>
+        <file>PNG-cards/hearts.png</file>
+        <file>PNG-cards/spades.png</file>
+        <file>PNG-cards/mark.png</file>
     </qresource>
 </RCC>

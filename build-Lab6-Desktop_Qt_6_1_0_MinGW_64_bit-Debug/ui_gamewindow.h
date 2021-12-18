@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -27,6 +28,7 @@ public:
     QAction *CloseEnd;
     QWidget *centralwidget;
     GameBoard *graphicsView;
+    QLabel *CountCardDeck;
     QStatusBar *statusbar;
     QMenuBar *menubar;
     QMenu *menu;
@@ -43,6 +45,16 @@ public:
         graphicsView = new GameBoard(centralwidget);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
         graphicsView->setGeometry(QRect(0, 0, 800, 500));
+        CountCardDeck = new QLabel(centralwidget);
+        CountCardDeck->setObjectName(QString::fromUtf8("CountCardDeck"));
+        CountCardDeck->setGeometry(QRect(0, 230, 51, 31));
+        QFont font;
+        font.setPointSize(18);
+        CountCardDeck->setFont(font);
+        CountCardDeck->setStyleSheet(QString::fromUtf8("color: red;"));
+        CountCardDeck->setLineWidth(1);
+        CountCardDeck->setAlignment(Qt::AlignCenter);
+        CountCardDeck->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
         GameWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(GameWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -66,6 +78,7 @@ public:
     {
         GameWindow->setWindowTitle(QCoreApplication::translate("GameWindow", "MainWindow", nullptr));
         CloseEnd->setText(QCoreApplication::translate("GameWindow", "\320\227\320\260\320\272\321\200\320\270\321\202\320\270 \320\263\321\200\321\203", nullptr));
+        CountCardDeck->setText(QCoreApplication::translate("GameWindow", "0", nullptr));
         menu->setTitle(QCoreApplication::translate("GameWindow", "\320\234\320\265\320\275\321\216", nullptr));
     } // retranslateUi
 

@@ -20,6 +20,8 @@ PrinterCards::PrinterCards()
     push_namefile_bigcards("ace");
     namefile_cards.push_back("black_joker.png");
     namefile_cards.push_back("red_joker.png");
+
+    ptr_card_deck = nullptr;
 }
 
 void PrinterCards::set_coordinate(int x_deck, int y_deck, int x_top_c, int y_top_c)
@@ -34,6 +36,36 @@ void PrinterCards::set_side(int width1, int height1)
 {
     width = width1;
     height = height1;
+}
+
+int PrinterCards::get_width()
+{
+    return width;
+}
+
+int PrinterCards::get_height()
+{
+    return height;
+}
+
+int PrinterCards::get_x_cards_deck()
+{
+    return x_cards_deck;
+}
+
+int PrinterCards::get_y_cards_deck()
+{
+    return y_cards_deck;
+}
+
+int PrinterCards::get_x_top_card()
+{
+    return x_top_card;
+}
+
+int PrinterCards::get_y_top_card()
+{
+    return y_top_card;
 }
 
 void PrinterCards::push_namefile_bigcards(std::string name)
@@ -73,12 +105,15 @@ QGraphicsItem* PrinterCards::print_back(QGraphicsScene*& scene ,int x, int y)
 
  QGraphicsItem* PrinterCards::print_cards_deck(QGraphicsScene*& scene)
  {
+     delete ptr_card_deck;
+     ptr_card_deck = nullptr;
+
      QPixmap image_deck(":/image/PNG-cards/back.png");
      image_deck = image_deck.scaled(width, height);
-     QGraphicsItem* ptr_gi_card = scene->addPixmap(image_deck);
-     ptr_gi_card->setPos(x_cards_deck, y_cards_deck);
+     ptr_card_deck = scene->addPixmap(image_deck);
+     ptr_card_deck->setPos(x_cards_deck, y_cards_deck);
 
-     return ptr_gi_card;
+     return ptr_card_deck;
  }
 
  QGraphicsItem* PrinterCards::print_top_card(std::pair<int,int> card ,QGraphicsScene*& scene)
@@ -95,4 +130,50 @@ QGraphicsItem* PrinterCards::print_back(QGraphicsScene*& scene ,int x, int y)
      QGraphicsItem* ptr_gi_card = scene->addPixmap(image_deck);
      ptr_gi_card->setPos(x_top_card, y_top_card);
      return ptr_gi_card;
+ }
+
+ void PrinterCards::erase_cards_deck()
+ {
+     delete ptr_card_deck;
+     ptr_card_deck = nullptr;
+ }
+
+ void PrinterCards::print_converted_card(std::pair<int,int> card ,QGraphicsScene*& scene)
+ {
+    erase_converted_card();
+    ptr_card_converted_card = print_card(card,scene, x_top_card + 1.5* width, y_top_card);
+ }
+
+ void PrinterCards::erase_converted_card()
+ {
+     delete ptr_card_converted_card;
+     ptr_card_converted_card = nullptr;
+ }
+
+ void PrinterCards::print_marc_move(QGraphicsScene*& scene, int current_player, int x_mark_players, int y_mark_player1, int y_mark_player2, int size)
+ {
+     x_mark_move_players = x_mark_players;
+     y_mark_move_player1 = y_mark_player1;
+     y_mark_move_player2 = y_mark_player2;
+
+     QPixmap image_mark(":/image/PNG-cards/mark.png");
+     image_mark = image_mark.scaled(size, size);
+     ptr_mark_move = scene->addPixmap(image_mark);
+
+     if(current_player == 1)
+        ptr_mark_move->setPos(x_mark_move_players, y_mark_move_player1);
+     else
+        ptr_mark_move->setPos(x_mark_move_players, y_mark_move_player2);
+
+     scene->update();
+
+ }
+ void PrinterCards::print_change_move(QGraphicsScene*& scene, int current_player)
+ {
+     if(current_player == 1)
+        ptr_mark_move->setPos(x_mark_move_players, y_mark_move_player1);
+     else
+        ptr_mark_move->setPos(x_mark_move_players, y_mark_move_player2);
+
+      scene->update();
  }

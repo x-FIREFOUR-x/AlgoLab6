@@ -7,6 +7,9 @@
 #include "printercards.h"
 #include "cardshands.h"
 #include "cardsdeck.h"
+#include "windowsuit.h"
+#include "windowrank.h"
+#include <QLabel>
 
 class GameBoard: public QGraphicsView
 {
@@ -22,7 +25,7 @@ class GameBoard: public QGraphicsView
 
     int current_player;      //номер гравця чий хід
 
-    bool finished;          // гра закінчена
+    bool finished;          //гра закінчена
     bool player_win;        //гравець виграв
 
     QGraphicsScene *scene;  // покажчик на графічну сцену
@@ -33,15 +36,22 @@ class GameBoard: public QGraphicsView
     CardsHands cards_hands1;          // руки першого гравця
     CardsHands cards_hands2;          // руки другого гравця
 
+    bool put_three = false;           // флажок спрацьовує при кладенні трійки
+    bool put_four = false;            // флажок спрацьовує при кладенні чітвірки
+    bool put_eight = false;
+    bool put_jocker = false;
+    pair<int,int> card_converted;     //карта на яку перетворений джокер чи вісім(тільки масть)
+
+    QLabel* Deck_counter;
 
 public:
     GameBoard(QWidget *parent = nullptr);
     ~GameBoard();
 
         //Метод, що використовується для встановлення розміру, ігрового поля і параметра g_with_pc(false) виклик при грі 2 гравців
-    void set_parameters(int height, int width, bool g_with_pc);
+    void set_parameters(QLabel* counter, int height, int width, bool g_with_pc);
         //Метод, що використовується для встановлення розміру, ігрового поля і параметра g_with_pc(true) виклик при грі з пк і встановлення порядку ходу, рівня тяжкості
-    void set_parameters(int height, int width, bool g_with_pc, bool pc_first, int level_dif);
+    void set_parameters(QLabel* counter, int height, int width, bool g_with_pc, bool pc_first, int level_dif);
 
 
 protected:
@@ -68,6 +78,31 @@ private:
         // функція ходу гравця коли він ходить першим граючи з компютером і асинхронний виклик другого ходу компютера pc_move_second
     void player_move_first(int mouse_x, int mouse_y);
     void pc_move_second();
+
+
+        //перевірка чи клік здійснено по колоді
+    bool is_click_on_deck(int mouse_x, int mouse_y);
+
+        //хід взяти карту з колоди
+    void take_card_with_deck();
+        //хід покласти карту
+    void put_card_in_top(int mouse_x, int mouse_y);
+
+        //перевіряє чи вибрану карту можна покласти на верх минуло скинутої карти
+    bool can_put_chosen_card(pair<int,int>);
+
+    void change_move();
+    void display_count_deck();
+
+        // визначення ефекту покладеної карти
+    void assign_effect_card(pair<int,int> card);
+
+    void effect_two();          // активація ефекту коли кладуть 2
+    void effect_three();        // активація ефекту коли кладуть 3
+    void effect_four();         // активація ефекту коли кладуть 4
+    void effect_eight();
+    void effect_jack();         // активація ефекту коли кладуть валєт
+    void effect_joker();
 };
 
 #endif // GAMEBOARD_H
