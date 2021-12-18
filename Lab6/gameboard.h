@@ -7,6 +7,7 @@
 #include "printercards.h"
 #include "cardshands.h"
 #include "cardsdeck.h"
+#include "windowsuit.h"
 
 class GameBoard: public QGraphicsView
 {

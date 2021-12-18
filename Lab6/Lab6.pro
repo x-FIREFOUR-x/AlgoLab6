@@ -16,7 +16,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     presettingwindow.cpp \
-    printercards.cpp
+    printercards.cpp \
+    windowsuit.cpp
 
 HEADERS += \
     cardsdeck.h \
@@ -25,12 +26,14 @@ HEADERS += \
     gamewindow.h \
     mainwindow.h \
     presettingwindow.h \
-    printercards.h
+    printercards.h \
+    windowsuit.h
 
 FORMS += \
     gamewindow.ui \
     mainwindow.ui \
-    presettingwindow.ui
+    presettingwindow.ui \
+    windowsuit.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

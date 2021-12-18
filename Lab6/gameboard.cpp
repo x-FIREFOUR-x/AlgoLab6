@@ -475,17 +475,11 @@ void GameBoard::resizeEvent(QResizeEvent *event)
  bool GameBoard::can_put_chosen_card(pair<int,int> card)
  {
      bool correct_move = false;
-     if (card.first == 8 || card.first == 15)       // перевірка чи вибрана карта 8 чи джокер
-     {
-         correct_move = true;
-     }
-     else
-     {
+
             // перевірка чи вибрана карта одного значення чи масті з верхньою
-         if ((card.first == cards_deck.get_top_card().first) || (card.second == cards_deck.get_top_card().second))
-         {
+     if ((card.first == cards_deck.get_top_card().first) || (card.second == cards_deck.get_top_card().second))
+     {
              correct_move = true;
-         }
      }
 
      if (cards_deck.get_top_card().first == 15)         //якщо лежить джокер
@@ -503,6 +497,11 @@ void GameBoard::resizeEvent(QResizeEvent *event)
           correct_move = false;
           if (card.second == cards_deck.get_top_card().second)
               correct_move = true;
+     }
+
+     if (card.first == 8 || card.first == 15)       // перевірка чи вибрана карта 8 чи джокер
+     {
+         correct_move = true;
      }
 
      if (put_four)              // якщо працює ефект четвьорки
@@ -577,13 +576,19 @@ void GameBoard::effect_four()
 void GameBoard::effect_eight()
 {
     if (current_player == 1)
-    {
         current_player =2;
-    }
     else
-    {
         current_player = 1;
+
+    int suit = -1;
+    while (suit == -1)
+    {
+        WindowSuit* suit_window = new WindowSuit(suit, this);
+        suit_window->setWindowTitle("Останній гравець");
+        suit_window->exec();
     }
+
+    cout << suit << endl;
 }
 void GameBoard::effect_jack()
 {
