@@ -36,6 +36,9 @@ class GameBoard: public QGraphicsView
 
     bool put_three = false;           // флажок спрацьовує при кладенні трійки
     bool put_four = false;            // флажок спрацьовує при кладенні чітвірки
+    bool put_eight = false;
+    pair<int,int> card_converted;     //карта на яку перетворений джокер чи вісім(тільки масть)
+
 
 public:
     GameBoard(QWidget *parent = nullptr);

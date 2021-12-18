@@ -492,11 +492,15 @@ void GameBoard::resizeEvent(QResizeEvent *event)
              correct_move = true;
      }
 
-     if(cards_deck.get_top_card().first == 8)   //якщо лежить 8
+     if(cards_deck.get_top_card().first == 8 && put_eight)   //якщо лежить 8
      {
           correct_move = false;
-          if (card.second == cards_deck.get_top_card().second)
+          if (card.second == card_converted.second)
+          {
               correct_move = true;
+              put_eight = false;
+          }
+
      }
 
      if (card.first == 8 || card.first == 15)       // перевірка чи вибрана карта 8 чи джокер
@@ -588,7 +592,8 @@ void GameBoard::effect_eight()
         suit_window->exec();
     }
 
-    cout << suit << endl;
+    card_converted.second = suit;
+    put_eight = true;
 }
 void GameBoard::effect_jack()
 {
