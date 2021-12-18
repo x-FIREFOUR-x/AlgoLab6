@@ -17,27 +17,19 @@ PresettingWindow::~PresettingWindow()
 void PresettingWindow::on_ButtonGoGame_clicked()
 {
     bool play_with_pc = ui->radioButtonPlayPC->isChecked();
-    this->close();
-    if (!play_with_pc)
+
+    int score = 0;
+    QString str_score = ui->Score->text();
+    if (str_score != "")
     {
-        GameWindow * game_window = new GameWindow(play_with_pc, this);
-        game_window->setWindowTitle("Останній гравець");
-        game_window->show();
-    }
-    else
-    {
-        bool pc_first = ui->radioButtonPCFirst->isChecked();
-        int level_dif;
-        if(ui->radioButtonEazy->isChecked())
-            level_dif = 1;
-        else
-            if(ui->radioButtonMiddle->isChecked())
-                level_dif = 2;
-            else
-                level_dif = 3;
-        GameWindow* game_window= new GameWindow(play_with_pc,this);
-        game_window->setWindowTitle("Останній гравець");
-        game_window->show();
+        score = str_score.toInt();
+        if (score > 0 && score < 1000)
+        {
+            this->close();
+            GameWindow * game_window = new GameWindow(score, play_with_pc, this);
+            game_window->setWindowTitle("Останній гравець");
+            game_window->show();
+        }
     }
 
 }
@@ -52,20 +44,5 @@ void PresettingWindow::on_ButtonBack_clicked()
 }
 
 
-void PresettingWindow::on_radioButtonPlayPC_clicked()
-{
-    ui->frameWhoFirst->setVisible(true);
-    ui->frameWhoFirst->setEnabled(true);
-    ui->frameDifficulty->setVisible(true);
-    ui->frameDifficulty->setEnabled(true);
-}
 
-
-void PresettingWindow::on_radioButtonTwoPlayers_clicked()
-{
-    ui->frameWhoFirst->setVisible(false);
-    ui->frameWhoFirst->setEnabled(false);
-    ui->frameDifficulty->setVisible(false);
-    ui->frameDifficulty->setEnabled(false);
-}
 

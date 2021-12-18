@@ -46,12 +46,16 @@ class GameBoard: public QGraphicsView
     QLabel* Score_player2;
     QLabel* Score_max;
 
+    int max_score = 0;
+    int score1 = 0;
+    int score2 = 0;
+
 public:
     GameBoard(QWidget *parent = nullptr);
     ~GameBoard();
 
         //Метод, що використовується для встановлення розміру, ігрового поля і параметра g_with_pc(false) виклик при грі 2 гравців
-    void set_parameters(int height, int width, bool g_with_pc);
+    void set_parameters(int max_score ,int height, int width, bool g_with_pc);
     void set_label(QLabel* counter, QLabel* score_player1, QLabel* score_player2, QLabel* score_max);
 
 protected:

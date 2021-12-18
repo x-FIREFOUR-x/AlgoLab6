@@ -98,140 +98,28 @@
      <string>Повернутися назад</string>
     </property>
    </widget>
-   <widget class="QFrame" name="frameWhoFirst">
+   <widget class="QLineEdit" name="Score">
     <property name="geometry">
      <rect>
-      <x>15</x>
-      <y>120</y>
-      <width>270</width>
-      <height>55</height>
+      <x>100</x>
+      <y>130</y>
+      <width>113</width>
+      <height>22</height>
      </rect>
     </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QLabel" name="label_2">
-     <property name="geometry">
-      <rect>
-       <x>75</x>
-       <y>5</y>
-       <width>120</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Хто ходить перший:</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="radioButtonPlayerFirst">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>30</y>
-       <width>51</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Я</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="radioButtonPCFirst">
-     <property name="geometry">
-      <rect>
-       <x>150</x>
-       <y>30</y>
-       <width>95</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Комп'ютер</string>
-     </property>
-     <property name="checked">
-      <bool>false</bool>
-     </property>
-    </widget>
    </widget>
-   <widget class="QFrame" name="frameDifficulty">
+   <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>15</x>
-      <y>190</y>
-      <width>270</width>
-      <height>60</height>
+      <x>10</x>
+      <y>110</y>
+      <width>271</width>
+      <height>20</height>
      </rect>
     </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
+    <property name="text">
+     <string>Введіть ліміт балів закінчення гри (0 - 1000):</string>
     </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QLabel" name="label_3">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>10</y>
-       <width>110</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Рівень складності:</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="radioButtonEazy">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>30</y>
-       <width>71</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Легкий</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="radioButtonMiddle">
-     <property name="geometry">
-      <rect>
-       <x>90</x>
-       <y>30</y>
-       <width>81</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Середній</string>
-     </property>
-     <property name="checked">
-      <bool>false</bool>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="radioButtonHard">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>30</y>
-       <width>71</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Тяжкий</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

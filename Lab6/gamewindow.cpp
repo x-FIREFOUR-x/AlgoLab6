@@ -3,14 +3,14 @@
 #include "mainwindow.h"
 #include "gameboard.h"
 
-GameWindow::GameWindow(bool g_with_pc, QWidget *parent) :
+GameWindow::GameWindow(int max_score, bool g_with_pc, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::GameWindow)
 {
     ui->setupUi(this);
     game_board= ui->graphicsView;
     game_board->set_label(ui->CountCardDeck, ui->labelScore1, ui->labelScore2, ui->MaxScore);
-    game_board->set_parameters( ui->graphicsView->height(), ui->graphicsView->width(), g_with_pc);
+    game_board->set_parameters(max_score, ui->graphicsView->height(), ui->graphicsView->width(), g_with_pc);
     setFixedSize(this->width(), this->height());
 
 }

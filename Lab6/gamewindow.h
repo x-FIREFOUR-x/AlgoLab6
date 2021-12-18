@@ -23,7 +23,7 @@ private:
 
 public:
         // конструктор створення вікна гри для 2 гравців
-    explicit GameWindow(bool g_with_pc, QWidget *parent = nullptr);
+    explicit GameWindow(int max_score, bool g_with_pc, QWidget *parent = nullptr);
     ~GameWindow();
 
 private slots:

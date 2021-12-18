@@ -69,8 +69,13 @@ void GameBoard::parameters(int height, int width, bool g_with_pc)
 
 }
 
-void GameBoard::set_parameters(int height, int width, bool g_with_pc)
+void GameBoard::set_parameters(int score ,int height, int width, bool g_with_pc)
 {
+   max_score = score;
+   Score_max->setText(QString::number(max_score));
+   Score_player1->setText(QString::number(score1));
+   Score_player2->setText(QString::number(score2));
+
    parameters(height, width, g_with_pc);
    finished = false;
 }
@@ -79,8 +84,9 @@ void GameBoard::set_label(QLabel* counter, QLabel* score_player1, QLabel* score_
 {
     Deck_counter = counter;
     Score_player1 = score_player1;
-    Score_player1 = score_player2;
+    Score_player2 = score_player2;
     Score_max = score_max;
+
 }
 
 void GameBoard::mousePressEvent(QMouseEvent *event)
