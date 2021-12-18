@@ -59,6 +59,11 @@ void GameBoard::parameters(int height, int width, bool g_with_pc)
     cards_hands1.picture_cards_hands(printer, scene);
     cards_hands2.picture_cards_hands(printer, scene);
 
+    int y1 = height_side_px/40;
+    int y2 = height_side_px - height_side_px/20;
+    int size = height_side_px/20;
+    printer.print_marc_move(scene, current_player, width_side_px / 2, y1, y2, size);
+
 }
 
 void GameBoard::set_parameters(int height, int width, bool g_with_pc)
@@ -382,6 +387,7 @@ void GameBoard::resizeEvent(QResizeEvent *event)
             }
             put_four = false;
             current_player =2;
+            printer.print_change_move(scene, current_player);
         }
         else
         {
@@ -393,6 +399,7 @@ void GameBoard::resizeEvent(QResizeEvent *event)
             }
             put_four = false;
             current_player = 1;
+            printer.print_change_move(scene, current_player);
         }
      }
      else
@@ -405,6 +412,7 @@ void GameBoard::resizeEvent(QResizeEvent *event)
                  cards_hands1.give_card(new_card);
                  cards_hands1.picture_cards_hands(printer,scene);
                  current_player =2;
+                 printer.print_change_move(scene, current_player);
              }
              else
              {
@@ -412,6 +420,7 @@ void GameBoard::resizeEvent(QResizeEvent *event)
                  cards_hands2.give_card(new_card);
                  cards_hands2.picture_cards_hands(printer,scene);
                  current_player = 1;
+                 printer.print_change_move(scene, current_player);
              }
 
              if(!cards_deck.is_card_no_in_players())
@@ -499,6 +508,7 @@ void GameBoard::resizeEvent(QResizeEvent *event)
           {
               correct_move = true;
               put_eight = false;
+              printer.erase_converted_card();
           }
 
      }
@@ -533,9 +543,15 @@ void GameBoard::assign_effect_card(pair<int,int> card)
         case 15: effect_joker(); break;
         default:
             if (current_player == 1)
+            {
                 current_player = 2;
+                printer.print_change_move(scene, current_player);
+            }
             else
+            {
                 current_player = 1;
+                printer.print_change_move(scene, current_player);
+            }
     }
 }
 
@@ -571,18 +587,30 @@ void GameBoard::effect_three()
 void GameBoard::effect_four()
 {
     if (current_player == 1)
+    {
         current_player =2;
+        printer.print_change_move(scene, current_player);
+    }
     else
+    {
         current_player = 1;
+        printer.print_change_move(scene, current_player);
+    }
 
     put_four = true;
 }
 void GameBoard::effect_eight()
 {
     if (current_player == 1)
+    {
         current_player =2;
+        printer.print_change_move(scene, current_player);
+    }
     else
+    {
         current_player = 1;
+        printer.print_change_move(scene, current_player);
+    }
 
     int suit = -1;
     while (suit == -1)
@@ -593,6 +621,8 @@ void GameBoard::effect_eight()
     }
 
     card_converted.second = suit;
+    card_converted.first = 8;
+    printer.print_converted_card(card_converted,scene);
     put_eight = true;
 }
 void GameBoard::effect_jack()
@@ -600,20 +630,26 @@ void GameBoard::effect_jack()
     if (current_player == 1)
     {
         current_player =1;
+        printer.print_change_move(scene, current_player);
     }
     else
     {
         current_player = 2;
+        printer.print_change_move(scene, current_player);
     }
+
+
 }
 void GameBoard::effect_joker()
 {
     if (current_player == 1)
     {
         current_player =2;
+        printer.print_change_move(scene, current_player);
     }
     else
     {
         current_player = 1;
+        printer.print_change_move(scene, current_player);
     }
 }

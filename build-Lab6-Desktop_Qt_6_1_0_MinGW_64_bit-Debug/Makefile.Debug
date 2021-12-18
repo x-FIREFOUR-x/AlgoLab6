@@ -143,6 +143,7 @@ debug/qrc_res.cpp: ../Lab6/res.qrc \
 		../Lab6/PNG-cards/queen_of_hearts.png \
 		../Lab6/PNG-cards/5_of_hearts.png \
 		../Lab6/PNG-cards/9_of_clubs.png \
+		../Lab6/PNG-cards/mark.png \
 		../Lab6/PNG-cards/jack_of_diamonds.png \
 		../Lab6/PNG-cards/6_of_spades.png \
 		../Lab6/PNG-cards/7_of_spades.png \

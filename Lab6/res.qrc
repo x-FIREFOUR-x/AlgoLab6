@@ -60,5 +60,6 @@
         <file>PNG-cards/diamonds.png</file>
         <file>PNG-cards/hearts.png</file>
         <file>PNG-cards/spades.png</file>
+        <file>PNG-cards/mark.png</file>
     </qresource>
 </RCC>

@@ -137,3 +137,43 @@ QGraphicsItem* PrinterCards::print_back(QGraphicsScene*& scene ,int x, int y)
      delete ptr_card_deck;
      ptr_card_deck = nullptr;
  }
+
+ void PrinterCards::print_converted_card(std::pair<int,int> card ,QGraphicsScene*& scene)
+ {
+    erase_converted_card();
+    ptr_card_converted_card = print_card(card,scene, x_top_card + 1.5* width, y_top_card);
+ }
+
+ void PrinterCards::erase_converted_card()
+ {
+     delete ptr_card_converted_card;
+     ptr_card_converted_card = nullptr;
+ }
+
+ void PrinterCards::print_marc_move(QGraphicsScene*& scene, int current_player, int x_mark_players, int y_mark_player1, int y_mark_player2, int size)
+ {
+     x_mark_move_players = x_mark_players;
+     y_mark_move_player1 = y_mark_player1;
+     y_mark_move_player2 = y_mark_player2;
+
+     QPixmap image_mark(":/image/PNG-cards/mark.png");
+     image_mark = image_mark.scaled(size, size);
+     ptr_mark_move = scene->addPixmap(image_mark);
+
+     if(current_player == 1)
+        ptr_mark_move->setPos(x_mark_move_players, y_mark_move_player1);
+     else
+        ptr_mark_move->setPos(x_mark_move_players, y_mark_move_player2);
+
+     scene->update();
+
+ }
+ void PrinterCards::print_change_move(QGraphicsScene*& scene, int current_player)
+ {
+     if(current_player == 1)
+        ptr_mark_move->setPos(x_mark_move_players, y_mark_move_player1);
+     else
+        ptr_mark_move->setPos(x_mark_move_players, y_mark_move_player2);
+
+      scene->update();
+ }
