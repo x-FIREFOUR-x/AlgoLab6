@@ -386,7 +386,13 @@ void GameBoard::resizeEvent(QResizeEvent *event)
             // ефект четвьорки
         if(current_player == 1)
         {
-            for (int i = 0; i < cards_deck.get_top_card().first; i++)
+            int numb;
+            if(cards_deck.get_top_card().first == 15)
+                numb = card_converted.first;
+            else
+                numb = cards_deck.get_top_card().first;
+
+            for (int i = 0; i < numb; i++)
             {
                 if (cards_deck.get_amount_card_in_deck() + cards_deck.get_amount_descarded_card()  > 0)
                 {
@@ -456,11 +462,11 @@ void GameBoard::resizeEvent(QResizeEvent *event)
                      put_three = false;
 
                  cards_hands1.pull_card_with_hands(ptr_chosen_card);
+                 assign_effect_card(card);
                  cards_deck.put_card(card, scene, printer);
-                 ptr_chosen_card = nullptr;
+                 ptr_chosen_card = nullptr; 
                  cards_hands1.picture_cards_hands(printer, scene);
                  printer.print_top_card(card, scene);
-                 assign_effect_card(card);
                  scene->update();
              }
 
@@ -478,11 +484,12 @@ void GameBoard::resizeEvent(QResizeEvent *event)
                      put_three = false;
 
                 cards_hands2.pull_card_with_hands(ptr_chosen_card);
+                assign_effect_card(card);
                 cards_deck.put_card(card, scene, printer);
                 ptr_chosen_card = nullptr;
+
                 cards_hands2.picture_cards_hands(printer, scene);
                 printer.print_top_card(card, scene);
-                assign_effect_card(card);
                 scene->update();
              }
          }
@@ -492,24 +499,34 @@ void GameBoard::resizeEvent(QResizeEvent *event)
  bool GameBoard::can_put_chosen_card(pair<int,int> card)
  {
      bool correct_move = false;
+     pair<int,int> top_card;
+     if(put_jocker)
+     {
+         top_card = card_converted;
+     }
+     else
+     {
+         top_card = cards_deck.get_top_card();
+     }
+
 
             // перевірка чи вибрана карта одного значення чи масті з верхньою
-     if ((card.first == cards_deck.get_top_card().first) || (card.second == cards_deck.get_top_card().second))
+     if ((card.first == top_card.first) || (card.second == top_card.second))
      {
              correct_move = true;
      }
 
-     if (cards_deck.get_top_card().first == 15 && put_jocker)         //якщо лежить джокер
+     if (top_card.first == 15 && put_jocker == false)         //якщо лежить джокер
      {
          correct_move = false;
-         if(cards_deck.get_top_card().second == 0 && (card.second == 0 || card.second == 3 ))
+         if(top_card.second == 0 && (card.second == 0 || card.second == 3 ))
              correct_move = true;
 
-         if(cards_deck.get_top_card().second == 1 && (card.second == 1 || card.second == 2 ))
+         if(top_card.second == 1 && (card.second == 1 || card.second == 2 ))
              correct_move = true;
      }
 
-     if(cards_deck.get_top_card().first == 8 && put_eight)   //якщо лежить 8
+     if(top_card.first == 8 && put_eight)   //якщо лежить 8
      {
           correct_move = false;
           if (card.second == card_converted.second)
@@ -529,13 +546,27 @@ void GameBoard::resizeEvent(QResizeEvent *event)
      if (put_four)              // якщо працює ефект четвьорки
      {
          correct_move = false;
-         if ((card.first == (cards_deck.get_top_card().first + 1)) && (card.second == cards_deck.get_top_card().second))
+         if (((card.first == (top_card.first + 1)) && (card.second == top_card.second)) || card.first == 15)
          {
              correct_move = true;
-             put_four = false;
+             if(card.first != 15)
+                put_four = false;
          }
 
      }
+
+     if(put_three)
+     {
+         correct_move = true;
+         put_three = false;
+     }
+
+     if(put_jocker && correct_move == true)
+     {
+         put_jocker = false;
+         printer.erase_converted_card();
+     }
+
 
     return correct_move;
  }
@@ -589,17 +620,23 @@ void GameBoard::effect_two()
     if (current_player == 1)
     {
         current_player = 2;
-        pair<int,int> new_card = cards_deck.take_card();
-        cards_hands2.give_card(new_card);
-        cards_hands2.picture_cards_hands(printer,scene);
+        if (cards_deck.get_amount_card_in_deck()+cards_deck.get_amount_descarded_card() > 0)
+        {
+            pair<int,int> new_card = cards_deck.take_card();
+            cards_hands2.give_card(new_card);
+            cards_hands2.picture_cards_hands(printer,scene);
+        }
         current_player =1;
     }
     else
     {
         current_player =1;
-        pair<int,int> new_card = cards_deck.take_card();
-        cards_hands1.give_card(new_card);
-        cards_hands1.picture_cards_hands(printer,scene);
+        if (cards_deck.get_amount_card_in_deck()+cards_deck.get_amount_descarded_card() > 0)
+        {
+            pair<int,int> new_card = cards_deck.take_card();
+            cards_hands1.give_card(new_card);
+            cards_hands1.picture_cards_hands(printer,scene);
+        }
         current_player =2;
     }
     if(!cards_deck.is_card_no_in_players())
@@ -650,22 +687,35 @@ void GameBoard::effect_jack()
 }
 void GameBoard::effect_joker()
 {
-    change_move();
-    int rank = -1;
-    while (rank == -1)
+
+    int rank;
+    int suit;
+    bool correct_choose = false;
+    while(!correct_choose)
     {
-        WindowRank* rank_window = new WindowRank(rank, this);
-        rank_window->setWindowTitle("Останній гравець");
-        rank_window->exec();
+        rank = -1;
+        suit = -1;
+        while (rank == -1)
+        {
+            WindowRank* rank_window = new WindowRank(rank, this);
+            rank_window->setWindowTitle("Останній гравець");
+            rank_window->exec();
+        }
+
+        while (suit == -1)
+        {
+            WindowSuit* suit_window = new WindowSuit(suit, this);
+            suit_window->setWindowTitle("Останній гравець");
+            suit_window->exec();
+        }
+       if( can_put_chosen_card(pair<int,int>(rank,suit)))
+           correct_choose = true;
     }
-    int suit = -1;
-    while (suit == -1)
-    {
-        WindowSuit* suit_window = new WindowSuit(suit, this);
-        suit_window->setWindowTitle("Останній гравець");
-        suit_window->exec();
-    }
+
+    //change_move();
     card_converted.first = rank;
     card_converted.second = suit;
+    assign_effect_card(card_converted);
+    printer.print_converted_card(card_converted,scene);
     put_jocker = true;
 }
