@@ -433,12 +433,11 @@ void GameBoard::resizeEvent(QResizeEvent *event)
                  current_player = 1;
                  printer.print_change_move(scene, current_player);
              }
-
-             if(!cards_deck.is_card_no_in_players())
-             {
-                 printer.erase_cards_deck();
-             }
          }
+     }
+     if(!cards_deck.is_card_no_in_players())
+     {
+         printer.erase_cards_deck();
      }
  }
  void GameBoard::put_card_in_top(int mouse_x, int mouse_y)
@@ -603,7 +602,10 @@ void GameBoard::effect_two()
         cards_hands1.picture_cards_hands(printer,scene);
         current_player =2;
     }
-
+    if(!cards_deck.is_card_no_in_players())
+    {
+        printer.erase_cards_deck();
+    }
 }
 void GameBoard::effect_three()
 {
