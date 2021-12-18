@@ -499,7 +499,7 @@ void GameBoard::resizeEvent(QResizeEvent *event)
              correct_move = true;
      }
 
-     if (cards_deck.get_top_card().first == 15)         //якщо лежить джокер
+     if (cards_deck.get_top_card().first == 15 && put_jocker)         //якщо лежить джокер
      {
          correct_move = false;
          if(cards_deck.get_top_card().second == 0 && (card.second == 0 || card.second == 3 ))
@@ -651,4 +651,21 @@ void GameBoard::effect_jack()
 void GameBoard::effect_joker()
 {
     change_move();
+    int rank = -1;
+    while (rank == -1)
+    {
+        WindowRank* rank_window = new WindowRank(rank, this);
+        rank_window->setWindowTitle("Останній гравець");
+        rank_window->exec();
+    }
+    int suit = -1;
+    while (suit == -1)
+    {
+        WindowSuit* suit_window = new WindowSuit(suit, this);
+        suit_window->setWindowTitle("Останній гравець");
+        suit_window->exec();
+    }
+    card_converted.first = rank;
+    card_converted.second = suit;
+    put_jocker = true;
 }

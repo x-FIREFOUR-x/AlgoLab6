@@ -8,6 +8,7 @@
 #include "cardshands.h"
 #include "cardsdeck.h"
 #include "windowsuit.h"
+#include "windowrank.h"
 #include <QLabel>
 
 class GameBoard: public QGraphicsView
@@ -38,6 +39,7 @@ class GameBoard: public QGraphicsView
     bool put_three = false;           // флажок спрацьовує при кладенні трійки
     bool put_four = false;            // флажок спрацьовує при кладенні чітвірки
     bool put_eight = false;
+    bool put_jocker = false;
     pair<int,int> card_converted;     //карта на яку перетворений джокер чи вісім(тільки масть)
 
     QLabel* Deck_counter;

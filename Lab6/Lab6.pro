@@ -17,6 +17,7 @@ SOURCES += \
     mainwindow.cpp \
     presettingwindow.cpp \
     printercards.cpp \
+    windowrank.cpp \
     windowsuit.cpp
 
 HEADERS += \
@@ -27,12 +28,14 @@ HEADERS += \
     mainwindow.h \
     presettingwindow.h \
     printercards.h \
+    windowrank.h \
     windowsuit.h
 
 FORMS += \
     gamewindow.ui \
     mainwindow.ui \
     presettingwindow.ui \
+    windowrank.ui \
     windowsuit.ui
 
 # Default rules for deployment.

@@ -38,9 +38,10 @@ public:
         if (WindowSuit->objectName().isEmpty())
             WindowSuit->setObjectName(QString::fromUtf8("WindowSuit"));
         WindowSuit->setEnabled(true);
-        WindowSuit->resize(300, 390);
+        WindowSuit->resize(300, 361);
         centralwidget = new QWidget(WindowSuit);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+        centralwidget->setGeometry(QRect(0, 0, 300, 340));
         ButtonHeart = new QPushButton(centralwidget);
         ButtonHeart->setObjectName(QString::fromUtf8("ButtonHeart"));
         ButtonHeart->setGeometry(QRect(0, 30, 150, 150));
@@ -78,6 +79,7 @@ public:
         menubar->setGeometry(QRect(0, 0, 300, 26));
         statusbar = new QStatusBar(WindowSuit);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
+        statusbar->setGeometry(QRect(0, 0, 3, 21));
 
         retranslateUi(WindowSuit);
 
