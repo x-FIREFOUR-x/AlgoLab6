@@ -35,7 +35,7 @@ void PresettingWindow::on_ButtonGoGame_clicked()
                 level_dif = 2;
             else
                 level_dif = 3;
-        GameWindow* game_window= new GameWindow(play_with_pc,pc_first,level_dif,this);
+        GameWindow* game_window= new GameWindow(play_with_pc,this);
         game_window->setWindowTitle("Останній гравець");
         game_window->show();
     }

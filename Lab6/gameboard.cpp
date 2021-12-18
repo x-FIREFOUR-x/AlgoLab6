@@ -69,28 +69,18 @@ void GameBoard::parameters(int height, int width, bool g_with_pc)
 
 }
 
-void GameBoard::set_parameters(QLabel* counter, int height, int width, bool g_with_pc)
+void GameBoard::set_parameters(int height, int width, bool g_with_pc)
 {
-   Deck_counter = counter;
    parameters(height, width, g_with_pc);
+   finished = false;
 }
 
-void GameBoard::set_parameters(QLabel* counter, int height, int width, bool g_with_pc, bool pc_first, int level_dif)
+void GameBoard::set_label(QLabel* counter, QLabel* score_player1, QLabel* score_player2, QLabel* score_max)
 {
     Deck_counter = counter;
-    parameters(height, width, g_with_pc);
-
-    computer_first = pc_first;
-    difficulty = level_dif;
-    level_recur = difficulty;
-    finished = false;
-
-    if(pc_first)
-    {
-        //PainterCube::paint_first_cube(scene, 1 * size_cells, 0 * size_cells, size_cells, size_cells*2);
-        //board.set_adj_cells(1, 9, current_player);
-        //current_player = 2;
-    }
+    Score_player1 = score_player1;
+    Score_player1 = score_player2;
+    Score_max = score_max;
 }
 
 void GameBoard::mousePressEvent(QMouseEvent *event)
