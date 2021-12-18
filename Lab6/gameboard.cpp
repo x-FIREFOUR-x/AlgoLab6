@@ -561,7 +561,7 @@ void GameBoard::resizeEvent(QResizeEvent *event)
          put_three = false;
      }
 
-     if(put_jocker && correct_move == true)
+     if(put_jocker && correct_move == true && card.first != 15)
      {
          put_jocker = false;
          printer.erase_converted_card();
