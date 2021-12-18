@@ -9,7 +9,7 @@
 #include <QBrush>
 #include <QPixmap>
 
-GameBoard::GameBoard(QWidget *parent):
+GameBoard::GameBoard( QWidget *parent):
     QGraphicsView(parent)
 {
     scene = new QGraphicsScene;
@@ -24,7 +24,7 @@ GameBoard::~GameBoard()
 }
 
 void GameBoard::parameters(int height, int width, bool g_with_pc)
-{
+{   
     height_side_px = height;
     width_side_px = width;
     game_with_pc = g_with_pc;
@@ -50,6 +50,9 @@ void GameBoard::parameters(int height, int width, bool g_with_pc)
 
     cards_deck.distribution(number_card_of_distrib, cards_hands1, cards_hands2);
 
+    QString s = QString::number(cards_deck.get_amount_card_in_deck());
+    Deck_counter->setText(s);
+
     pair<int,int> top_card = cards_deck.get_top_card();
     printer.print_top_card(top_card, scene);
 
@@ -66,13 +69,15 @@ void GameBoard::parameters(int height, int width, bool g_with_pc)
 
 }
 
-void GameBoard::set_parameters(int height, int width, bool g_with_pc)
+void GameBoard::set_parameters(QLabel* counter, int height, int width, bool g_with_pc)
 {
+   Deck_counter = counter;
    parameters(height, width, g_with_pc);
 }
 
-void GameBoard::set_parameters(int height, int width, bool g_with_pc, bool pc_first, int level_dif)
+void GameBoard::set_parameters(QLabel* counter, int height, int width, bool g_with_pc, bool pc_first, int level_dif)
 {
+    Deck_counter = counter;
     parameters(height, width, g_with_pc);
 
     computer_first = pc_first;
@@ -111,10 +116,12 @@ void GameBoard::player_vs_player(int mouse_x, int mouse_y)
           if (is_click_on_deck(mouse_x, mouse_y))
           {
               take_card_with_deck();
+              display_count_deck();
           }
           else
           {
               put_card_in_top(mouse_x, mouse_y);
+              display_count_deck();
           }
 
       }
@@ -381,25 +388,29 @@ void GameBoard::resizeEvent(QResizeEvent *event)
         {
             for (int i = 0; i < cards_deck.get_top_card().first; i++)
             {
-                pair<int,int> new_card = cards_deck.take_card();
-                cards_hands1.give_card(new_card);
-                cards_hands1.picture_cards_hands(printer,scene);
+                if (cards_deck.get_amount_card_in_deck() + cards_deck.get_amount_descarded_card()  > 0)
+                {
+                    pair<int,int> new_card = cards_deck.take_card();
+                    cards_hands1.give_card(new_card);
+                    cards_hands1.picture_cards_hands(printer,scene);
+                }
             }
             put_four = false;
-            current_player =2;
-            printer.print_change_move(scene, current_player);
+            change_move();
         }
         else
         {
             for (int i = 0; i < cards_deck.get_top_card().first; i++)
             {
-                pair<int,int> new_card = cards_deck.take_card();
-                cards_hands2.give_card(new_card);
-                cards_hands2.picture_cards_hands(printer,scene);
+                if (cards_deck.get_amount_card_in_deck() + cards_deck.get_amount_descarded_card()  > 0)
+                {
+                    pair<int,int> new_card = cards_deck.take_card();
+                    cards_hands2.give_card(new_card);
+                    cards_hands2.picture_cards_hands(printer,scene);
+                }
             }
             put_four = false;
-            current_player = 1;
-            printer.print_change_move(scene, current_player);
+            change_move();
         }
      }
      else
@@ -429,7 +440,6 @@ void GameBoard::resizeEvent(QResizeEvent *event)
              }
          }
      }
-
  }
  void GameBoard::put_card_in_top(int mouse_x, int mouse_y)
  {
@@ -478,7 +488,6 @@ void GameBoard::resizeEvent(QResizeEvent *event)
              }
          }
      }
-
  }
 
  bool GameBoard::can_put_chosen_card(pair<int,int> card)
@@ -531,6 +540,37 @@ void GameBoard::resizeEvent(QResizeEvent *event)
 
     return correct_move;
  }
+
+ void GameBoard::change_move()
+ {
+     if (current_player == 1)
+     {
+         current_player = 2;
+         printer.print_change_move(scene, current_player);
+     }
+     else
+     {
+         current_player = 1;
+         printer.print_change_move(scene, current_player);
+     }
+ }
+
+void GameBoard::display_count_deck()
+{
+    if (cards_deck.get_amount_card_in_deck() > 0)
+    {
+        QString s = QString::number(cards_deck.get_amount_card_in_deck());
+        Deck_counter->setText(s);
+    }
+    else
+    {
+        int count = cards_deck.get_amount_card_in_deck() + cards_deck.get_amount_descarded_card();
+        QString s = QString::number(count);
+        Deck_counter->setText(s);
+    }
+
+}
+
 void GameBoard::assign_effect_card(pair<int,int> card)
 {
     switch (card.first)
@@ -541,17 +581,7 @@ void GameBoard::assign_effect_card(pair<int,int> card)
         case 8: effect_eight(); break;
         case 11: effect_jack(); break;
         case 15: effect_joker(); break;
-        default:
-            if (current_player == 1)
-            {
-                current_player = 2;
-                printer.print_change_move(scene, current_player);
-            }
-            else
-            {
-                current_player = 1;
-                printer.print_change_move(scene, current_player);
-            }
+        default: change_move();
     }
 }
 
@@ -577,40 +607,16 @@ void GameBoard::effect_two()
 }
 void GameBoard::effect_three()
 {
-    if (current_player == 1)
-        current_player =1;
-    else
-        current_player = 2;
-
     put_three = true;
 }
 void GameBoard::effect_four()
 {
-    if (current_player == 1)
-    {
-        current_player =2;
-        printer.print_change_move(scene, current_player);
-    }
-    else
-    {
-        current_player = 1;
-        printer.print_change_move(scene, current_player);
-    }
-
+    change_move();
     put_four = true;
 }
 void GameBoard::effect_eight()
 {
-    if (current_player == 1)
-    {
-        current_player =2;
-        printer.print_change_move(scene, current_player);
-    }
-    else
-    {
-        current_player = 1;
-        printer.print_change_move(scene, current_player);
-    }
+    change_move();
 
     int suit = -1;
     while (suit == -1)
@@ -642,14 +648,5 @@ void GameBoard::effect_jack()
 }
 void GameBoard::effect_joker()
 {
-    if (current_player == 1)
-    {
-        current_player =2;
-        printer.print_change_move(scene, current_player);
-    }
-    else
-    {
-        current_player = 1;
-        printer.print_change_move(scene, current_player);
-    }
+    change_move();
 }

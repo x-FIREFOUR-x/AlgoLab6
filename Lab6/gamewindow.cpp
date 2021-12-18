@@ -9,7 +9,7 @@ GameWindow::GameWindow(bool g_with_pc, QWidget *parent) :
 {
     ui->setupUi(this);
     game_board= ui->graphicsView;
-    game_board->set_parameters(ui->graphicsView->height(), ui->graphicsView->width(), g_with_pc);
+    game_board->set_parameters(ui->CountCardDeck, ui->graphicsView->height(), ui->graphicsView->width(), g_with_pc);
     setFixedSize(this->width(), this->height());
 
 }
@@ -19,7 +19,7 @@ GameWindow::GameWindow(bool g_with_pc, bool pc_first, int level_dif, QWidget *pa
 {
     ui->setupUi(this);
     game_board= ui->graphicsView;
-    game_board->set_parameters(ui->graphicsView->height(), ui->graphicsView->width(), g_with_pc,pc_first, level_dif);
+    game_board->set_parameters(ui->CountCardDeck ,ui->graphicsView->height(), ui->graphicsView->width(), g_with_pc,pc_first, level_dif);
     setFixedSize(this->width(), this->height());
 }
 

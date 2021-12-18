@@ -8,6 +8,7 @@
 #include "cardshands.h"
 #include "cardsdeck.h"
 #include "windowsuit.h"
+#include <QLabel>
 
 class GameBoard: public QGraphicsView
 {
@@ -39,15 +40,16 @@ class GameBoard: public QGraphicsView
     bool put_eight = false;
     pair<int,int> card_converted;     //карта на яку перетворений джокер чи вісім(тільки масть)
 
+    QLabel* Deck_counter;
 
 public:
     GameBoard(QWidget *parent = nullptr);
     ~GameBoard();
 
         //Метод, що використовується для встановлення розміру, ігрового поля і параметра g_with_pc(false) виклик при грі 2 гравців
-    void set_parameters(int height, int width, bool g_with_pc);
+    void set_parameters(QLabel* counter, int height, int width, bool g_with_pc);
         //Метод, що використовується для встановлення розміру, ігрового поля і параметра g_with_pc(true) виклик при грі з пк і встановлення порядку ходу, рівня тяжкості
-    void set_parameters(int height, int width, bool g_with_pc, bool pc_first, int level_dif);
+    void set_parameters(QLabel* counter, int height, int width, bool g_with_pc, bool pc_first, int level_dif);
 
 
 protected:
@@ -86,6 +88,9 @@ private:
 
         //перевіряє чи вибрану карту можна покласти на верх минуло скинутої карти
     bool can_put_chosen_card(pair<int,int>);
+
+    void change_move();
+    void display_count_deck();
 
         // визначення ефекту покладеної карти
     void assign_effect_card(pair<int,int> card);
