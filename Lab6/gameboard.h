@@ -24,7 +24,7 @@ class GameBoard: public QGraphicsView
 
     int current_player;      //номер гравця чий хід
 
-    bool finished;          //гра закінчена
+    bool finished = false;          //гра закінчена
     bool player_win;        //гравець виграв
 
     QGraphicsScene *scene;  // покажчик на графічну сцену
@@ -72,6 +72,10 @@ private:
     void start_round();
         //кінець раунда збір колоди скидка карт гравців
     void end_round();
+        //підрахунок штрафних балів в кінці раунда
+    void calculate_score();
+        //відобразити очки на лейблах
+    void display_score();
 
         // гра йде гравець проти гравця
     void player_vs_player(int mouse_x, int mouse_y);

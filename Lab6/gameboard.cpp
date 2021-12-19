@@ -27,9 +27,7 @@ GameBoard::~GameBoard()
 void GameBoard::set_parameters(int score ,int height, int width, bool g_with_pc)
 {
    max_score = score;
-   Score_max->setText(QString::number(max_score));
-   Score_player1->setText(QString::number(score1));
-   Score_player2->setText(QString::number(score2));
+   display_score();
 
    parameters(height, width, g_with_pc);
    finished = false;
@@ -90,6 +88,8 @@ void GameBoard::start_round()
     cards_hands1.picture_cards_hands(printer, scene);
     cards_hands2.picture_cards_hands(printer, scene);
 
+    current_player = 1;         //допис рандом
+
     int y1 = height_side_px/40;
     int y2 = height_side_px - height_side_px/20;
     int size = height_side_px/20;
@@ -103,7 +103,21 @@ void GameBoard::end_round()
      cards_hands2.discard_cards();
 }
 
+void GameBoard::calculate_score()
+{
+    int score;
+    score = cards_hands1.calculate_scorecards();
+    score1 += score;
+    score = cards_hands2.calculate_scorecards();
+    score2 += score;
+}
+void GameBoard::display_score()
+{
+    Score_max->setText(QString::number(max_score));
+    Score_player1->setText(QString::number(score1));
+    Score_player2->setText(QString::number(score2));
 
+}
 void GameBoard::mousePressEvent(QMouseEvent *event)
 {
     int mouse_x = event->position().x();
@@ -122,7 +136,7 @@ void GameBoard::mousePressEvent(QMouseEvent *event)
 
 void GameBoard::player_vs_player(int mouse_x, int mouse_y)
 {
-      if(cards_hands1.get_count_cards() != 0 && cards_hands2.get_count_cards() != 0 )
+      if(cards_hands1.get_count_cards() != 0 && cards_hands2.get_count_cards() != 0 && finished == false)
       {
           if (is_click_on_deck(mouse_x, mouse_y))
           {
@@ -137,36 +151,48 @@ void GameBoard::player_vs_player(int mouse_x, int mouse_y)
 
       }
 
-      if (cards_hands1.get_count_cards() == 0 )
+      if (score1 >= max_score || score2 >= max_score)
       {
-          QString text = "В РАУНДІ ПЕРЕМІГ ДРУГИЙ ГРАВЕЦЬ";
-          QString title = "Ігра закінчилася";
-          QMessageBox:: about(this,title,text);
-          end_round();
-          start_round();
+          if(score2 >= max_score)
+          {
+              QString text = "ПЕРЕМІГ ПЕРШИЙ ГРАВЕЦЬ";
+              QString title = "Ігра закінчилася";
+              QMessageBox:: about(this,title,text);
+              finished = true;
+          }
+          if(score1 >= max_score)
+          {
+              QString text = "ПЕРЕМІГ ДРУГИЙ ГРАВЕЦЬ";
+              QString title = "Ігра закінчилася";
+              QMessageBox:: about(this,title,text);
+              finished = true;
+          }
       }
-      if (cards_hands2.get_count_cards() == 0)
+      else
       {
-          QString text = "В РАУНДІ ПЕРЕМІГ ПЕРШИЙ ГРАВЕЦЬ";
-          QString title = "Ігра закінчилася";
-          QMessageBox:: about(this,title,text);
-          end_round();
-          start_round();
-      }
+          if (cards_hands1.get_count_cards() == 0 )
+          {
+              QString text = "В РАУНДІ ПЕРЕМІГ ПЕРШИЙ ГРАВЕЦЬ";
+              QString title = "Ігра закінчилася";
+              QMessageBox:: about(this,title,text);
+              calculate_score();
+              display_score();
+              end_round();
+              start_round();
+          }
+          if (cards_hands2.get_count_cards() == 0 )
+          {
+              QString text = "В РАУНДІ ПЕРЕМІГ ДРУГИЙ ГРАВЕЦЬ";
+              QString title = "Ігра закінчилася";
+              QMessageBox:: about(this,title,text);
+              calculate_score();
+              display_score();
+              end_round();
+              start_round();
+          }
 
-      if(score2 >= max_score)
-      {
-          QString text = "ПЕРЕМІГ ПЕРШИЙ ГРАВЕЦЬ";
-          QString title = "Ігра закінчилася";
-          QMessageBox:: about(this,title,text);
-      }
-      if(score1 >= max_score)
-      {
-          QString text = "ПЕРЕМІГ ДРУГИЙ ГРАВЕЦЬ";
-          QString title = "Ігра закінчилася";
-          QMessageBox:: about(this,title,text);
-      }
 
+      }
 }
 
 void GameBoard::player_vs_computer(int mouse_x, int mouse_y)
@@ -411,15 +437,15 @@ void GameBoard::resizeEvent(QResizeEvent *event)
  {
      if (put_four)
      {
-            // ефект четвьорки
+         // ефект четвьорки
+         int numb;
+         if(cards_deck.get_top_card().first == 15)
+             numb = card_converted.first;
+         else
+             numb = cards_deck.get_top_card().first;
+
         if(current_player == 1)
         {
-            int numb;
-            if(cards_deck.get_top_card().first == 15)
-                numb = card_converted.first;
-            else
-                numb = cards_deck.get_top_card().first;
-
             for (int i = 0; i < numb; i++)
             {
                 if (cards_deck.get_amount_card_in_deck() + cards_deck.get_amount_descarded_card()  > 0)
@@ -434,7 +460,7 @@ void GameBoard::resizeEvent(QResizeEvent *event)
         }
         else
         {
-            for (int i = 0; i < cards_deck.get_top_card().first; i++)
+            for (int i = 0; i < numb; i++)
             {
                 if (cards_deck.get_amount_card_in_deck() + cards_deck.get_amount_descarded_card()  > 0)
                 {

@@ -87,3 +87,24 @@ void CardsHands::discard_cards()
     ptr_img_cards.erase(ptr_img_cards.begin(), ptr_img_cards.end());
 
 }
+
+int CardsHands::calculate_scorecards()
+{
+    int score = 0;
+    for(int i = 0; i < cards_of_hands.size(); i++)
+    {
+        switch (cards_of_hands[i].first)
+        {
+            case 8: score+=25; break;
+            case 10: score+=10; break;
+            case 11: score+=10; break;
+            case 12: score+=10; break;
+            case 13: score+=10; break;
+            case 14: score+=15; break;
+            case 15: score+=40; break;
+            default: break;
+        }
+    }
+
+    return score;
+}
