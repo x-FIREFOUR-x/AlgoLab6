@@ -64,7 +64,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:red;</string>
+     <string notr="true">color:yellow;</string>
     </property>
     <property name="text">
      <string>0</string>
@@ -80,7 +80,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:red;</string>
+     <string notr="true">color:yellow;</string>
     </property>
     <property name="text">
      <string>0</string>
@@ -96,7 +96,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:red;</string>
+     <string notr="true">color:yellow;</string>
     </property>
     <property name="text">
      <string>Очки 1 гравця</string>
@@ -112,7 +112,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:red;</string>
+     <string notr="true">color:yellow;</string>
     </property>
     <property name="text">
      <string>Очки 2 гравця</string>
@@ -128,7 +128,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:red;</string>
+     <string notr="true">color:yellow;</string>
     </property>
     <property name="text">
      <string>Гра до:</string>
@@ -144,7 +144,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:red;</string>
+     <string notr="true">color:yellow;</string>
     </property>
     <property name="text">
      <string>0</string>
