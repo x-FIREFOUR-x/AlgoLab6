@@ -29,6 +29,12 @@ public:
     QWidget *centralwidget;
     GameBoard *graphicsView;
     QLabel *CountCardDeck;
+    QLabel *labelScore1;
+    QLabel *labelScore2;
+    QLabel *label;
+    QLabel *label_2;
+    QLabel *label_3;
+    QLabel *MaxScore;
     QStatusBar *statusbar;
     QMenuBar *menubar;
     QMenu *menu;
@@ -55,6 +61,30 @@ public:
         CountCardDeck->setLineWidth(1);
         CountCardDeck->setAlignment(Qt::AlignCenter);
         CountCardDeck->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
+        labelScore1 = new QLabel(centralwidget);
+        labelScore1->setObjectName(QString::fromUtf8("labelScore1"));
+        labelScore1->setGeometry(QRect(730, 200, 51, 16));
+        labelScore1->setStyleSheet(QString::fromUtf8("color:red;"));
+        labelScore2 = new QLabel(centralwidget);
+        labelScore2->setObjectName(QString::fromUtf8("labelScore2"));
+        labelScore2->setGeometry(QRect(730, 280, 55, 16));
+        labelScore2->setStyleSheet(QString::fromUtf8("color:red;"));
+        label = new QLabel(centralwidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(630, 200, 91, 20));
+        label->setStyleSheet(QString::fromUtf8("color:red;"));
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(630, 280, 91, 16));
+        label_2->setStyleSheet(QString::fromUtf8("color:red;"));
+        label_3 = new QLabel(centralwidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setGeometry(QRect(650, 240, 51, 16));
+        label_3->setStyleSheet(QString::fromUtf8("color:red;"));
+        MaxScore = new QLabel(centralwidget);
+        MaxScore->setObjectName(QString::fromUtf8("MaxScore"));
+        MaxScore->setGeometry(QRect(730, 240, 55, 16));
+        MaxScore->setStyleSheet(QString::fromUtf8("color:red;"));
         GameWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(GameWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -79,6 +109,12 @@ public:
         GameWindow->setWindowTitle(QCoreApplication::translate("GameWindow", "MainWindow", nullptr));
         CloseEnd->setText(QCoreApplication::translate("GameWindow", "\320\227\320\260\320\272\321\200\320\270\321\202\320\270 \320\263\321\200\321\203", nullptr));
         CountCardDeck->setText(QCoreApplication::translate("GameWindow", "0", nullptr));
+        labelScore1->setText(QCoreApplication::translate("GameWindow", "0", nullptr));
+        labelScore2->setText(QCoreApplication::translate("GameWindow", "0", nullptr));
+        label->setText(QCoreApplication::translate("GameWindow", "\320\236\321\207\320\272\320\270 1 \320\263\321\200\320\260\320\262\321\206\321\217", nullptr));
+        label_2->setText(QCoreApplication::translate("GameWindow", "\320\236\321\207\320\272\320\270 2 \320\263\321\200\320\260\320\262\321\206\321\217", nullptr));
+        label_3->setText(QCoreApplication::translate("GameWindow", "\320\223\321\200\320\260 \320\264\320\276:", nullptr));
+        MaxScore->setText(QCoreApplication::translate("GameWindow", "0", nullptr));
         menu->setTitle(QCoreApplication::translate("GameWindow", "\320\234\320\265\320\275\321\216", nullptr));
     } // retranslateUi
 

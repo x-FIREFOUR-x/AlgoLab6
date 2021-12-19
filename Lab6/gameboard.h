@@ -18,14 +18,13 @@ class GameBoard: public QGraphicsView
 
     bool game_with_pc;      //тип гри з комп'ютером чи два гравці
     bool computer_first;    // чи перший ходить компютер
-    int difficulty;         // рівень складності (1 легкий, 2 середній, 3 тяжкий)
 
     int level_recur;        // глибина рекурсії рівна складності
     int time_deley = 10;    // час затримки перд ходом компютера
 
     int current_player;      //номер гравця чий хід
 
-    bool finished;          //гра закінчена
+    bool finished = false;          //гра закінчена
     bool player_win;        //гравець виграв
 
     QGraphicsScene *scene;  // покажчик на графічну сцену
@@ -43,16 +42,22 @@ class GameBoard: public QGraphicsView
     pair<int,int> card_converted;     //карта на яку перетворений джокер чи вісім(тільки масть)
 
     QLabel* Deck_counter;
+    QLabel* Score_player1;
+    QLabel* Score_player2;
+    QLabel* Score_max;
+
+    int max_score = 0;
+    int score1 = 0;
+    int score2 = 0;
 
 public:
     GameBoard(QWidget *parent = nullptr);
     ~GameBoard();
 
-        //Метод, що використовується для встановлення розміру, ігрового поля і параметра g_with_pc(false) виклик при грі 2 гравців
-    void set_parameters(QLabel* counter, int height, int width, bool g_with_pc);
-        //Метод, що використовується для встановлення розміру, ігрового поля і параметра g_with_pc(true) виклик при грі з пк і встановлення порядку ходу, рівня тяжкості
-    void set_parameters(QLabel* counter, int height, int width, bool g_with_pc, bool pc_first, int level_dif);
-
+        //Метод, що використовується для встановлення розміру, ігрового поля і параметра g_with_pc max_score
+    void set_parameters(int max_score ,int height, int width, bool g_with_pc);
+        // метод для встановлення вказіників на лейбли на ігровому полі
+    void set_label(QLabel* counter, QLabel* score_player1, QLabel* score_player2, QLabel* score_max);
 
 protected:
          // встановлення спільних параметрів
@@ -64,6 +69,16 @@ protected:
     void resizeEvent(QResizeEvent *event);
 
 private:
+        //початок раунда роздача карт
+    void start_round();
+        //кінець раунда збір колоди скидка карт гравців
+    void end_round();
+        //підрахунок штрафних балів в кінці раунда
+    void calculate_score();
+        //відобразити очки на лейблах
+    void display_score();
+
+
         // гра йде гравець проти гравця
     void player_vs_player(int mouse_x, int mouse_y);
 
@@ -91,7 +106,9 @@ private:
         //перевіряє чи вибрану карту можна покласти на верх минуло скинутої карти
     bool can_put_chosen_card(pair<int,int>);
 
+        //зміна ходу (зміна current_player)
     void change_move();
+        // відобразити кількість карт в колоді
     void display_count_deck();
 
         // визначення ефекту покладеної карти
@@ -100,9 +117,9 @@ private:
     void effect_two();          // активація ефекту коли кладуть 2
     void effect_three();        // активація ефекту коли кладуть 3
     void effect_four();         // активація ефекту коли кладуть 4
-    void effect_eight();
+    void effect_eight();        // активація ефекту коли кладуть 8
     void effect_jack();         // активація ефекту коли кладуть валєт
-    void effect_joker();
+    void effect_joker();        // активація ефекту коли кладуть джокер
 };
 
 #endif // GAMEBOARD_H

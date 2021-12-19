@@ -19,13 +19,11 @@ class GameWindow : public QMainWindow
 private:
     Ui::GameWindow *ui;  //Покажчик на інтерфейс вікна
 
-    GameBoard* game_board;
+    GameBoard* game_board;  //покажчик на ігрове поле
 
 public:
         // конструктор створення вікна гри для 2 гравців
-    explicit GameWindow(bool g_with_pc, QWidget *parent = nullptr);
-        // конструктор створення вікна гри для гри з пк із передачею параметрів
-    explicit GameWindow(bool g_with_pc, bool pc_first, int level_dif, QWidget *parent = nullptr);
+    explicit GameWindow(int max_score, bool g_with_pc, QWidget *parent = nullptr);
     ~GameWindow();
 
 private slots:

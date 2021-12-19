@@ -37,6 +37,22 @@ void CardsDeck::distribution (int number_card, CardsHands& hands_player1, CardsH
     top_card = card;
 }
 
+ void CardsDeck::collect_cards(PrinterCards& printer)
+ {
+     deck_cards.erase(deck_cards.begin(),deck_cards.end());
+     discarded_cards.erase(discarded_cards.begin(),discarded_cards.end());
+     for(int i = 2; i < 15; i++)
+     {
+         for(int j = 0; j < 4; j++)
+         {
+             deck_cards.push_back(pair<int,int>(i,j));
+         }
+     }
+     deck_cards.push_back(pair<int,int>(15,0));
+     deck_cards.push_back(pair<int,int>(15,1));
+     printer.erase_cards_deck();
+ }
+
 pair<int,int> CardsDeck::take_card()
 {
     pair<int,int>card;

@@ -19,6 +19,8 @@ public:
 
         // роздача карт
     void distribution (int number_card, CardsHands& hands1, CardsHands& hands2);
+        //перероздача карт
+    void collect_cards(PrinterCards& printer);
 
         //взяти карту з колоди
     pair<int,int> take_card();
@@ -28,7 +30,6 @@ public:
 
         // отримати значення останньої покладеної карти
     pair<int,int> get_top_card();
-
 
     int get_amount_card_in_deck();       //отримати кількість карт в колоді
     int get_amount_descarded_card();     //отримати кількість скинутих карт(крім верхньої)

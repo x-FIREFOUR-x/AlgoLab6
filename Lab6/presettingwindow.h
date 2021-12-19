@@ -23,11 +23,6 @@ private slots:
         // повернутися назад вголовне меню (MainWindow)
     void on_ButtonBack_clicked();
 
-        // встановлення кнопки гра з пк активною (для відображення вибору параметрів)
-    void on_radioButtonPlayPC_clicked();
-
-        // встановлення кнопки гра 2 гравців активною (для приховання вибору параметрів гри з пк)
-    void on_radioButtonTwoPlayers_clicked();
 
 private:
     Ui::PresettingWindow *ui;
