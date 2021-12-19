@@ -177,3 +177,8 @@ QGraphicsItem* PrinterCards::print_back(QGraphicsScene*& scene ,int x, int y)
 
       scene->update();
  }
+void PrinterCards::erase_marc_move(QGraphicsScene*& scene)
+{
+    delete ptr_mark_move;
+    ptr_mark_move = nullptr;
+}

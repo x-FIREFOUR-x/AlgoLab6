@@ -71,10 +71,13 @@ public:
     void print_marc_move(QGraphicsScene*& scene, int current_player, int x_mark_players, int y_mark_player1, int y_mark_player2, int size);
             //зміна положення мітки відображення ходу (чий хід) (зміна ходу)
     void print_change_move(QGraphicsScene*& scene, int current_player);
+            //видалення мітки відображення ходу (чий хід)
+    void erase_marc_move(QGraphicsScene*& scene);
 
 private:
         //присвоєння значень списку namefile_cards шляхв до картинок великих карт J, Q, K, A
     void push_namefile_bigcards(std::string name);
+
 };
 
 #endif // PRINTERCARDS_H

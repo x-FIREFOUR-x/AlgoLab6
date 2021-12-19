@@ -22,6 +22,7 @@ class GameBoard: public QGraphicsView
     int level_recur;        // глибина рекурсії рівна складності
     int time_deley = 10;    // час затримки перд ходом компютера
 
+    int who_move_first;       // номер гравця який починає гру (з початку гри вибирається випадково далі в раундах змінюється)
     int current_player;      //номер гравця чий хід
 
     bool finished = false;          //гра закінчена
@@ -77,6 +78,8 @@ private:
     void calculate_score();
         //відобразити очки на лейблах
     void display_score();
+        //змінює за ким перший хід в раунді по закінчення раундів
+    void change_who_first_move();
 
 
         // гра йде гравець проти гравця

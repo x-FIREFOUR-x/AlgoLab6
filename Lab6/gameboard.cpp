@@ -60,6 +60,8 @@ void GameBoard::parameters(int height, int width, bool g_with_pc)
     cards_hands1.set_y(height_side_px/10);
     cards_hands2.set_y(height_side_px - (height_side_px/10) - height_side_px/5);
 
+    who_move_first = rand()%2 + 1;
+
     start_round();
 
 }
@@ -88,7 +90,7 @@ void GameBoard::start_round()
     cards_hands1.picture_cards_hands(printer, scene);
     cards_hands2.picture_cards_hands(printer, scene);
 
-    current_player = 1;         //допис рандом
+    current_player = who_move_first;
 
     int y1 = height_side_px/40;
     int y2 = height_side_px - height_side_px/20;
@@ -101,6 +103,8 @@ void GameBoard::end_round()
      cards_deck.collect_cards(printer);
      cards_hands1.discard_cards();
      cards_hands2.discard_cards();
+     printer.erase_marc_move(scene);
+     printer.erase_converted_card();
 }
 
 void GameBoard::calculate_score()
@@ -178,6 +182,7 @@ void GameBoard::player_vs_player(int mouse_x, int mouse_y)
               calculate_score();
               display_score();
               end_round();
+              change_who_first_move();
               start_round();
           }
           if (cards_hands2.get_count_cards() == 0 )
@@ -188,6 +193,7 @@ void GameBoard::player_vs_player(int mouse_x, int mouse_y)
               calculate_score();
               display_score();
               end_round();
+              change_who_first_move();
               start_round();
           }
 
@@ -638,6 +644,14 @@ void GameBoard::resizeEvent(QResizeEvent *event)
          printer.print_change_move(scene, current_player);
      }
  }
+
+void GameBoard::change_who_first_move()
+{
+    if (who_move_first == 1)
+        who_move_first =2;
+    else
+        who_move_first = 1;
+}
 
 void GameBoard::display_count_deck()
 {
