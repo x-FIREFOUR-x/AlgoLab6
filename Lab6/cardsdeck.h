@@ -19,6 +19,8 @@ public:
 
         // роздача карт
     void distribution (int number_card, CardsHands& hands1, CardsHands& hands2);
+        //перероздача карт
+    void collect_cards(PrinterCards& printer);
 
         //взяти карту з колоди
     pair<int,int> take_card();

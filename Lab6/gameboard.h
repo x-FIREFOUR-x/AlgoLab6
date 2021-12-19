@@ -68,6 +68,11 @@ protected:
     void resizeEvent(QResizeEvent *event);
 
 private:
+        //початок раунда роздача карт
+    void start_round();
+        //кінець раунда збір колоди скидка карт гравців
+    void end_round();
+
         // гра йде гравець проти гравця
     void player_vs_player(int mouse_x, int mouse_y);
 
