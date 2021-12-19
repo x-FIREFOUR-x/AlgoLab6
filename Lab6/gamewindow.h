@@ -19,7 +19,7 @@ class GameWindow : public QMainWindow
 private:
     Ui::GameWindow *ui;  //Покажчик на інтерфейс вікна
 
-    GameBoard* game_board;
+    GameBoard* game_board;  //покажчик на ігрове поле
 
 public:
         // конструктор створення вікна гри для 2 гравців

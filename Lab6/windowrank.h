@@ -17,36 +17,36 @@ public:
 
 private slots:
 
-    void on_radioButtonTwo_clicked();
+    void on_radioButtonTwo_clicked();         //вибір рангу карти 2 для перетвореної
 
-    void on_radioButtonKing_clicked();
+    void on_radioButtonThree_clicked();       //вибір рангу карти 3 для перетвореної
 
-    void on_radioButtonThree_clicked();
+    void on_radioButtonFour_clicked();        //вибір рангу карти 4 для перетвореної
 
-    void on_radioButtonFour_clicked();
+    void on_radioButtonFive_clicked();        //вибір рангу карти 5 для перетвореної
 
-    void on_radioButtonFive_clicked();
+    void on_radioButtonSix_clicked();         //вибір рангу карти 6 для перетвореної
 
-    void on_radioButtonSix_clicked();
+    void on_radioButtonSeven_clicked();       //вибір рангу карти 7 для перетвореної
 
-    void on_radioButtonSeven_clicked();
+    void on_radioButtonEight_clicked();       //вибір рангу карти 8 для перетвореної
 
-    void on_radioButtonEight_clicked();
+    void on_radioButtonNine_clicked();        //вибір рангу карти 9 для перетвореної
 
-    void on_radioButtonNine_clicked();
+    void on_radioButtonTen_clicked();         //вибір рангу карти 10 для перетвореної
 
-    void on_radioButtonTen_clicked();
+    void on_radioButtonJack_clicked();        //вибір рангу карти валєт для перетвореної
 
-    void on_radioButtonJack_clicked();
+    void on_radioButtonQueen_clicked();       //вибір рангу карти дама для перетвореної
 
-    void on_radioButtonQueen_clicked();
+    void on_radioButtonKing_clicked();        //вибір рангу карти король для перетвореної
 
-    void on_radioButtonAce_clicked();
+    void on_radioButtonAce_clicked();         //вибір рангу карти туз для перетвореної
 
 private:
     Ui::WindowRank *ui;
 
-    int* rank_card;
+    int* rank_card;         //вибраний ранг карти
 };
 
 #endif // WINDOWRANK_H

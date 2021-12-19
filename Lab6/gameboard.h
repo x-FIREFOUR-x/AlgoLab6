@@ -54,8 +54,9 @@ public:
     GameBoard(QWidget *parent = nullptr);
     ~GameBoard();
 
-        //Метод, що використовується для встановлення розміру, ігрового поля і параметра g_with_pc(false) виклик при грі 2 гравців
+        //Метод, що використовується для встановлення розміру, ігрового поля і параметра g_with_pc max_score
     void set_parameters(int max_score ,int height, int width, bool g_with_pc);
+        // метод для встановлення вказіників на лейбли на ігровому полі
     void set_label(QLabel* counter, QLabel* score_player1, QLabel* score_player2, QLabel* score_max);
 
 protected:
@@ -76,6 +77,7 @@ private:
     void calculate_score();
         //відобразити очки на лейблах
     void display_score();
+
 
         // гра йде гравець проти гравця
     void player_vs_player(int mouse_x, int mouse_y);
@@ -104,7 +106,9 @@ private:
         //перевіряє чи вибрану карту можна покласти на верх минуло скинутої карти
     bool can_put_chosen_card(pair<int,int>);
 
+        //зміна ходу (зміна current_player)
     void change_move();
+        // відобразити кількість карт в колоді
     void display_count_deck();
 
         // визначення ефекту покладеної карти
@@ -113,9 +117,9 @@ private:
     void effect_two();          // активація ефекту коли кладуть 2
     void effect_three();        // активація ефекту коли кладуть 3
     void effect_four();         // активація ефекту коли кладуть 4
-    void effect_eight();
+    void effect_eight();        // активація ефекту коли кладуть 8
     void effect_jack();         // активація ефекту коли кладуть валєт
-    void effect_joker();
+    void effect_joker();        // активація ефекту коли кладуть джокер
 };
 
 #endif // GAMEBOARD_H

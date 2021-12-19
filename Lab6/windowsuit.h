@@ -17,18 +17,18 @@ public:
     ~WindowSuit();
 
 private slots:
-    void on_ButtonHeart_clicked();
+    void on_ButtonHeart_clicked();      //вибір масті черви для перетворення карти
 
-    void on_ButtonSpades_clicked();
+    void on_ButtonSpades_clicked();     //вибір масті піки для перетворення карти
 
-    void on_ButtonClubs_clicked();
+    void on_ButtonClubs_clicked();      //вибір масті хрести для перетворення карти
 
-    void on_ButtonDiamonds_clicked();
+    void on_ButtonDiamonds_clicked();   //вибір масті буби для перетворення карти
 
 private:
     Ui::WindowSuit *ui;
 
-    int* suit_card;
+    int* suit_card;         //вибрана масть
 };
 
 #endif // WINDOWSUIT_H

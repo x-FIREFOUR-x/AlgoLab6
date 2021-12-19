@@ -31,7 +31,6 @@ public:
         // отримати значення останньої покладеної карти
     pair<int,int> get_top_card();
 
-
     int get_amount_card_in_deck();       //отримати кількість карт в колоді
     int get_amount_descarded_card();     //отримати кількість скинутих карт(крім верхньої)
     bool is_card_no_in_players();         // повертає true якщо є скинуті карти(крім верхньої) чи в колоді

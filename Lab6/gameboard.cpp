@@ -765,8 +765,6 @@ void GameBoard::effect_joker()
        if( can_put_chosen_card(pair<int,int>(rank,suit)))
            correct_choose = true;
     }
-
-    //change_move();
     card_converted.first = rank;
     card_converted.second = suit;
     assign_effect_card(card_converted);
