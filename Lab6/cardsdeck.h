@@ -35,6 +35,9 @@ public:
     int get_amount_descarded_card();     //отримати кількість скинутих карт(крім верхньої)
     bool is_card_no_in_players();         // повертає true якщо є скинуті карти(крім верхньої) чи в колоді
 
+    vector<pair<int,int>> get_deck_cards();         //повертає список карт в колоді
+    vector<pair<int,int>> get_discarded_cards();    //повертає список скинутих карт (включно з верхньою)
+
 };
 
 #endif // CARDSDECK_H

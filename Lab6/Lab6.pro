@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     cardsdeck.cpp \
     cardshands.cpp \
+    enemycomputer.cpp \
     gameboard.cpp \
     gamewindow.cpp \
     main.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
 HEADERS += \
     cardsdeck.h \
     cardshands.h \
+    enemycomputer.h \
     gameboard.h \
     gamewindow.h \
     mainwindow.h \

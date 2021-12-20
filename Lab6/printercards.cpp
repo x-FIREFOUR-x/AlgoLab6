@@ -103,6 +103,16 @@ QGraphicsItem* PrinterCards::print_back(QGraphicsScene*& scene ,int x, int y)
      return ptr_gi_card;
  }
 
+ QGraphicsItem* PrinterCards::print_backcard(std::pair<int,int> card ,QGraphicsScene*& scene, int x, int y)
+ {
+
+     QPixmap image_deck(":/image/PNG-cards/back.png");
+     image_deck = image_deck.scaled(width, height);
+     QGraphicsItem* ptr_gi_card = scene->addPixmap(image_deck);
+     ptr_gi_card->setPos(x, y);
+     return ptr_gi_card;
+ }
+
  QGraphicsItem* PrinterCards::print_cards_deck(QGraphicsScene*& scene)
  {
      delete ptr_card_deck;

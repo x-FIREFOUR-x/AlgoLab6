@@ -34,6 +34,26 @@ void CardsHands::picture_cards_hands(PrinterCards& printer, QGraphicsScene*& sce
         x+=25;
     }
 }
+
+void CardsHands::picture_backcards_hands(PrinterCards& printer, QGraphicsScene*& scene)
+{
+    for(int i =0; i < ptr_img_cards.size(); i++)
+    {
+        delete ptr_img_cards[i];
+        ptr_img_cards[i] = nullptr;
+    }
+    ptr_img_cards.clear();
+
+    int x = 25;
+    QGraphicsItem* ptr;
+    for(int i =0; i < cards_of_hands.size(); i++)
+    {
+       ptr = printer.print_backcard(cards_of_hands[i],scene,x, y_hands);
+       ptr_img_cards.push_back(ptr);
+        x+=25;
+    }
+}
+
 int CardsHands::get_count_cards()
 {
     return cards_of_hands.size();
@@ -107,4 +127,43 @@ int CardsHands::calculate_scorecards()
     }
 
     return score;
+}
+
+vector<pair<int,int>> CardsHands::get_cards()
+{
+    return cards_of_hands;
+}
+QGraphicsItem* CardsHands::get_ptr_image_card(pair<int,int> card)
+{
+    for(int i =0; i <cards_of_hands.size(); i++)
+    {
+        if (cards_of_hands[i] == card)
+        {
+            return ptr_img_cards[i];
+        }
+    }
+}
+
+int CardsHands::suit_which_most()
+{
+    int max_count = 0;
+    int suit = 0;
+    for(int i =0; i < 4; i++)
+    {
+        int count =0;
+        for(int j =0; j < cards_of_hands.size(); j++)
+        {
+            if(cards_of_hands[j].second == i && cards_of_hands[j].first !=8)
+            {
+                count++;
+            }
+        }
+        if(max_count < count)
+        {
+            max_count = count;
+            suit = i;
+        }
+    }
+
+    return suit;
 }

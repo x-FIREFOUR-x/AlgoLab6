@@ -87,7 +87,10 @@ void GameBoard::start_round()
     pair<int,int> top_card = cards_deck.get_top_card();
     printer.print_top_card(top_card, scene);
 
-    cards_hands1.picture_cards_hands(printer, scene);
+    if (game_with_pc)
+       cards_hands1.picture_backcards_hands(printer,scene);
+    else
+        cards_hands1.picture_cards_hands(printer, scene);
     cards_hands2.picture_cards_hands(printer, scene);
 
     current_player = who_move_first;
@@ -160,14 +163,14 @@ void GameBoard::player_vs_player(int mouse_x, int mouse_y)
           if(score2 >= max_score)
           {
               QString text = "ПЕРЕМІГ ПЕРШИЙ ГРАВЕЦЬ";
-              QString title = "Ігра закінчилася";
+              QString title = "Гра закінчилася";
               QMessageBox:: about(this,title,text);
               finished = true;
           }
           if(score1 >= max_score)
           {
               QString text = "ПЕРЕМІГ ДРУГИЙ ГРАВЕЦЬ";
-              QString title = "Ігра закінчилася";
+              QString title = "Гра закінчилася";
               QMessageBox:: about(this,title,text);
               finished = true;
           }
@@ -177,7 +180,7 @@ void GameBoard::player_vs_player(int mouse_x, int mouse_y)
           if (cards_hands1.get_count_cards() == 0 )
           {
               QString text = "В РАУНДІ ПЕРЕМІГ ПЕРШИЙ ГРАВЕЦЬ";
-              QString title = "Ігра закінчилася";
+              QString title = "Гра закінчилася";
               QMessageBox:: about(this,title,text);
               calculate_score();
               display_score();
@@ -188,7 +191,7 @@ void GameBoard::player_vs_player(int mouse_x, int mouse_y)
           if (cards_hands2.get_count_cards() == 0 )
           {
               QString text = "В РАУНДІ ПЕРЕМІГ ДРУГИЙ ГРАВЕЦЬ";
-              QString title = "Ігра закінчилася";
+              QString title = "Гра закінчилася";
               QMessageBox:: about(this,title,text);
               calculate_score();
               display_score();
@@ -203,219 +206,89 @@ void GameBoard::player_vs_player(int mouse_x, int mouse_y)
 
 void GameBoard::player_vs_computer(int mouse_x, int mouse_y)
 {
-    if(computer_first)
-        player_move_second(mouse_x,mouse_y);
-    else
-        player_move_first(mouse_x,mouse_y);
-
-}
-
-void GameBoard::player_move_second(int mouse_x, int mouse_y)
-{
-   /* if(board.is_move(current_player))
+    if(cards_hands1.get_count_cards() != 0 && cards_hands2.get_count_cards() != 0 && finished == false)
     {
-
-            // хід гравця
-        if(current_player == 2)
+        if(current_player ==1)
         {
-                int row_cells = mouse_y / size_cells;
-                int column_cell1;
-                int column_cell2;
-
-                    // визначення номерів двох вибраних клітинок
-                if (mouse_x % size_cells < size_cells/2)
-                {
-                    column_cell2 = mouse_x / size_cells;
-                    column_cell1 = column_cell2-1;
-                }
-                else
-                {
-                    column_cell1 = mouse_x / size_cells;
-                    column_cell2 = column_cell1+1;
-                }
-
-                int index1 =  row_cells * amount_point  + column_cell1;
-                int index2 =  row_cells * amount_point  + column_cell2;
-
-                    // перевірка можливості фарбування вибраних двох клітинок
-                if ((index1/amount_point == index2/amount_point ) && board.is_cell_empty(index1) && board.is_cell_empty(index2))
-                {
-                    PainterCube::paint_second_cube(scene, column_cell1 * size_cells, row_cells * size_cells, size_cells*2, size_cells);
-                    board.set_adj_cells(index1, index2, current_player);
-                    current_player = 1;
-
-                    QTimer::singleShot(time_deley, this, &GameBoard::pc_move_first);
-                }
-
-        }
-
-    }
-
-    else
-    {
-        if (player_win)
-        {
-            QString text = "ТИ ПЕРЕМІГ";
-            QString title = "Ігра закінчилася";
-            QMessageBox:: about(this,title,text);
-        }
-        else
-        {
-            QString text = "ТИ ПРОГРАВ";
-            QString title = "Ігра закінчилася";
-            QMessageBox:: about(this,title,text);
-        }
-    }*/
-}
-
-void GameBoard::pc_move_first()
-{
-   /* if(board.is_move(current_player))
-    {
-        // хід компютера
-        EnemyComputer computer(board, level_recur, 1, 2, board.get_size(), board.get_amount_point_side());
-
-        pair<int,int> inds = computer.alfa_beta_pruning();
-        int index1;
-        int index2;
-        if(inds.first < inds.second)
-        {
-            index1 = inds.first;
-            index2 = inds.second;
-        }
-        else
-        {
-            index1 = inds.second;
-            index2 = inds.first;
-        }
-        int column = index1 % amount_point;
-        int row = index1 / amount_point;
-
-        PainterCube::paint_first_cube(scene, column * size_cells, row * size_cells, size_cells, size_cells*2);
-        board.set_adj_cells(index1, index2, current_player);
-        current_player = 2;
-
-        if(!board.is_move(current_player))
-        {
-            QString text = "ТИ ПРОГРАВ";
-            QString title = "Ігра закінчилася";
-            QMessageBox:: about(this,title,text);
-            finished = true;
-            player_win = false;
-        }
-    }
-    else
-    {
-        QString text = "ТИ ПЕРЕМІГ";
-        QString title = "Ігра закінчилася";
-        QMessageBox:: about(this,title,text);
-        finished = true;
-        player_win = true;
-    }*/
-}
-
-void GameBoard::player_move_first(int mouse_x, int mouse_y)
-{
-    /*if(board.is_move(current_player))
-    {
-        if (current_player == 1)
-        {
-            // хід гравця
-            int column_cells = mouse_x / size_cells;
-            int row_cell1;
-            int row_cell2;
-
-                // визначення номерів двох вибраних клітинок
-            if (mouse_y % size_cells < size_cells/2)
+            enemy_computer.set_date(cards_deck.get_deck_cards(), cards_deck.get_discarded_cards(), cards_hands1.get_cards(), cards_hands2.get_cards());
+            enemy_computer.set_flags(put_three,put_four,put_eight,put_jocker,card_converted);
+            pair<int,int> card = enemy_computer.mini_max();
+            if(card.first == -1 && card.second == -1)
             {
-                row_cell2 = mouse_y / size_cells;
-                row_cell1 = row_cell2-1;
+                take_card_with_deck();
+                display_count_deck();
             }
             else
             {
-                row_cell1 = mouse_y / size_cells;
-                row_cell2 = row_cell1+1;
+                comp_put_card_in_top(card);
+                display_count_deck();
             }
-
-            int index1 =  row_cell1 * amount_point  + column_cells;
-            int index2 =  row_cell2 * amount_point  + column_cells;
-
-                // перевірка можливості фарбування вибраних двох клітинок
-            if (row_cell1 >= 0 && row_cell2 < amount_point && board.is_cell_empty(index1) && board.is_cell_empty(index2))
+            cards_hands1.picture_backcards_hands(printer,scene);
+        }
+        else
+        {
+            if (is_click_on_deck(mouse_x, mouse_y))
             {
-                PainterCube::paint_first_cube(scene, column_cells * size_cells, row_cell1 * size_cells, size_cells, size_cells*2);
-                board.set_adj_cells(index1, index2, current_player);
-                current_player = 2;
-
-                QTimer::singleShot(time_deley, this, &GameBoard::pc_move_second);
-
+                take_card_with_deck();
+                display_count_deck();
+            }
+            else
+            {
+                put_card_in_top(mouse_x, mouse_y);
+                display_count_deck();
             }
         }
+
 
     }
-    else
+
+    if (score1 >= max_score || score2 >= max_score)
     {
-        if (player_win)
+        if(score2 >= max_score)
         {
-            QString text = "ТИ ПЕРЕМІГ";
-            QString title = "Ігра закінчилася";
-            QMessageBox:: about(this,title,text);
-        }
-        else
-        {
-            QString text = "ТИ ПРОГРАВ";
-            QString title = "Ігра закінчилася";
-            QMessageBox:: about(this,title,text);
-        }
-
-    }*/
-}
-
-void GameBoard::pc_move_second()
-{
-   /* if(board.is_move(current_player))
-    {
-        // хід компютера
-        EnemyComputer computer(board, level_recur, 2, 1, board.get_size(), board.get_amount_point_side());
-
-        pair<int,int> inds = computer.alfa_beta_pruning();
-        int index1;
-        int index2;
-        if(inds.first <inds.second)
-        {
-            index1 = inds.first;
-            index2 = inds.second;
-        }
-        else
-        {
-            index1 = inds.second;
-            index2 = inds.first;
-        }
-        int column = index1 % amount_point;
-        int row = index1 / amount_point;
-
-        PainterCube::paint_second_cube(scene, column * size_cells, row * size_cells, size_cells*2, size_cells);
-        board.set_adj_cells(index1, index2, current_player);
-        current_player = 1;
-
-        if(!board.is_move(current_player))
-        {
-            QString text = "ТИ ПРОГРАВ";
-            QString title = "Ігра закінчилася";
+            QString text = "ВИ ПРОГРАЛИ";
+            QString title = "Гра закінчилася";
             QMessageBox:: about(this,title,text);
             finished = true;
-            player_win = false;
+        }
+        if(score1 >= max_score)
+        {
+            QString text = "ВИ ПЕРЕМОГЛИ";
+            QString title = "Гра закінчилася";
+            QMessageBox:: about(this,title,text);
+            finished = true;
         }
     }
     else
     {
-        QString text = "ТИ ПЕРЕМІГ";
-        QString title = "Ігра закінчилася";
-        QMessageBox:: about(this,title,text);
-        finished = true;
-        player_win = true;
-    }*/
+        if (cards_hands1.get_count_cards() == 0 )
+        {
+            cards_hands1.picture_cards_hands(printer,scene);
+            QString text = "В РАУНДІ ВИ ПРОГРАЛИ";
+            QString title = "Гра закінчилася";
+            QMessageBox:: about(this,title,text);
+            calculate_score();
+            display_score();
+            end_round();
+            change_who_first_move();
+            start_round();
+        }
+        if (cards_hands2.get_count_cards() == 0 )
+        {
+            cards_hands1.picture_backcards_hands(printer,scene);
+            QString text = "В РАУНДІ ВИ ПЕРЕМОГЛИ";
+            QString title = "Гра закінчилася";
+            QMessageBox:: about(this,title,text);
+            calculate_score();
+            display_score();
+            end_round();
+            change_who_first_move();
+            start_round();
+        }
+    }
+
 }
+
 
 void GameBoard::resizeEvent(QResizeEvent *event)
 {
@@ -459,6 +332,8 @@ void GameBoard::resizeEvent(QResizeEvent *event)
                     pair<int,int> new_card = cards_deck.take_card();
                     cards_hands1.give_card(new_card);
                     cards_hands1.picture_cards_hands(printer,scene);
+
+
                 }
             }
             put_four = false;
@@ -554,6 +429,36 @@ void GameBoard::resizeEvent(QResizeEvent *event)
              }
          }
      }
+ }
+
+ void GameBoard::comp_put_card_in_top(pair<int,int> card1)
+ {
+     QGraphicsItem* ptr_chosen_card = cards_hands1.get_ptr_image_card(card1);
+     pair<int,int> card;
+
+     if(current_player == 1)
+     {
+         bool succes_chosen = cards_hands1.get_chosen_card(ptr_chosen_card, card);
+         if (succes_chosen)
+         {
+             if(can_put_chosen_card(card) || put_three)
+             {
+                 if (put_three)
+                     put_three = false;
+
+                 cards_hands1.pull_card_with_hands(ptr_chosen_card);
+                 assign_effect_card(card);
+                 cards_deck.put_card(card, scene, printer);
+                 ptr_chosen_card = nullptr;
+                 cards_hands1.picture_backcards_hands(printer, scene);
+                 printer.print_top_card(card, scene);
+                 scene->update();
+             }
+
+         }
+
+     }
+
  }
 
  bool GameBoard::can_put_chosen_card(pair<int,int> card)
@@ -703,7 +608,10 @@ void GameBoard::effect_two()
         {
             pair<int,int> new_card = cards_deck.take_card();
             cards_hands1.give_card(new_card);
-            cards_hands1.picture_cards_hands(printer,scene);
+            if(game_with_pc)
+                cards_hands1.picture_backcards_hands(printer,scene);
+            else
+                cards_hands1.picture_cards_hands(printer,scene);
         }
         current_player =2;
     }
@@ -723,19 +631,24 @@ void GameBoard::effect_four()
 }
 void GameBoard::effect_eight()
 {
-    change_move();
-
     int suit = -1;
-    while (suit == -1)
+
+    while (suit == -1 && (!game_with_pc || (game_with_pc && current_player == 2) ))
     {
         WindowSuit* suit_window = new WindowSuit(suit, this);
         suit_window->setWindowTitle("Останній гравець");
         suit_window->exec();
     }
 
+    if (game_with_pc && current_player == 1)
+    {
+        suit = cards_hands1.suit_which_most();
+    }
+
     card_converted.second = suit;
     card_converted.first = 8;
     printer.print_converted_card(card_converted,scene);
+    change_move();
     put_eight = true;
 }
 void GameBoard::effect_jack()
@@ -759,7 +672,7 @@ void GameBoard::effect_joker()
     int rank;
     int suit;
     bool correct_choose = false;
-    while(!correct_choose)
+    while(!correct_choose && (!game_with_pc || (game_with_pc && current_player == 2)))
     {
         rank = -1;
         suit = -1;
@@ -779,6 +692,23 @@ void GameBoard::effect_joker()
        if( can_put_chosen_card(pair<int,int>(rank,suit)))
            correct_choose = true;
     }
+
+    if (game_with_pc && current_player == 1)
+    {
+          if(put_four)
+           {
+              suit = cards_deck.get_top_card().second;
+              rank = 5;
+              put_four = false;
+           }
+          else
+          {
+              rank = 8;
+              suit = cards_hands1.suit_which_most();
+              put_eight = true;
+          }
+    }
+
     card_converted.first = rank;
     card_converted.second = suit;
     assign_effect_card(card_converted);
