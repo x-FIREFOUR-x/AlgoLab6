@@ -163,14 +163,14 @@ void GameBoard::player_vs_player(int mouse_x, int mouse_y)
           if(score2 >= max_score)
           {
               QString text = "ПЕРЕМІГ ПЕРШИЙ ГРАВЕЦЬ";
-              QString title = "Ігра закінчилася";
+              QString title = "Гра закінчилася";
               QMessageBox:: about(this,title,text);
               finished = true;
           }
           if(score1 >= max_score)
           {
               QString text = "ПЕРЕМІГ ДРУГИЙ ГРАВЕЦЬ";
-              QString title = "Ігра закінчилася";
+              QString title = "Гра закінчилася";
               QMessageBox:: about(this,title,text);
               finished = true;
           }
@@ -180,7 +180,7 @@ void GameBoard::player_vs_player(int mouse_x, int mouse_y)
           if (cards_hands1.get_count_cards() == 0 )
           {
               QString text = "В РАУНДІ ПЕРЕМІГ ПЕРШИЙ ГРАВЕЦЬ";
-              QString title = "Ігра закінчилася";
+              QString title = "Гра закінчилася";
               QMessageBox:: about(this,title,text);
               calculate_score();
               display_score();
@@ -191,7 +191,7 @@ void GameBoard::player_vs_player(int mouse_x, int mouse_y)
           if (cards_hands2.get_count_cards() == 0 )
           {
               QString text = "В РАУНДІ ПЕРЕМІГ ДРУГИЙ ГРАВЕЦЬ";
-              QString title = "Ігра закінчилася";
+              QString title = "Гра закінчилася";
               QMessageBox:: about(this,title,text);
               calculate_score();
               display_score();
@@ -247,14 +247,14 @@ void GameBoard::player_vs_computer(int mouse_x, int mouse_y)
         if(score2 >= max_score)
         {
             QString text = "ВИ ПРОГРАЛИ";
-            QString title = "Ігра закінчилася";
+            QString title = "Гра закінчилася";
             QMessageBox:: about(this,title,text);
             finished = true;
         }
         if(score1 >= max_score)
         {
             QString text = "ВИ ПЕРЕМОГЛИ";
-            QString title = "Ігра закінчилася";
+            QString title = "Гра закінчилася";
             QMessageBox:: about(this,title,text);
             finished = true;
         }
@@ -264,10 +264,8 @@ void GameBoard::player_vs_computer(int mouse_x, int mouse_y)
         if (cards_hands1.get_count_cards() == 0 )
         {
             cards_hands1.picture_cards_hands(printer,scene);
-            //cards_hands1.set_picture(printer,scene);
-            //QTimer::singleShot(1, &cards_hands1, &CardsHands::picture2_cards_hands);
             QString text = "В РАУНДІ ВИ ПРОГРАЛИ";
-            QString title = "Ігра закінчилася";
+            QString title = "Гра закінчилася";
             QMessageBox:: about(this,title,text);
             calculate_score();
             display_score();
@@ -278,10 +276,8 @@ void GameBoard::player_vs_computer(int mouse_x, int mouse_y)
         if (cards_hands2.get_count_cards() == 0 )
         {
             cards_hands1.picture_backcards_hands(printer,scene);
-            //cards_hands1.set_picture(printer,scene);
-            //QTimer::singleShot(1, &cards_hands1, &CardsHands::picture2_cards_hands);
             QString text = "В РАУНДІ ВИ ПЕРЕМОГЛИ";
-            QString title = "Ігра закінчилася";
+            QString title = "Гра закінчилася";
             QMessageBox:: about(this,title,text);
             calculate_score();
             display_score();
@@ -454,7 +450,6 @@ void GameBoard::resizeEvent(QResizeEvent *event)
                  assign_effect_card(card);
                  cards_deck.put_card(card, scene, printer);
                  ptr_chosen_card = nullptr;
-                 //cards_hands1.picture_cards_hands(printer, scene);
                  cards_hands1.picture_backcards_hands(printer, scene);
                  printer.print_top_card(card, scene);
                  scene->update();

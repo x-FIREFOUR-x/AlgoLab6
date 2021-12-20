@@ -37,22 +37,22 @@ class GameBoard: public QGraphicsView
     CardsHands cards_hands1;          // руки першого гравця
     CardsHands cards_hands2;          // руки другого гравця
 
-    bool put_three = false;           // флажок спрацьовує при кладенні трійки
-    bool put_four = false;            // флажок спрацьовує при кладенні чітвірки
-    bool put_eight = false;
-    bool put_jocker = false;
+    bool put_three = false;           // флажок спрацьовує при кладенні 3
+    bool put_four = false;            // флажок спрацьовує при кладенні 4
+    bool put_eight = false;           // флажок спрацьовує при кладенні 8
+    bool put_jocker = false;          // флажок спрацьовує при кладенні джокера
     pair<int,int> card_converted;     //карта на яку перетворений джокер чи вісім(тільки масть)
 
-    QLabel* Deck_counter;
-    QLabel* Score_player1;
-    QLabel* Score_player2;
-    QLabel* Score_max;
+    QLabel* Deck_counter;           //вказівник на поле виводу кількості карт на екрані
+    QLabel* Score_player1;          //вказівник на поле вивовуду штрафних балів 1 гравця
+    QLabel* Score_player2;          //вказівник на поле вивовуду штрафних балів 2 гравця
+    QLabel* Score_max;              //вказівник на поле виводу межі штрафних балів
 
-    int max_score = 0;
-    int score1 = 0;
-    int score2 = 0;
+    int max_score = 0;      //межа штрафних балів
+    int score1 = 0;         //штрафні бали 1 гравця
+    int score2 = 0;         //штрафні бали 1 гравця
 
-    EnemyComputer enemy_computer;
+    EnemyComputer enemy_computer;       //компютерний опоненет
 
 public:
     GameBoard(QWidget *parent = nullptr);

@@ -61,10 +61,10 @@ EnemyComputer::EnemyComputer()
 
 }
 
-void EnemyComputer::set_date(t_list card_deck, t_list discard_cards ,t_list hands_computer, t_list hands_player)
+void EnemyComputer::set_date(t_list card_deck, t_list discard_cards ,t_list hands_computer, t_list hands_player, int depth)
 {
     row = make_shared<StepNode>(card_deck, discard_cards, hands_computer, hands_player);
-    max_depth = 2;
+    max_depth = depth;
 }
 
 pair<int,int> EnemyComputer::mini_max()
