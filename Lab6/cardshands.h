@@ -35,6 +35,9 @@ public:
 
         //повернути вказівник на картинку карти card
     QGraphicsItem* get_ptr_image_card(pair<int,int> card);
+
+        //повертає масть карт якої на руках найбільше
+    int suit_which_most();
 };
 
 #endif // CARDSHANDS_H

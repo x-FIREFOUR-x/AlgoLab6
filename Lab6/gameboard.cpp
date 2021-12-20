@@ -621,19 +621,25 @@ void GameBoard::effect_four()
 }
 void GameBoard::effect_eight()
 {
-    change_move();
 
     int suit = -1;
-    while (suit == -1)
+    cout << "game with pc " << game_with_pc << " " << current_player  << endl;
+    while (suit == -1 && (!game_with_pc || (game_with_pc && current_player == 2) ))
     {
         WindowSuit* suit_window = new WindowSuit(suit, this);
         suit_window->setWindowTitle("Останній гравець");
         suit_window->exec();
     }
 
+    if (game_with_pc && current_player == 1)
+    {
+        suit = cards_hands1.suit_which_most();
+    }
+
     card_converted.second = suit;
     card_converted.first = 8;
     printer.print_converted_card(card_converted,scene);
+    change_move();
     put_eight = true;
 }
 void GameBoard::effect_jack()
@@ -657,7 +663,7 @@ void GameBoard::effect_joker()
     int rank;
     int suit;
     bool correct_choose = false;
-    while(!correct_choose)
+    while(!correct_choose && (!game_with_pc || (game_with_pc && current_player == 2)))
     {
         rank = -1;
         suit = -1;
@@ -677,6 +683,21 @@ void GameBoard::effect_joker()
        if( can_put_chosen_card(pair<int,int>(rank,suit)))
            correct_choose = true;
     }
+
+    if (game_with_pc && current_player == 1)
+    {
+          if(put_four)
+           {
+              suit = cards_deck.get_top_card().second;
+              rank = 5;
+           }
+          else
+          {
+              rank = 8;
+              suit = cards_hands1.suit_which_most();
+          }
+    }
+
     card_converted.first = rank;
     card_converted.second = suit;
     assign_effect_card(card_converted);

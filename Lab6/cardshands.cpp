@@ -123,3 +123,27 @@ QGraphicsItem* CardsHands::get_ptr_image_card(pair<int,int> card)
         }
     }
 }
+
+int CardsHands::suit_which_most()
+{
+    int max_count = 0;
+    int suit = 0;
+    for(int i =0; i < 4; i++)
+    {
+        int count =0;
+        for(int j =0; j < cards_of_hands.size(); j++)
+        {
+            if(cards_of_hands[j].second == i && cards_of_hands[j].first !=8)
+            {
+                count++;
+            }
+        }
+        if(max_count < count)
+        {
+            max_count = count;
+            suit = i;
+        }
+    }
+
+    return suit;
+}

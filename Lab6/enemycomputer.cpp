@@ -27,17 +27,18 @@ void StepNode::calculate_value()
             {
                 switch (hands_computer[i].first)
                 {
-                    case 14: value += 9; break;
-                    case 13: value += 8; break;
-                    case 12: value += 8; break;
-                    case 10: value += 8; break;
+                    case 14: value += 10; break;
+                    case 13: value += 9; break;
+                    case 12: value += 9; break;
+                    case 10: value += 9; break;
                     case 11: value += 7; break;
+                    case  5: value += 6; break;
                     case  8: value += 5; break;
                     case 15: value += 4; break;
                     case  4: value += 3; break;
                     case  2: value += 2; break;
                     case  3: value += 1; break;
-                    default: value += 6; break;
+                    default: value += 7; break;
                 }
             }
         }
