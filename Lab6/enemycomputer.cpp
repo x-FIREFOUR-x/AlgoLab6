@@ -85,12 +85,12 @@ pair<int,int> EnemyComputer::mini_max()
 
             row->ptr_nodes.push_back(make_shared<StepNode>(row->card_deck, new_dis_card, new_hands_comp, row->hands_player));
             val = min(row->ptr_nodes.back(), current_depth+1);
-        }
 
-        if(row->value == -1 || row->value > val )
-        {
-            row->value = val;
-            index =i;
+            if(row->value == -1 || row->value > val )
+            {
+                row->value = val;
+                index =i;
+            }
         }
     }
 
@@ -180,7 +180,7 @@ bool EnemyComputer::can_put(t_list discard_cards, pair<int,int> card, shared_ptr
     }
 
 
-           // перевірка чи вибрана карта одного значення чи масті з верхньою
+           //перевірка чи вибрана карта одного значення чи масті з верхньою
     if ((card.first == top_card.first) || (card.second == top_card.second))
     {
             correct_move = true;
