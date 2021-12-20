@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <memory>
+#include <algorithm>
+
 using namespace std;
 
 int const terminal_win = 0;
@@ -39,7 +41,9 @@ public:
     void set_date(t_list card_deck, t_list discard_cards ,t_list hands_computer, t_list hands_player);
     void set_flags(bool put_three, bool put_four, bool put_eigh, bool put_jocker, pair<int,int> card_converted);
     pair<int,int> mini_max();
-    float min(shared_ptr<StepNode> row, int current_depth);
+    float min(shared_ptr<StepNode> cur_node, int current_depth);
+    float chanse_min(shared_ptr<StepNode> cur_node, int current_depth);
+    float max(shared_ptr<StepNode> cur_node, int current_depth);
 
 private:
     bool can_put(t_list discard_cards, pair<int,int> card, shared_ptr<StepNode>& ptr_node );

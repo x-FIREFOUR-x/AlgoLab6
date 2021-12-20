@@ -1,4 +1,5 @@
 #include "enemycomputer.h"
+
 StepNode::StepNode(t_list deck, t_list discard ,t_list computer, t_list player)
 {
     card_deck = deck;
@@ -63,7 +64,7 @@ EnemyComputer::EnemyComputer()
 void EnemyComputer::set_date(t_list card_deck, t_list discard_cards ,t_list hands_computer, t_list hands_player)
 {
     row = make_shared<StepNode>(card_deck, discard_cards, hands_computer, hands_player);
-    max_depth = 1;
+    max_depth = 2;
 }
 
 pair<int,int> EnemyComputer::mini_max()
@@ -107,21 +108,55 @@ float EnemyComputer::min(shared_ptr<StepNode> cur_node, int current_depth)
     if (current_depth < max_depth)
     {
         int val;
-        for(int i =0; i < cur_node->hands_computer.size(); i++)          //перебір можливих варіантів положити карту
+        vector<pair<int,int>> uncheak_cards;
+        uncheak_cards = cur_node->card_deck;
+        uncheak_cards.insert(uncheak_cards.end() ,cur_node->hands_player.begin(), cur_node->hands_player.end());
+
+        int amount_card = cur_node->hands_player.size();
+
+        for(int i =0; i < 10000; i++)          //перебір можливих варіантів положити карту
+        {
+            random_shuffle(uncheak_cards.begin(), uncheak_cards.end());
+
+            vector<pair<int,int>> probable_hands_pl;
+            probable_hands_pl.insert(probable_hands_pl.end(), uncheak_cards.begin(), uncheak_cards.begin() + amount_card);
+
+            cur_node->ptr_nodes.push_back(make_shared<StepNode>(cur_node->card_deck, cur_node->discard_cards, cur_node->hands_computer, probable_hands_pl));
+
+            val = chanse_min(cur_node->ptr_nodes.back(), current_depth);
+            if(cur_node->value == -1 || cur_node->value < val )
+            {
+                cur_node->value = val ;
+                index = i;
+            }
+        }
+    }
+
+
+    return cur_node->value;
+}
+
+float EnemyComputer::chanse_min(shared_ptr<StepNode> cur_node, int current_depth)
+{
+    int index = -1 ;
+    if (current_depth < max_depth)
+    {
+        int val;
+        for(int i =0; i < cur_node->hands_player.size(); i++)          //перебір можливих варіантів положити карту
         {
 
-            if (can_put(cur_node->discard_cards, cur_node->hands_computer[i], cur_node))
+            if (can_put(cur_node->discard_cards, cur_node->hands_player[i], cur_node))
             {
-                vector<pair<int,int>> new_hands_comp;
-                new_hands_comp = cur_node->hands_computer;
-                new_hands_comp.erase(new_hands_comp.begin()+i);
+                vector<pair<int,int>> new_hands_player;
+                new_hands_player = cur_node->hands_player;
+                new_hands_player.erase(new_hands_player.begin()+i);
 
                 vector<pair<int,int>> new_dis_card;
                 new_dis_card = cur_node->discard_cards;
-                new_dis_card.push_back(cur_node->hands_computer[i]);
+                new_dis_card.push_back(cur_node->hands_player[i]);
 
-                cur_node->ptr_nodes.push_back(make_shared<StepNode>(cur_node->card_deck, new_dis_card, new_hands_comp, cur_node->hands_player));
-                //val = max(cur_node->ptr_nodes.back(), current_depth+1);
+                cur_node->ptr_nodes.push_back(make_shared<StepNode>(cur_node->card_deck, new_dis_card, cur_node->hands_computer, new_hands_player));
+                val = max(cur_node->ptr_nodes.back(), current_depth+1);
             }
 
             if(cur_node->value == -1 || cur_node->value < val )
@@ -136,6 +171,44 @@ float EnemyComputer::min(shared_ptr<StepNode> cur_node, int current_depth)
         cur_node->calculate_value();
     }
 
+
+    return cur_node->value;
+}
+
+float EnemyComputer::max(shared_ptr<StepNode> cur_node, int current_depth)
+{
+    int index = -1 ;
+    if (current_depth < max_depth)
+    {
+        int val;
+        for(int i =0; i < cur_node->hands_computer.size(); i++)          //перебір можливих варіантів положити карту
+        {
+
+            if (can_put(cur_node->discard_cards, cur_node->hands_computer[i], cur_node))
+            {
+                vector<pair<int,int>> new_hands_comp;
+                new_hands_comp = cur_node->hands_computer;
+                new_hands_comp.erase(new_hands_comp.begin()+i);
+
+                vector<pair<int,int>> new_dis_card;
+                new_dis_card = cur_node->discard_cards;
+                new_dis_card.push_back(cur_node->hands_computer[i]);
+
+                cur_node->ptr_nodes.push_back(make_shared<StepNode>(cur_node->card_deck, new_dis_card, new_hands_comp, cur_node->hands_player));
+                val = min(cur_node->ptr_nodes.back(), current_depth+1);
+
+                if(cur_node->value == -1 || cur_node->value > val )
+                {
+                    cur_node->value = val;
+                    index =i;
+                }
+            }
+        }
+    }
+    else
+    {
+        cur_node->calculate_value();
+    }
 
     return cur_node->value;
 }
