@@ -100,3 +100,14 @@ bool CardsDeck::is_card_no_in_players()
         return false;
     }
 }
+vector<pair<int,int>> CardsDeck::get_deck_cards()
+{
+    return deck_cards;
+}
+vector<pair<int,int>> CardsDeck::get_discarded_cards()
+{
+    vector<pair<int,int>> dis_cards;
+    dis_cards = discarded_cards;
+    dis_cards.push_back(top_card);
+    return dis_cards;
+}

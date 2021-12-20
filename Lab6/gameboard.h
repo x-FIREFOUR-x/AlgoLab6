@@ -10,6 +10,7 @@
 #include "windowsuit.h"
 #include "windowrank.h"
 #include <QLabel>
+#include "enemycomputer.h"
 
 class GameBoard: public QGraphicsView
 {
@@ -51,6 +52,8 @@ class GameBoard: public QGraphicsView
     int score1 = 0;
     int score2 = 0;
 
+    EnemyComputer enemy_computer;
+
 public:
     GameBoard(QWidget *parent = nullptr);
     ~GameBoard();
@@ -89,14 +92,7 @@ private:
         // гра йде гравець проти комп'ютера
     void player_vs_computer(int mouse_x, int mouse_y);
 
-        // функція ходу гравця коли він ходить другим граючи з компютером і асинхронний виклик першого ходу компютера pc_move_first
-    void player_move_second(int mouse_x, int mouse_y);
-    void pc_move_first();
-
-        // функція ходу гравця коли він ходить першим граючи з компютером і асинхронний виклик другого ходу компютера pc_move_second
-    void player_move_first(int mouse_x, int mouse_y);
-    void pc_move_second();
-
+    void comp_put_card_in_top(pair<int,int> card);
 
         //перевірка чи клік здійснено по колоді
     bool is_click_on_deck(int mouse_x, int mouse_y);
