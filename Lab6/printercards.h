@@ -51,6 +51,8 @@ public:
 
             // малювання карти card на коордах x y розміру width height
     QGraphicsItem* print_card(std::pair<int,int> card ,QGraphicsScene*& scene, int x, int y);
+        // малювання карти card закритою на коордах x y розміру width height
+    QGraphicsItem* print_backcard(std::pair<int,int> card ,QGraphicsScene*& scene, int x, int y);
 
             // малювання колоди (рубашки карти розміру width height)
     QGraphicsItem* print_cards_deck(QGraphicsScene*& scene);

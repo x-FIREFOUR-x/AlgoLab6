@@ -12,6 +12,8 @@ private:
     int y_hands;                                //рівень малювання карт на руках в гравця
     vector<pair<int,int>> cards_of_hands;       //карти на руках
     vector<QGraphicsItem*> ptr_img_cards;       //вказівники на малюноки карт на руках
+    PrinterCards printer;
+    QGraphicsScene* scene;
 public:
     CardsHands();
     void give_card(pair<int,int> card);     //дати карту в руки гравцю
@@ -24,6 +26,10 @@ public:
 
         //намалювати карти на руках в гравця на столі
     void picture_cards_hands(PrinterCards& printer, QGraphicsScene*& scene);
+    void set_picture(PrinterCards& printer, QGraphicsScene*& scene);
+    void picture2_cards_hands();
+        //намалювати карти рубашками на руках(компютера)
+    void picture_backcards_hands(PrinterCards& printer, QGraphicsScene*& scene);
 
         //дати chosen_card карту вибрану гравецем (повертає булеву змінну true вибрана коректно false не коректно)
     bool get_chosen_card(QGraphicsItem* ptr_chosen_card, pair<int,int>& chosen_card);
