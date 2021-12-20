@@ -213,7 +213,6 @@ void GameBoard::player_vs_computer(int mouse_x, int mouse_y)
             enemy_computer.set_date(cards_deck.get_deck_cards(), cards_deck.get_discarded_cards(), cards_hands1.get_cards(), cards_hands2.get_cards());
             enemy_computer.set_flags(put_three,put_four,put_eight,put_jocker,card_converted);
             pair<int,int> card = enemy_computer.mini_max();
-            cout << card.first << " " << card.second << endl;
             if(card.first == -1 && card.second == -1)
             {
                 take_card_with_deck();
@@ -637,9 +636,8 @@ void GameBoard::effect_four()
 }
 void GameBoard::effect_eight()
 {
-
     int suit = -1;
-    cout << "game with pc " << game_with_pc << " " << current_player  << endl;
+
     while (suit == -1 && (!game_with_pc || (game_with_pc && current_player == 2) ))
     {
         WindowSuit* suit_window = new WindowSuit(suit, this);
@@ -706,11 +704,13 @@ void GameBoard::effect_joker()
            {
               suit = cards_deck.get_top_card().second;
               rank = 5;
+              put_four = false;
            }
           else
           {
               rank = 8;
               suit = cards_hands1.suit_which_most();
+              put_eight = true;
           }
     }
 

@@ -95,32 +95,6 @@ pair<int,int> EnemyComputer::mini_max()
         }
     }
 
-    /*int n;
-    if(row->put_four == true)
-        n = 4;
-    else
-        n = 1;
-        vector<pair<int,int>> new_hands_comp;
-        new_hands_comp = row->hands_computer;
-        vector<pair<int,int>> new_deck;
-        new_deck = row->card_deck;
-
-        for(int i =0; i < n || new_deck.size() > 0; i++)
-        {
-            new_hands_comp.push_back(new_deck.back());
-            new_deck.pop_back();
-        }
-        if (row->card_deck.size()>0)
-        {
-            row->ptr_nodes.push_back(make_shared<StepNode>(new_deck, row->discard_cards, new_hands_comp, row->hands_player));
-            val = min(row->ptr_nodes.back(), current_depth+1);
-
-            if(row->value == -1 || row->value > val )
-            {
-                val = row->value;
-            }
-        }*/
-
     if(index != -1)
         return row->hands_computer[index];
     else
