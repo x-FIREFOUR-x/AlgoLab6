@@ -31,7 +31,7 @@ void CardsHands::picture_cards_hands(PrinterCards& printer, QGraphicsScene*& sce
     {
        ptr = printer.print_card(cards_of_hands[i],scene,x,y_hands);
        ptr_img_cards.push_back(ptr);
-        x+=25;
+        x+=15;
     }
 }
 
@@ -50,7 +50,7 @@ void CardsHands::picture_backcards_hands(PrinterCards& printer, QGraphicsScene*&
     {
        ptr = printer.print_backcard(cards_of_hands[i],scene,x, y_hands);
        ptr_img_cards.push_back(ptr);
-        x+=25;
+        x+=15;
     }
 }
 
