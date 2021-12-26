@@ -14,8 +14,8 @@
 
 class GameBoard: public QGraphicsView
 {
-    int height_side_px;        // розмір сторони в пікселях
-    int width_side_px;        // розмір сторони в пікселях
+    float height_side_px;        // розмір сторони в пікселях
+    float width_side_px;        // розмір сторони в пікселях
 
     bool game_with_pc;      //тип гри з комп'ютером чи два гравці
     bool computer_first;    // чи перший ходить компютер
@@ -59,13 +59,13 @@ public:
     ~GameBoard();
 
         //Метод, що використовується для встановлення розміру, ігрового поля і параметра g_with_pc max_score
-    void set_parameters(int max_score ,int height, int width, bool g_with_pc);
+    void set_parameters(int max_score ,float height, float width, bool g_with_pc);
         // метод для встановлення вказіників на лейбли на ігровому полі
     void set_label(QLabel* counter, QLabel* score_player1, QLabel* score_player2, QLabel* score_max);
 
 protected:
          // встановлення спільних параметрів
-    void parameters(int height, int width, bool g_with_pc);
+    void parameters(float height, float width, bool g_with_pc);
          // метод що реагує на клік миші по цьому класу віджету GameBoard на вікні GameWindow для ходу гравця
     virtual void mousePressEvent(QMouseEvent *event);
 
@@ -119,6 +119,8 @@ private:
     void effect_eight();        // активація ефекту коли кладуть 8
     void effect_jack();         // активація ефекту коли кладуть валєт
     void effect_joker();        // активація ефекту коли кладуть джокер
+
+    void reset_flags();         //скинути флажки ефектів карт
 };
 
 #endif // GAMEBOARD_H

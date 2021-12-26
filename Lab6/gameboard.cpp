@@ -24,7 +24,7 @@ GameBoard::~GameBoard()
 }
 
 
-void GameBoard::set_parameters(int score ,int height, int width, bool g_with_pc)
+void GameBoard::set_parameters(int score ,float height, float width, bool g_with_pc)
 {
    max_score = score;
    display_score();
@@ -34,7 +34,7 @@ void GameBoard::set_parameters(int score ,int height, int width, bool g_with_pc)
 }
 
 
-void GameBoard::parameters(int height, int width, bool g_with_pc)
+void GameBoard::parameters(float height, float width, bool g_with_pc)
 {   
     height_side_px = height;
     width_side_px = width;
@@ -42,13 +42,13 @@ void GameBoard::parameters(int height, int width, bool g_with_pc)
 
     finished = false;
 
-    int height_card = height/5;
-    int width_card = height_card * 0.75;
+    float height_card = height/5;
+    float width_card = height_card * 0.788705;//0.688705;
     printer.set_side(width_card, height_card);
 
-    int x_deck = width_side_px / 20;
-    int y = height_side_px/5 + 2*height_side_px/10;
-    int x_top = width_side_px / 2;
+    float x_deck = width_side_px / 20;
+    float y = height_side_px/5 + 2*height_side_px/10;
+    float x_top = width_side_px / 2;
     printer.set_coordinate(x_deck, y, x_top, y);
 
     setFixedSize(width_side_px, height_side_px);
@@ -95,9 +95,9 @@ void GameBoard::start_round()
 
     current_player = who_move_first;
 
-    int y1 = height_side_px/40;
-    int y2 = height_side_px - height_side_px/20;
-    int size = height_side_px/20;
+    float y1 = height_side_px/40;
+    float y2 = height_side_px - height_side_px/20;
+    float size = height_side_px/20;
     printer.print_marc_move(scene, current_player, width_side_px / 2, y1, y2, size);
 }
 
@@ -108,6 +108,7 @@ void GameBoard::end_round()
      cards_hands2.discard_cards();
      printer.erase_marc_move(scene);
      printer.erase_converted_card();
+     reset_flags();
 }
 
 void GameBoard::calculate_score()
@@ -715,3 +716,11 @@ void GameBoard::effect_joker()
     printer.print_converted_card(card_converted,scene);
     put_jocker = true;
 }
+ void GameBoard::reset_flags()
+ {
+     put_three = false;
+     put_four = false;
+     put_eight = false;
+     put_jocker = false;
+     card_converted = pair<int,int>(-1,-1);
+ }

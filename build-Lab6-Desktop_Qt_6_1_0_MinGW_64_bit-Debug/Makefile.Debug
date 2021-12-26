@@ -174,9 +174,9 @@ debug/qrc_res.cpp: ../Lab6/res.qrc \
 		../Lab6/PNG-cards/9_of_diamonds.png \
 		../Lab6/PNG-cards/queen_of_clubs.png \
 		../Lab6/PNG-cards/10_of_hearts.png \
-		../Lab6/PNG-cards/queen_of_diamonds.png \
-		../Lab6/PNG-cards/7_of_diamonds.png \
 		../Lab6/PNG-cards/hearts.png \
+		../Lab6/PNG-cards/7_of_diamonds.png \
+		../Lab6/PNG-cards/queen_of_diamonds.png \
 		../Lab6/PNG-cards/spades.png \
 		../Lab6/PNG-cards/3_of_hearts.png \
 		../Lab6/PNG-cards/4_of_hearts.png \
@@ -193,8 +193,8 @@ debug/qrc_res.cpp: ../Lab6/res.qrc \
 		../Lab6/PNG-cards/2_of_diamonds.png \
 		../Lab6/PNG-cards/king_of_hearts.png \
 		../Lab6/PNG-cards/8_of_hearts.png \
-		../Lab6/PNG-cards/jack_of_hearts.png \
 		../Lab6/PNG-cards/2_of_clubs.png \
+		../Lab6/PNG-cards/jack_of_hearts.png \
 		../Lab6/PNG-cards/4_of_clubs.png \
 		../Lab6/PNG-cards/4_of_spades.png \
 		../Lab6/PNG-cards/9_of_hearts.png \

@@ -24,7 +24,7 @@ PrinterCards::PrinterCards()
     ptr_card_deck = nullptr;
 }
 
-void PrinterCards::set_coordinate(int x_deck, int y_deck, int x_top_c, int y_top_c)
+void PrinterCards::set_coordinate(float x_deck, float y_deck, float x_top_c, float y_top_c)
 {
     x_cards_deck = x_deck;
     y_cards_deck = y_deck;
@@ -32,38 +32,38 @@ void PrinterCards::set_coordinate(int x_deck, int y_deck, int x_top_c, int y_top
     y_top_card = y_top_c;
 }
 
-void PrinterCards::set_side(int width1, int height1)
+void PrinterCards::set_side(float width1, float height1)
 {
     width = width1;
     height = height1;
 }
 
-int PrinterCards::get_width()
+float PrinterCards::get_width()
 {
     return width;
 }
 
-int PrinterCards::get_height()
+float PrinterCards::get_height()
 {
     return height;
 }
 
-int PrinterCards::get_x_cards_deck()
+float PrinterCards::get_x_cards_deck()
 {
     return x_cards_deck;
 }
 
-int PrinterCards::get_y_cards_deck()
+float PrinterCards::get_y_cards_deck()
 {
     return y_cards_deck;
 }
 
-int PrinterCards::get_x_top_card()
+float PrinterCards::get_x_top_card()
 {
     return x_top_card;
 }
 
-int PrinterCards::get_y_top_card()
+float PrinterCards::get_y_top_card()
 {
     return y_top_card;
 }
@@ -160,7 +160,7 @@ QGraphicsItem* PrinterCards::print_back(QGraphicsScene*& scene ,int x, int y)
      ptr_card_converted_card = nullptr;
  }
 
- void PrinterCards::print_marc_move(QGraphicsScene*& scene, int current_player, int x_mark_players, int y_mark_player1, int y_mark_player2, int size)
+ void PrinterCards::print_marc_move(QGraphicsScene*& scene, int current_player, float x_mark_players, float y_mark_player1, float y_mark_player2, float size)
  {
      x_mark_move_players = x_mark_players;
      y_mark_move_player1 = y_mark_player1;

@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/image">
+        <file>PNG-cards/2_of_clubs.png</file>
         <file>PNG-cards/2_of_diamonds.png</file>
         <file>PNG-cards/2_of_hearts.png</file>
         <file>PNG-cards/2_of_spades.png</file>
@@ -41,6 +42,9 @@
         <file>PNG-cards/ace_of_spades.png</file>
         <file>PNG-cards/back.png</file>
         <file>PNG-cards/black_joker.png</file>
+        <file>PNG-cards/clubs.png</file>
+        <file>PNG-cards/diamonds.png</file>
+        <file>PNG-cards/hearts.png</file>
         <file>PNG-cards/jack_of_clubs.png</file>
         <file>PNG-cards/jack_of_diamonds.png</file>
         <file>PNG-cards/jack_of_hearts.png</file>
@@ -49,17 +53,13 @@
         <file>PNG-cards/king_of_diamonds.png</file>
         <file>PNG-cards/king_of_hearts.png</file>
         <file>PNG-cards/king_of_spades.png</file>
+        <file>PNG-cards/mark.png</file>
         <file>PNG-cards/queen_of_clubs.png</file>
         <file>PNG-cards/queen_of_diamonds.png</file>
         <file>PNG-cards/queen_of_hearts.png</file>
         <file>PNG-cards/queen_of_spades.png</file>
         <file>PNG-cards/red_joker.png</file>
-        <file>PNG-cards/table.png</file>
-        <file>PNG-cards/clubs.png</file>
-        <file>PNG-cards/diamonds.png</file>
-        <file>PNG-cards/hearts.png</file>
         <file>PNG-cards/spades.png</file>
-        <file>PNG-cards/mark.png</file>
-        <file>PNG-cards/2_of_clubs.png</file>
+        <file>PNG-cards/table.png</file>
     </qresource>
 </RCC>
