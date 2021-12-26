@@ -54,6 +54,8 @@ class GameBoard: public QGraphicsView
 
     EnemyComputer enemy_computer;       //компютерний опоненет
 
+    int time_move_pc = 1500;                   //час ходу компютера (в мс не враховуючи час обрахунку алго мінімакс)
+
 public:
     GameBoard(QWidget *parent = nullptr);
     ~GameBoard();
@@ -91,6 +93,7 @@ private:
 
         // гра йде гравець проти комп'ютера
     void player_vs_computer(int mouse_x, int mouse_y);
+    void move_computer();
 
     void comp_put_card_in_top(pair<int,int> card);
 

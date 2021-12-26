@@ -64,6 +64,9 @@ void GameBoard::parameters(float height, float width, bool g_with_pc)
 
     start_round();
 
+    if(game_with_pc && current_player == 1)
+        QTimer::singleShot(time_move_pc, this, &GameBoard::move_computer);
+
 }
 
 
@@ -91,6 +94,7 @@ void GameBoard::start_round()
        cards_hands1.picture_backcards_hands(printer,scene);
     else
         cards_hands1.picture_cards_hands(printer, scene);
+
     cards_hands2.picture_cards_hands(printer, scene);
 
     current_player = who_move_first;
@@ -288,8 +292,86 @@ void GameBoard::player_vs_computer(int mouse_x, int mouse_y)
         }
     }
 
+   if(!finished && current_player == 1)
+   {
+       QTimer::singleShot(time_move_pc, this, &GameBoard::move_computer);
+   }
 }
 
+void GameBoard::move_computer()
+{
+    if(cards_hands1.get_count_cards() != 0 && cards_hands2.get_count_cards() != 0 && finished == false)
+    {
+        if(current_player ==1)
+        {
+            enemy_computer.set_date(cards_deck.get_deck_cards(), cards_deck.get_discarded_cards(), cards_hands1.get_cards(), cards_hands2.get_cards());
+            enemy_computer.set_flags(put_three,put_four,put_eight,put_jocker,card_converted);
+            pair<int,int> card = enemy_computer.mini_max();
+            if(card.first == -1 && card.second == -1)
+            {
+                take_card_with_deck();
+                display_count_deck();
+            }
+            else
+            {
+                comp_put_card_in_top(card);
+                display_count_deck();
+            }
+            cards_hands1.picture_backcards_hands(printer,scene);
+        }
+
+    }
+
+    if (score1 >= max_score || score2 >= max_score)
+    {
+        if(score2 >= max_score)
+        {
+            QString text = "ВИ ПРОГРАЛИ";
+            QString title = "Гра закінчилася";
+            QMessageBox:: about(this,title,text);
+            finished = true;
+        }
+        if(score1 >= max_score)
+        {
+            QString text = "ВИ ПЕРЕМОГЛИ";
+            QString title = "Гра закінчилася";
+            QMessageBox:: about(this,title,text);
+            finished = true;
+        }
+    }
+    else
+    {
+        if (cards_hands1.get_count_cards() == 0 )
+        {
+            cards_hands1.picture_cards_hands(printer,scene);
+            QString text = "В РАУНДІ ВИ ПРОГРАЛИ";
+            QString title = "Гра закінчилася";
+            QMessageBox:: about(this,title,text);
+            calculate_score();
+            display_score();
+            end_round();
+            change_who_first_move();
+            start_round();
+        }
+        if (cards_hands2.get_count_cards() == 0 )
+        {
+            cards_hands1.picture_backcards_hands(printer,scene);
+            QString text = "В РАУНДІ ВИ ПЕРЕМОГЛИ";
+            QString title = "Гра закінчилася";
+            QMessageBox:: about(this,title,text);
+            calculate_score();
+            display_score();
+            end_round();
+            change_who_first_move();
+            start_round();
+        }
+    }
+
+   if(!finished && current_player == 1)
+   {
+       QTimer::singleShot(time_move_pc, this, &GameBoard::move_computer);
+   }
+}
 
 void GameBoard::resizeEvent(QResizeEvent *event)
 {
