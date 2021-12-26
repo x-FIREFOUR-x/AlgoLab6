@@ -91,11 +91,11 @@ void GameBoard::start_round()
     printer.print_top_card(top_card, scene);
 
     if (game_with_pc)
-       cards_hands1.picture_backcards_hands(printer,scene);
+       cards_hands1.picture_backcards_hands(printer,scene, width_side_px);
     else
-        cards_hands1.picture_cards_hands(printer, scene);
+        cards_hands1.picture_cards_hands(printer, scene, width_side_px);
 
-    cards_hands2.picture_cards_hands(printer, scene);
+    cards_hands2.picture_cards_hands(printer, scene, width_side_px);
 
     current_player = who_move_first;
 
@@ -228,7 +228,7 @@ void GameBoard::player_vs_computer(int mouse_x, int mouse_y)
                 comp_put_card_in_top(card);
                 display_count_deck();
             }
-            cards_hands1.picture_backcards_hands(printer,scene);
+            cards_hands1.picture_backcards_hands(printer,scene, width_side_px);
         }
         else
         {
@@ -268,7 +268,7 @@ void GameBoard::player_vs_computer(int mouse_x, int mouse_y)
     {
         if (cards_hands1.get_count_cards() == 0 )
         {
-            cards_hands1.picture_cards_hands(printer,scene);
+            //cards_hands1.picture_cards_hands(printer,scene, width_side_px);
             QString text = "В РАУНДІ ВИ ПРОГРАЛИ";
             QString title = "Гра закінчилася";
             QMessageBox:: about(this,title,text);
@@ -280,7 +280,7 @@ void GameBoard::player_vs_computer(int mouse_x, int mouse_y)
         }
         if (cards_hands2.get_count_cards() == 0 )
         {
-            cards_hands1.picture_backcards_hands(printer,scene);
+            //cards_hands1.picture_backcards_hands(printer,scene, width_side_px);
             QString text = "В РАУНДІ ВИ ПЕРЕМОГЛИ";
             QString title = "Гра закінчилася";
             QMessageBox:: about(this,title,text);
@@ -317,7 +317,7 @@ void GameBoard::move_computer()
                 comp_put_card_in_top(card);
                 display_count_deck();
             }
-            cards_hands1.picture_backcards_hands(printer,scene);
+            cards_hands1.picture_backcards_hands(printer,scene, width_side_px);
         }
 
     }
@@ -343,7 +343,7 @@ void GameBoard::move_computer()
     {
         if (cards_hands1.get_count_cards() == 0 )
         {
-            cards_hands1.picture_cards_hands(printer,scene);
+            //cards_hands1.picture_cards_hands(printer,scene, width_side_px);
             QString text = "В РАУНДІ ВИ ПРОГРАЛИ";
             QString title = "Гра закінчилася";
             QMessageBox:: about(this,title,text);
@@ -355,7 +355,7 @@ void GameBoard::move_computer()
         }
         if (cards_hands2.get_count_cards() == 0 )
         {
-            cards_hands1.picture_backcards_hands(printer,scene);
+            //cards_hands1.picture_backcards_hands(printer,scene, width_side_px);
             QString text = "В РАУНДІ ВИ ПЕРЕМОГЛИ";
             QString title = "Гра закінчилася";
             QMessageBox:: about(this,title,text);
@@ -414,7 +414,7 @@ void GameBoard::resizeEvent(QResizeEvent *event)
                 {
                     pair<int,int> new_card = cards_deck.take_card();
                     cards_hands1.give_card(new_card);
-                    cards_hands1.picture_cards_hands(printer,scene);
+                    cards_hands1.picture_cards_hands(printer,scene, width_side_px);
 
 
                 }
@@ -430,7 +430,7 @@ void GameBoard::resizeEvent(QResizeEvent *event)
                 {
                     pair<int,int> new_card = cards_deck.take_card();
                     cards_hands2.give_card(new_card);
-                    cards_hands2.picture_cards_hands(printer,scene);
+                    cards_hands2.picture_cards_hands(printer,scene, width_side_px);
                 }
             }
             put_four = false;
@@ -445,7 +445,7 @@ void GameBoard::resizeEvent(QResizeEvent *event)
              {
                  pair<int,int> new_card = cards_deck.take_card();
                  cards_hands1.give_card(new_card);
-                 cards_hands1.picture_cards_hands(printer,scene);
+                 cards_hands1.picture_cards_hands(printer,scene, width_side_px);
                  current_player =2;
                  printer.print_change_move(scene, current_player);
              }
@@ -453,7 +453,7 @@ void GameBoard::resizeEvent(QResizeEvent *event)
              {
                  pair<int,int> new_card = cards_deck.take_card();
                  cards_hands2.give_card(new_card);
-                 cards_hands2.picture_cards_hands(printer,scene);
+                 cards_hands2.picture_cards_hands(printer,scene, width_side_px);
                  current_player = 1;
                  printer.print_change_move(scene, current_player);
              }
@@ -483,7 +483,7 @@ void GameBoard::resizeEvent(QResizeEvent *event)
                  assign_effect_card(card);
                  cards_deck.put_card(card, scene, printer);
                  ptr_chosen_card = nullptr; 
-                 cards_hands1.picture_cards_hands(printer, scene);
+                 cards_hands1.picture_cards_hands(printer, scene, width_side_px);
                  printer.print_top_card(card, scene);
                  scene->update();
              }
@@ -506,7 +506,7 @@ void GameBoard::resizeEvent(QResizeEvent *event)
                 cards_deck.put_card(card, scene, printer);
                 ptr_chosen_card = nullptr;
 
-                cards_hands2.picture_cards_hands(printer, scene);
+                cards_hands2.picture_cards_hands(printer, scene, width_side_px);
                 printer.print_top_card(card, scene);
                 scene->update();
              }
@@ -533,7 +533,7 @@ void GameBoard::resizeEvent(QResizeEvent *event)
                  assign_effect_card(card);
                  cards_deck.put_card(card, scene, printer);
                  ptr_chosen_card = nullptr;
-                 cards_hands1.picture_backcards_hands(printer, scene);
+                 cards_hands1.picture_backcards_hands(printer, scene, width_side_px);
                  printer.print_top_card(card, scene);
                  scene->update();
              }
@@ -680,7 +680,7 @@ void GameBoard::effect_two()
         {
             pair<int,int> new_card = cards_deck.take_card();
             cards_hands2.give_card(new_card);
-            cards_hands2.picture_cards_hands(printer,scene);
+            cards_hands2.picture_cards_hands(printer,scene, width_side_px);
         }
         current_player =1;
     }
@@ -692,9 +692,9 @@ void GameBoard::effect_two()
             pair<int,int> new_card = cards_deck.take_card();
             cards_hands1.give_card(new_card);
             if(game_with_pc)
-                cards_hands1.picture_backcards_hands(printer,scene);
+                cards_hands1.picture_backcards_hands(printer,scene, width_side_px);
             else
-                cards_hands1.picture_cards_hands(printer,scene);
+                cards_hands1.picture_cards_hands(printer,scene, width_side_px);
         }
         current_player =2;
     }

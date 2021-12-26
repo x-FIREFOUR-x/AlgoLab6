@@ -24,9 +24,9 @@ public:
     int calculate_scorecards();         //підрахувати кількість штрафних балів за карти в кінці раунда
 
         //намалювати карти на руках в гравця на столі
-    void picture_cards_hands(PrinterCards& printer, QGraphicsScene*& scene);
+    void picture_cards_hands(PrinterCards& printer, QGraphicsScene*& scene, float width_board);
         //намалювати карти рубашками на руках(компютера)
-    void picture_backcards_hands(PrinterCards& printer, QGraphicsScene*& scene);
+    void picture_backcards_hands(PrinterCards& printer, QGraphicsScene*& scene, float width_board);
 
         //дати chosen_card карту вибрану гравецем (повертає булеву змінну true вибрана коректно false не коректно)
     bool get_chosen_card(QGraphicsItem* ptr_chosen_card, pair<int,int>& chosen_card);
