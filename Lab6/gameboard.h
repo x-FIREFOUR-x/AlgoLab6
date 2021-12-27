@@ -17,17 +17,14 @@ class GameBoard: public QGraphicsView
     float height_side_px;        // розмір сторони в пікселях
     float width_side_px;        // розмір сторони в пікселях
 
-    bool game_with_pc;      //тип гри з комп'ютером чи два гравці
-    bool computer_first;    // чи перший ходить компютер
-
     int level_recur;        // глибина рекурсії рівна складності
     int time_deley = 10;    // час затримки перд ходом компютера
 
     int who_move_first;       // номер гравця який починає гру (з початку гри вибирається випадково далі в раундах змінюється)
     int current_player;      //номер гравця чий хід
 
+    bool game_with_pc;      //тип гри з комп'ютером чи два гравці
     bool finished = false;          //гра закінчена
-    bool player_win;        //гравець виграв
 
     QGraphicsScene *scene;  // покажчик на графічну сцену
     PrinterCards printer;   // рисувальщик карт
@@ -124,6 +121,48 @@ private:
     void effect_joker();        // активація ефекту коли кладуть джокер
 
     void reset_flags();         //скинути флажки ефектів карт
+
+
+
+            //гетери і сетери атрибутів класа
+public:
+    vector<bool> get_flags();               // отримати вектор значень флажків ефектів
+    void set_flags(vector<bool> flags);     // встановити значення флажкам ефектам
+
+    pair<int,int> get_card_converted();
+    void set_card_converted(pair<int,int> card);
+
+    bool get_game_with_pc();
+    void set_game_with_pc(bool g_with_pc);
+
+    bool get_finished();
+    void set_finished(bool finish);
+
+    int get_current_player();
+    void set_current_player(int cur_player);
+
+    int get_who_move_first();
+    void set_who_move_first(int who_move);
+
+    vector<int> get_scores();
+    void set_scores(vector<int> scores);
+
+    vector<pair<int,int>> get_cards_hands1();
+    void get_cards_hands1(vector<pair<int,int>> cards);
+
+    vector<pair<int,int>> get_cards_hands2();
+    void get_cards_hands2(vector<pair<int,int>> cards);
+
+    vector<pair<int,int>> get_cards_deck();
+    void set_cards_deck( vector<pair<int,int>> cards);
+
+    vector<pair<int,int>> get_diacardcards_deck();
+    void set_discardcards_deck( vector<pair<int,int>> cards);
+
+    pair<int,int> get_top_card();
+    void get_top_card(pair<int,int> card);
+
+
 };
 
 #endif // GAMEBOARD_H

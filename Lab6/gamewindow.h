@@ -6,7 +6,9 @@
 #include <QGraphicsView>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QFileDialog>
 #include "gameboard.h"
+#include "fileworker.h"
 
 namespace Ui {
 class GameWindow;
@@ -29,6 +31,11 @@ public:
 private slots:
         // слот в menu_bar "Зікінчити гру" закриває вікно GameWindow і повертається MainWindow
     void on_CloseEnd_triggered();
+    void on_Save_triggered();
+    void on_SaveAs_triggered();
+
+private:
+    void save_game();
 };
 
 #endif // GAMEWINDOW_H

@@ -19,7 +19,8 @@ public:
     void set_y(int y);                      // встановити координату y малювання карт на столі
     int get_count_cards();                  //вернути кількість карт в гравця
 
-    vector<pair<int,int>> get_cards();
+    vector<pair<int,int>> get_cards();              //отримати список карт на руках
+    void set_cards(vector<pair<int,int>> cards);    //встановити список карт на руках
 
     int calculate_scorecards();         //підрахувати кількість штрафних балів за карти в кінці раунда
 
