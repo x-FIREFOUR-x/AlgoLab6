@@ -24,6 +24,13 @@ public:
     static void save_game_state(bool game_with_pc, bool finished, int who_move_first, int current_player, vector<int> scores);
     static void save_game_effects(vector<bool> flags, pair<int,int> converted);
     static void save_game_cards(typeVec hands1, typeVec hands2, typeVec deck, pair<int,int> top_card, typeVec discard);
+
+    static void download_game_state(bool& game_with_pc, bool& finished, int& who_move_first, int& current_player, vector<int>& scores);
+    static void download_game_effects(vector<bool>& flags, pair<int,int>& converted);
+    static void download_game_cards(typeVec& hands1, typeVec& hands2, typeVec& deck, pair<int,int>& top_card, typeVec& discard);
+
+private:
+    static void input_cards(ifstream& fin, typeVec& cards);
 };
 
 #endif // FILEWORKER_H

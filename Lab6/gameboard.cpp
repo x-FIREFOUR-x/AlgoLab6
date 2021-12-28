@@ -30,7 +30,15 @@ void GameBoard::set_parameters(int score ,float height, float width, bool g_with
    display_score();
 
    parameters(height, width, g_with_pc);
+
    finished = false;
+   who_move_first = rand()%2 + 1;
+
+   start_round();
+
+   if(game_with_pc && current_player == 1)
+       QTimer::singleShot(time_move_pc, this, &GameBoard::move_computer);
+
 }
 
 
@@ -40,7 +48,7 @@ void GameBoard::parameters(float height, float width, bool g_with_pc)
     width_side_px = width;
     game_with_pc = g_with_pc;
 
-    finished = false;
+    //finished = false;
 
     float height_card = height/5;
     float width_card = height_card * 0.788705;//0.688705;
@@ -60,12 +68,12 @@ void GameBoard::parameters(float height, float width, bool g_with_pc)
     cards_hands1.set_y(height_side_px/10);
     cards_hands2.set_y(height_side_px - (height_side_px/10) - height_side_px/5);
 
-    who_move_first = rand()%2 + 1;
+    //who_move_first = rand()%2 + 1;
 
-    start_round();
+    //start_round();
 
-    if(game_with_pc && current_player == 1)
-        QTimer::singleShot(time_move_pc, this, &GameBoard::move_computer);
+    //if(game_with_pc && current_player == 1)
+     //   QTimer::singleShot(time_move_pc, this, &GameBoard::move_computer);
 
 }
 
@@ -78,6 +86,13 @@ void GameBoard::set_label(QLabel* counter, QLabel* score_player1, QLabel* score_
     Score_max = score_max;
 
 }
+
+
+
+
+
+
+
 
 void GameBoard::start_round()
 {
@@ -890,7 +905,7 @@ void GameBoard::effect_joker()
  {
     return cards_hands1.get_cards();
  }
- void GameBoard::get_cards_hands1(vector<pair<int,int>> cards)
+ void GameBoard::set_cards_hands1(vector<pair<int,int>> cards)
  {
      cards_hands1.set_cards(cards);
  }
@@ -899,7 +914,7 @@ void GameBoard::effect_joker()
  {
      return cards_hands2.get_cards();
  }
- void GameBoard::get_cards_hands2(vector<pair<int,int>> cards)
+ void GameBoard::set_cards_hands2(vector<pair<int,int>> cards)
  {
      cards_hands2.set_cards(cards);
  }
@@ -926,7 +941,7 @@ void GameBoard::effect_joker()
  {
      return cards_deck.get_top_card();
  }
- void GameBoard::get_top_card(pair<int,int> card)
+ void GameBoard::set_top_card(pair<int,int> card)
  {
      cards_deck.set_top_card(card);
  }

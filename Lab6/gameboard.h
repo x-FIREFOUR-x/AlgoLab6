@@ -57,14 +57,26 @@ public:
     GameBoard(QWidget *parent = nullptr);
     ~GameBoard();
 
-        //Метод, що використовується для встановлення розміру, ігрового поля і параметра g_with_pc max_score
+        //Метод, що використовується для встановлення параметрів (для нової гри)
     void set_parameters(int max_score ,float height, float width, bool g_with_pc);
+
         // метод для встановлення вказіників на лейбли на ігровому полі
     void set_label(QLabel* counter, QLabel* score_player1, QLabel* score_player2, QLabel* score_max);
 
+        //встановити значеннь обєктів колода, руки на ігровому полі (використ для загрузки збереженої гри)
+    void set_cards_download(CardsDeck& deck, CardsHands& hands1, CardsHands& hands2);
+        //встановити значення ігрових ефектів флажків і перет карти (використ під час загрузки гри)
+    void set_flags_download( vector<bool> flags, pair<int,int> conv_card);
+        //встановити параметри стану гри (для загрузки збереженої гри)
+    void set_stategame_download(int who_move, int cur_move, bool game_pc, bool finished,vector<int> scores);
+
 protected:
-         // встановлення спільних параметрів
+         // встановлення спільних параметрів координатів графічних обєктів ...
     void parameters(float height, float width, bool g_with_pc);
+
+
+
+
          // метод що реагує на клік миші по цьому класу віджету GameBoard на вікні GameWindow для ходу гравця
     virtual void mousePressEvent(QMouseEvent *event);
 
@@ -148,10 +160,10 @@ public:
     void set_scores(vector<int> scores);
 
     vector<pair<int,int>> get_cards_hands1();
-    void get_cards_hands1(vector<pair<int,int>> cards);
+    void set_cards_hands1(vector<pair<int,int>> cards);
 
     vector<pair<int,int>> get_cards_hands2();
-    void get_cards_hands2(vector<pair<int,int>> cards);
+    void set_cards_hands2(vector<pair<int,int>> cards);
 
     vector<pair<int,int>> get_cards_deck();
     void set_cards_deck( vector<pair<int,int>> cards);
@@ -160,7 +172,7 @@ public:
     void set_discardcards_deck( vector<pair<int,int>> cards);
 
     pair<int,int> get_top_card();
-    void get_top_card(pair<int,int> card);
+    void set_top_card(pair<int,int> card);
 
 
 };
