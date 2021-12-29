@@ -18,7 +18,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_ButtonStart_clicked()
 {
     this->close();
-    PresettingWindow * preset_window = new PresettingWindow(this);
+    PresettingWindow * preset_window = new PresettingWindow();
     preset_window->setWindowTitle("Останній гравець");
     preset_window->show();
 

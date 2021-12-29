@@ -26,7 +26,7 @@ void PresettingWindow::on_ButtonGoGame_clicked()
         if (score > 0 && score < 1000)
         {
             this->close();
-            GameWindow * game_window = new GameWindow(score, play_with_pc, this);
+            GameWindow * game_window = new GameWindow(score, play_with_pc);
             game_window->setWindowTitle("Останній гравець");
             game_window->show();
         }
