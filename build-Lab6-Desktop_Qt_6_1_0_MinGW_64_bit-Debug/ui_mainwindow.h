@@ -25,6 +25,7 @@ public:
     QWidget *centralwidget;
     QPushButton *ButtonStart;
     QPushButton *ButtonEnd;
+    QPushButton *ButtonDownload;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -42,6 +43,9 @@ public:
         ButtonEnd = new QPushButton(centralwidget);
         ButtonEnd->setObjectName(QString::fromUtf8("ButtonEnd"));
         ButtonEnd->setGeometry(QRect(75, 240, 150, 30));
+        ButtonDownload = new QPushButton(centralwidget);
+        ButtonDownload->setObjectName(QString::fromUtf8("ButtonDownload"));
+        ButtonDownload->setGeometry(QRect(75, 145, 150, 30));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -61,6 +65,7 @@ public:
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         ButtonStart->setText(QCoreApplication::translate("MainWindow", "\320\235\320\276\320\262\320\260 \320\263\321\200\320\260", nullptr));
         ButtonEnd->setText(QCoreApplication::translate("MainWindow", "\320\222\320\270\320\271\321\202\320\270 \320\267 \320\263\321\200\320\270", nullptr));
+        ButtonDownload->setText(QCoreApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\272\320\260 \320\263\321\200\320\270", nullptr));
     } // retranslateUi
 
 };

@@ -29,18 +29,27 @@ void GameBoard::set_parameters(int score ,float height, float width, bool g_with
    max_score = score;
    display_score();
 
-   parameters(height, width, g_with_pc);
+   set_graphic_parameters(height, width);
+
    finished = false;
+   who_move_first = rand()%2 + 1;
+   game_with_pc = g_with_pc;
+
+   start_round();
+
+   if(game_with_pc && current_player == 1)
+       QTimer::singleShot(time_move_pc, this, &GameBoard::move_computer);
+
 }
 
 
-void GameBoard::parameters(float height, float width, bool g_with_pc)
+void GameBoard::set_graphic_parameters(float height, float width)
 {   
     height_side_px = height;
     width_side_px = width;
-    game_with_pc = g_with_pc;
+    //game_with_pc = g_with_pc;
 
-    finished = false;
+    //finished = false;
 
     float height_card = height/5;
     float width_card = height_card * 0.788705;//0.688705;
@@ -60,12 +69,12 @@ void GameBoard::parameters(float height, float width, bool g_with_pc)
     cards_hands1.set_y(height_side_px/10);
     cards_hands2.set_y(height_side_px - (height_side_px/10) - height_side_px/5);
 
-    who_move_first = rand()%2 + 1;
+    //who_move_first = rand()%2 + 1;
 
-    start_round();
+    //start_round();
 
-    if(game_with_pc && current_player == 1)
-        QTimer::singleShot(time_move_pc, this, &GameBoard::move_computer);
+    //if(game_with_pc && current_player == 1)
+     //   QTimer::singleShot(time_move_pc, this, &GameBoard::move_computer);
 
 }
 
@@ -78,6 +87,42 @@ void GameBoard::set_label(QLabel* counter, QLabel* score_player1, QLabel* score_
     Score_max = score_max;
 
 }
+
+
+void GameBoard::start_download_game(float height, float width)
+{
+    set_graphic_parameters(height,width);
+
+    if (cards_deck.get_amount_card_in_deck() != 0)
+        QGraphicsItem* ptr_carddeck = printer.print_cards_deck(scene);
+
+    QString s = QString::number(cards_deck.get_amount_card_in_deck());
+    Deck_counter->setText(s);
+
+    pair<int,int> top_card = cards_deck.get_top_card();
+    printer.print_top_card(top_card, scene);
+
+    if (game_with_pc)
+       cards_hands1.picture_backcards_hands(printer,scene, width_side_px);
+    else
+        cards_hands1.picture_cards_hands(printer, scene, width_side_px);
+
+    cards_hands2.picture_cards_hands(printer, scene, width_side_px);
+
+    float y1 = height_side_px/40;
+    float y2 = height_side_px - height_side_px/20;
+    float size = height_side_px/20;
+    printer.print_marc_move(scene, current_player, width_side_px / 2, y1, y2, size);
+
+    display_score();
+
+    if(game_with_pc && current_player == 1)
+        QTimer::singleShot(time_move_pc, this, &GameBoard::move_computer);
+}
+
+
+
+
 
 void GameBoard::start_round()
 {
@@ -805,4 +850,128 @@ void GameBoard::effect_joker()
      put_eight = false;
      put_jocker = false;
      card_converted = pair<int,int>(-1,-1);
+ }
+
+
+ vector<bool> GameBoard::get_flags()
+ {
+     vector<bool> flags;
+     flags.push_back(put_three);
+     flags.push_back(put_four);
+     flags.push_back(put_eight);
+     flags.push_back(put_jocker);
+     return flags;
+ }
+
+ void GameBoard::set_flags(vector<bool> flags)
+ {
+     put_three = flags[0];
+     put_four = flags[1];
+     put_eight = flags[2];
+     put_jocker = flags[3];
+ }
+
+ pair<int,int> GameBoard::get_card_converted()
+ {
+     return card_converted;
+ }
+ void GameBoard::set_card_converted(pair<int,int> card)
+ {
+     card_converted = card;
+ }
+
+ bool GameBoard::get_game_with_pc()
+ {
+     return game_with_pc;
+ }
+ void GameBoard::set_game_with_pc(bool g_with_pc)
+ {
+     game_with_pc = g_with_pc;
+ }
+
+ bool GameBoard::get_finished()
+ {
+     return finished;
+ }
+ void GameBoard::set_finished(bool finish)
+ {
+     finished = finish;
+ }
+
+ int GameBoard::get_current_player()
+ {
+     return current_player;
+ }
+ void GameBoard::set_current_player(int cur_player)
+ {
+     current_player = cur_player;
+ }
+
+ int GameBoard::get_who_move_first()
+ {
+     return who_move_first;
+ }
+ void GameBoard::set_who_move_first(int who_move)
+ {
+     who_move_first = who_move;
+ }
+
+ vector<int> GameBoard::get_scores()
+ {
+     vector<int> scores;
+     scores.push_back(max_score);
+     scores.push_back(score1);
+     scores.push_back(score2);
+     return scores;
+ }
+ void GameBoard::set_scores(vector<int> scores)
+ {
+     max_score = scores[0];
+     score1 = scores[1];
+     score2 = scores[2];
+ }
+
+ vector<pair<int,int>> GameBoard::get_cards_hands1()
+ {
+    return cards_hands1.get_cards();
+ }
+ void GameBoard::set_cards_hands1(vector<pair<int,int>> cards)
+ {
+     cards_hands1.set_cards(cards);
+ }
+
+ vector<pair<int,int>> GameBoard::get_cards_hands2()
+ {
+     return cards_hands2.get_cards();
+ }
+ void GameBoard::set_cards_hands2(vector<pair<int,int>> cards)
+ {
+     cards_hands2.set_cards(cards);
+ }
+
+ vector<pair<int,int>> GameBoard::get_cards_deck()
+ {
+     return cards_deck.get_deck_cards();
+ }
+ void GameBoard::set_cards_deck(vector<pair<int,int>> cards)
+ {
+     cards_deck.set_deck_cards(cards);
+ }
+
+ vector<pair<int,int>> GameBoard::get_diacardcards_deck()
+ {
+     return cards_deck.get_discard_cards();
+ }
+ void GameBoard::set_discardcards_deck( vector<pair<int,int>> cards)
+ {
+     cards_deck.set_discard_cards(cards);
+ }
+
+ pair<int,int> GameBoard::get_top_card()
+ {
+     return cards_deck.get_top_card();
+ }
+ void GameBoard::set_top_card(pair<int,int> card)
+ {
+     cards_deck.set_top_card(card);
  }

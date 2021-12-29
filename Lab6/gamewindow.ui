@@ -166,12 +166,24 @@
      <string>Меню</string>
     </property>
     <addaction name="CloseEnd"/>
+    <addaction name="SaveAs"/>
+    <addaction name="Save"/>
    </widget>
    <addaction name="menu"/>
   </widget>
   <action name="CloseEnd">
    <property name="text">
     <string>Закрити гру</string>
+   </property>
+  </action>
+  <action name="SaveAs">
+   <property name="text">
+    <string>Зберегти як</string>
+   </property>
+  </action>
+  <action name="Save">
+   <property name="text">
+    <string>Зберегти</string>
    </property>
   </action>
  </widget>

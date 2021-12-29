@@ -17,17 +17,14 @@ class GameBoard: public QGraphicsView
     float height_side_px;        // розмір сторони в пікселях
     float width_side_px;        // розмір сторони в пікселях
 
-    bool game_with_pc;      //тип гри з комп'ютером чи два гравці
-    bool computer_first;    // чи перший ходить компютер
-
     int level_recur;        // глибина рекурсії рівна складності
     int time_deley = 10;    // час затримки перд ходом компютера
 
     int who_move_first;       // номер гравця який починає гру (з початку гри вибирається випадково далі в раундах змінюється)
     int current_player;      //номер гравця чий хід
 
+    bool game_with_pc;      //тип гри з комп'ютером чи два гравці
     bool finished = false;          //гра закінчена
-    bool player_win;        //гравець виграв
 
     QGraphicsScene *scene;  // покажчик на графічну сцену
     PrinterCards printer;   // рисувальщик карт
@@ -60,14 +57,26 @@ public:
     GameBoard(QWidget *parent = nullptr);
     ~GameBoard();
 
-        //Метод, що використовується для встановлення розміру, ігрового поля і параметра g_with_pc max_score
+        //Метод, що використовується для встановлення параметрів (для нової гри)
     void set_parameters(int max_score ,float height, float width, bool g_with_pc);
+
         // метод для встановлення вказіників на лейбли на ігровому полі
     void set_label(QLabel* counter, QLabel* score_player1, QLabel* score_player2, QLabel* score_max);
 
+        //встановити значеннь обєктів колода, руки на ігровому полі (використ для загрузки збереженої гри)
+    void set_cards_download(CardsDeck& deck, CardsHands& hands1, CardsHands& hands2);
+        //встановити значення ігрових ефектів флажків і перет карти (використ під час загрузки гри)
+    void set_flags_download( vector<bool> flags, pair<int,int> conv_card);
+        //встановити параметри стану гри (для загрузки збереженої гри)
+    void set_stategame_download(int who_move, int cur_move, bool game_pc, bool finished,vector<int> scores);
+
+    void start_download_game(float height, float width);
+
 protected:
-         // встановлення спільних параметрів
-    void parameters(float height, float width, bool g_with_pc);
+        // встановлення спільних параметрів координатів графічних обєктів ...
+    void set_graphic_parameters(float height, float width);
+
+
          // метод що реагує на клік миші по цьому класу віджету GameBoard на вікні GameWindow для ходу гравця
     virtual void mousePressEvent(QMouseEvent *event);
 
@@ -124,6 +133,48 @@ private:
     void effect_joker();        // активація ефекту коли кладуть джокер
 
     void reset_flags();         //скинути флажки ефектів карт
+
+
+
+            //гетери і сетери атрибутів класа
+public:
+    vector<bool> get_flags();               // отримати вектор значень флажків ефектів
+    void set_flags(vector<bool> flags);     // встановити значення флажкам ефектам
+
+    pair<int,int> get_card_converted();
+    void set_card_converted(pair<int,int> card);
+
+    bool get_game_with_pc();
+    void set_game_with_pc(bool g_with_pc);
+
+    bool get_finished();
+    void set_finished(bool finish);
+
+    int get_current_player();
+    void set_current_player(int cur_player);
+
+    int get_who_move_first();
+    void set_who_move_first(int who_move);
+
+    vector<int> get_scores();
+    void set_scores(vector<int> scores);
+
+    vector<pair<int,int>> get_cards_hands1();
+    void set_cards_hands1(vector<pair<int,int>> cards);
+
+    vector<pair<int,int>> get_cards_hands2();
+    void set_cards_hands2(vector<pair<int,int>> cards);
+
+    vector<pair<int,int>> get_cards_deck();
+    void set_cards_deck( vector<pair<int,int>> cards);
+
+    vector<pair<int,int>> get_diacardcards_deck();
+    void set_discardcards_deck( vector<pair<int,int>> cards);
+
+    pair<int,int> get_top_card();
+    void set_top_card(pair<int,int> card);
+
+
 };
 
 #endif // GAMEBOARD_H

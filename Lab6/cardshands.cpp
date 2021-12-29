@@ -141,6 +141,12 @@ vector<pair<int,int>> CardsHands::get_cards()
 {
     return cards_of_hands;
 }
+
+void CardsHands::set_cards(vector<pair<int,int>> cards)
+{
+    cards_of_hands = cards;
+}
+
 QGraphicsItem* CardsHands::get_ptr_image_card(pair<int,int> card)
 {
     for(int i =0; i <cards_of_hands.size(); i++)

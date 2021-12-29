@@ -12,6 +12,7 @@ SOURCES += \
     cardsdeck.cpp \
     cardshands.cpp \
     enemycomputer.cpp \
+    fileworker.cpp \
     gameboard.cpp \
     gamewindow.cpp \
     main.cpp \
@@ -25,6 +26,7 @@ HEADERS += \
     cardsdeck.h \
     cardshands.h \
     enemycomputer.h \
+    fileworker.h \
     gameboard.h \
     gamewindow.h \
     mainwindow.h \

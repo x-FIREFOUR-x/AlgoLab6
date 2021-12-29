@@ -6,7 +6,9 @@
 #include <QGraphicsView>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QFileDialog>
 #include "gameboard.h"
+#include "fileworker.h"
 
 namespace Ui {
 class GameWindow;
@@ -24,11 +26,18 @@ private:
 public:
         // конструктор створення вікна гри для 2 гравців
     explicit GameWindow(int max_score, bool g_with_pc, QWidget *parent = nullptr);
+    explicit GameWindow(QWidget *parent = nullptr);
     ~GameWindow();
 
 private slots:
         // слот в menu_bar "Зікінчити гру" закриває вікно GameWindow і повертається MainWindow
     void on_CloseEnd_triggered();
+    void on_Save_triggered();
+    void on_SaveAs_triggered();
+
+private:
+    void save_game();
+    void download_game();
 };
 
 #endif // GAMEWINDOW_H

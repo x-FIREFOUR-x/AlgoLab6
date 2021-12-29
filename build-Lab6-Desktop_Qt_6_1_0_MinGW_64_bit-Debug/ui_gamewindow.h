@@ -26,6 +26,8 @@ class Ui_GameWindow
 {
 public:
     QAction *CloseEnd;
+    QAction *SaveAs;
+    QAction *Save;
     QWidget *centralwidget;
     GameBoard *graphicsView;
     QLabel *CountCardDeck;
@@ -46,6 +48,10 @@ public:
         GameWindow->resize(900, 550);
         CloseEnd = new QAction(GameWindow);
         CloseEnd->setObjectName(QString::fromUtf8("CloseEnd"));
+        SaveAs = new QAction(GameWindow);
+        SaveAs->setObjectName(QString::fromUtf8("SaveAs"));
+        Save = new QAction(GameWindow);
+        Save->setObjectName(QString::fromUtf8("Save"));
         centralwidget = new QWidget(GameWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         graphicsView = new GameBoard(centralwidget);
@@ -98,6 +104,8 @@ public:
 
         menubar->addAction(menu->menuAction());
         menu->addAction(CloseEnd);
+        menu->addAction(SaveAs);
+        menu->addAction(Save);
 
         retranslateUi(GameWindow);
 
@@ -108,6 +116,8 @@ public:
     {
         GameWindow->setWindowTitle(QCoreApplication::translate("GameWindow", "MainWindow", nullptr));
         CloseEnd->setText(QCoreApplication::translate("GameWindow", "\320\227\320\260\320\272\321\200\320\270\321\202\320\270 \320\263\321\200\321\203", nullptr));
+        SaveAs->setText(QCoreApplication::translate("GameWindow", "\320\227\320\261\320\265\321\200\320\265\320\263\321\202\320\270 \321\217\320\272", nullptr));
+        Save->setText(QCoreApplication::translate("GameWindow", "\320\227\320\261\320\265\321\200\320\265\320\263\321\202\320\270", nullptr));
         CountCardDeck->setText(QCoreApplication::translate("GameWindow", "0", nullptr));
         labelScore1->setText(QCoreApplication::translate("GameWindow", "0", nullptr));
         labelScore2->setText(QCoreApplication::translate("GameWindow", "0", nullptr));

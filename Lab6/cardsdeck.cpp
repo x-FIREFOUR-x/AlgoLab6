@@ -79,6 +79,10 @@ pair<int,int> CardsDeck::get_top_card()
 {
     return top_card;
 }
+void CardsDeck::set_top_card(pair<int,int> top_c)
+{
+    top_card = top_c;
+}
 
 int CardsDeck::get_amount_card_in_deck()
 {
@@ -104,10 +108,24 @@ vector<pair<int,int>> CardsDeck::get_deck_cards()
 {
     return deck_cards;
 }
+void  CardsDeck::set_deck_cards(vector<pair<int,int>> deck)
+{
+    deck_cards = deck;
+}
+
 vector<pair<int,int>> CardsDeck::get_discarded_cards()
 {
     vector<pair<int,int>> dis_cards;
     dis_cards = discarded_cards;
     dis_cards.push_back(top_card);
     return dis_cards;
+}
+
+vector<pair<int,int>> CardsDeck::get_discard_cards()
+{
+    return discarded_cards;
+}
+void CardsDeck::set_discard_cards(vector<pair<int,int>> discard)
+{
+    discarded_cards = discard;
 }
