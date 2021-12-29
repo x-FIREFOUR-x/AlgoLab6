@@ -70,11 +70,11 @@ public:
         //встановити параметри стану гри (для загрузки збереженої гри)
     void set_stategame_download(int who_move, int cur_move, bool game_pc, bool finished,vector<int> scores);
 
+    void start_download_game(float height, float width);
+
 protected:
-         // встановлення спільних параметрів координатів графічних обєктів ...
-    void parameters(float height, float width, bool g_with_pc);
-
-
+        // встановлення спільних параметрів координатів графічних обєктів ...
+    void set_graphic_parameters(float height, float width);
 
 
          // метод що реагує на клік миші по цьому класу віджету GameBoard на вікні GameWindow для ходу гравця

@@ -29,10 +29,11 @@ void GameBoard::set_parameters(int score ,float height, float width, bool g_with
    max_score = score;
    display_score();
 
-   parameters(height, width, g_with_pc);
+   set_graphic_parameters(height, width);
 
    finished = false;
    who_move_first = rand()%2 + 1;
+   game_with_pc = g_with_pc;
 
    start_round();
 
@@ -42,11 +43,11 @@ void GameBoard::set_parameters(int score ,float height, float width, bool g_with
 }
 
 
-void GameBoard::parameters(float height, float width, bool g_with_pc)
+void GameBoard::set_graphic_parameters(float height, float width)
 {   
     height_side_px = height;
     width_side_px = width;
-    game_with_pc = g_with_pc;
+    //game_with_pc = g_with_pc;
 
     //finished = false;
 
@@ -88,7 +89,36 @@ void GameBoard::set_label(QLabel* counter, QLabel* score_player1, QLabel* score_
 }
 
 
+void GameBoard::start_download_game(float height, float width)
+{
+    set_graphic_parameters(height,width);
 
+    if (cards_deck.get_amount_card_in_deck() != 0)
+        QGraphicsItem* ptr_carddeck = printer.print_cards_deck(scene);
+
+    QString s = QString::number(cards_deck.get_amount_card_in_deck());
+    Deck_counter->setText(s);
+
+    pair<int,int> top_card = cards_deck.get_top_card();
+    printer.print_top_card(top_card, scene);
+
+    if (game_with_pc)
+       cards_hands1.picture_backcards_hands(printer,scene, width_side_px);
+    else
+        cards_hands1.picture_cards_hands(printer, scene, width_side_px);
+
+    cards_hands2.picture_cards_hands(printer, scene, width_side_px);
+
+    float y1 = height_side_px/40;
+    float y2 = height_side_px - height_side_px/20;
+    float size = height_side_px/20;
+    printer.print_marc_move(scene, current_player, width_side_px / 2, y1, y2, size);
+
+    display_score();
+
+    if(game_with_pc && current_player == 1)
+        QTimer::singleShot(time_move_pc, this, &GameBoard::move_computer);
+}
 
 
 

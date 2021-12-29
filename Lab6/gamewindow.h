@@ -37,6 +37,7 @@ private slots:
 
 private:
     void save_game();
+    void download_game();
 };
 
 #endif // GAMEWINDOW_H

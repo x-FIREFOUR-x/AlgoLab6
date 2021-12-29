@@ -35,11 +35,15 @@ void MainWindow::on_ButtonEnd_clicked()
 void MainWindow::on_ButtonDownload_clicked()
 {
     QString file_name = QFileDialog::getOpenFileName(this, tr("Відкрити файл"), FileWorker::get_path(), tr("Текстовий файл(*.txt)"));
-    FileWorker::set_filename(file_name);
-    this->close();
-    GameWindow * game_window = new GameWindow();
+    if (file_name != "")
+    {
+        FileWorker::set_filename(file_name);
+        this->close();
+        GameWindow * game_window = new GameWindow();
 
-    game_window->setWindowTitle("Останній гравець");
-    game_window->show();
+        game_window->setWindowTitle("Останній гравець");
+        game_window->show();
+    }
+
 }
 
