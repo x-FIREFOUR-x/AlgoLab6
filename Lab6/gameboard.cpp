@@ -208,7 +208,7 @@ void GameBoard::player_vs_player(int mouse_x, int mouse_y)
 
       }
 
-      if (score1 >= max_score || score2 >= max_score)
+      if (finished)
       {
           if(score2 >= max_score)
           {
@@ -250,6 +250,23 @@ void GameBoard::player_vs_player(int mouse_x, int mouse_y)
               start_round();
           }
 
+          if (score1 >= max_score || score2 >= max_score)
+          {
+              if(score2 >= max_score)
+              {
+                  QString text = "ПЕРЕМІГ ПЕРШИЙ ГРАВЕЦЬ";
+                  QString title = "Гра закінчилася";
+                  QMessageBox:: about(this,title,text);
+                  finished = true;
+              }
+              if(score1 >= max_score)
+              {
+                  QString text = "ПЕРЕМІГ ДРУГИЙ ГРАВЕЦЬ";
+                  QString title = "Гра закінчилася";
+                  QMessageBox:: about(this,title,text);
+                  finished = true;
+              }
+          }
 
       }
 }
@@ -292,7 +309,7 @@ void GameBoard::player_vs_computer(int mouse_x, int mouse_y)
 
     }
 
-    if (score1 >= max_score || score2 >= max_score)
+    if (finished)
     {
         if(score2 >= max_score)
         {
@@ -334,6 +351,24 @@ void GameBoard::player_vs_computer(int mouse_x, int mouse_y)
             end_round();
             change_who_first_move();
             start_round();
+        }
+
+        if (score1 >= max_score || score2 >= max_score)
+        {
+            if(score2 >= max_score)
+            {
+                QString text = "ВИ ПРОГРАЛИ";
+                QString title = "Гра закінчилася";
+                QMessageBox:: about(this,title,text);
+                finished = true;
+            }
+            if(score1 >= max_score)
+            {
+                QString text = "ВИ ПЕРЕМОГЛИ";
+                QString title = "Гра закінчилася";
+                QMessageBox:: about(this,title,text);
+                finished = true;
+            }
         }
     }
 
