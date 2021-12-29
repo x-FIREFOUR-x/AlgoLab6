@@ -30,6 +30,13 @@ void CardsHands::picture_cards_hands(PrinterCards& printer, QGraphicsScene*& sce
     float backdown = width_board - (2 * x) - printer.get_width();
     backdown = backdown / (cards_of_hands.size() - 1);
 
+    if(backdown > 2 * printer.get_width())
+    {
+        backdown = 2 * printer.get_width();
+        float width_cards = printer.get_width() * (cards_of_hands.size() * 2 - 1);
+        x =  (width_board - width_cards) / 2;
+    }
+
     QGraphicsItem* ptr;
     for(int i =0; i < cards_of_hands.size(); i++)
     {
@@ -52,6 +59,13 @@ void CardsHands::picture_backcards_hands(PrinterCards& printer, QGraphicsScene*&
 
     float backdown = width_board - (2 * x) - printer.get_width();
     backdown = backdown / (cards_of_hands.size() - 1);
+
+    if(backdown > 2 * printer.get_width())
+    {
+        backdown = 2 * printer.get_width();
+        float width_cards = printer.get_width() * (cards_of_hands.size() * 2 - 1);
+        x =  (width_board - width_cards) / 2;
+    }
 
     QGraphicsItem* ptr;
     for(int i =0; i < cards_of_hands.size(); i++)
