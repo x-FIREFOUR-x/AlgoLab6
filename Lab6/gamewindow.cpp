@@ -111,6 +111,8 @@ void GameWindow::download_game()
     game_board->set_who_move_first(who_first_move);
     game_board->set_current_player(cur_move);
     game_board->set_scores(scores);
+    game_board->set_flags(flags);
+    game_board->set_card_converted(conv);
     game_board->set_cards_hands1(hands1);
     game_board->set_cards_hands2(hands2);
     game_board->set_cards_deck(deck);

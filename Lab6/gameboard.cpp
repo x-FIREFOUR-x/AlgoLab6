@@ -47,9 +47,6 @@ void GameBoard::set_graphic_parameters(float height, float width)
 {   
     height_side_px = height;
     width_side_px = width;
-    //game_with_pc = g_with_pc;
-
-    //finished = false;
 
     float height_card = height/5;
     float width_card = height_card * 0.788705;//0.688705;
@@ -68,14 +65,6 @@ void GameBoard::set_graphic_parameters(float height, float width)
 
     cards_hands1.set_y(height_side_px/10);
     cards_hands2.set_y(height_side_px - (height_side_px/10) - height_side_px/5);
-
-    //who_move_first = rand()%2 + 1;
-
-    //start_round();
-
-    //if(game_with_pc && current_player == 1)
-     //   QTimer::singleShot(time_move_pc, this, &GameBoard::move_computer);
-
 }
 
 
@@ -102,6 +91,9 @@ void GameBoard::start_download_game(float height, float width)
     pair<int,int> top_card = cards_deck.get_top_card();
     printer.print_top_card(top_card, scene);
 
+    if(put_eight || put_jocker)
+        printer.print_converted_card(card_converted, scene);
+
     if (game_with_pc)
        cards_hands1.picture_backcards_hands(printer,scene, width_side_px);
     else
@@ -119,8 +111,6 @@ void GameBoard::start_download_game(float height, float width)
     if(game_with_pc && current_player == 1)
         QTimer::singleShot(time_move_pc, this, &GameBoard::move_computer);
 }
-
-
 
 
 
