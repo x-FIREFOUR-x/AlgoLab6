@@ -119,33 +119,4 @@ void GameWindow::download_game()
     game_board->set_top_card(top_card);
     game_board->set_discardcards_deck(discard);
 
-    //std::cout << game_with_pc << std::endl<< finished<< std::endl<<who_first_move<< std::endl<<cur_move<< std::endl;
-    //std::cout << scores[0] << " " << scores[1] << " " << scores[2] << endl;
-
-    //std::cout << flags[0] << " " << flags[1] << " " << flags[2] << " " << flags[3] << endl;
-    //std::cout << conv.first << " " << conv.second << endl;
-
-    /*std::cout << hands1.size() << endl;
-    for (int i =0; i < hands1.size() ; i++ ) {
-        cout << hands1[i].first << ":" << hands1[i].second << " ";
-    }
-
-    std::cout << endl << hands2.size() << endl;
-    for (int i =0; i < hands2.size() ; i++ ) {
-        cout << hands2[i].first << ":" << hands2[i].second << " ";
-    }
-
-
-    std::cout << endl << deck.size() << endl;
-    for (int i =0; i <  deck.size() ; i++ ) {
-        cout <<  deck[i].first << ":" <<  deck[i].second << " ";
-    }
-
-    cout << endl << top_card.first << ":" << top_card.second << endl;
-
-    std::cout << discard.size() << endl;
-    for (int i =0; i <  discard.size() ; i++ ) {
-        cout <<  discard[i].first << ":" <<  discard[i].second << " ";
-    }
-    cout << endl;*/
 }
