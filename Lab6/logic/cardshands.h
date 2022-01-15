@@ -3,7 +3,7 @@
 
 #include<vector>
 #include<QGraphicsItem>
-#include<printercards.h>
+#include<logic/printercards.h>
 
 using namespace std;
 class CardsHands

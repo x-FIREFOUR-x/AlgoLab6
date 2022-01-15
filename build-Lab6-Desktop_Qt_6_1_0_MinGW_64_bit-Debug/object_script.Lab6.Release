@@ -3,11 +3,11 @@ release/cardshands.o
 release/enemycomputer.o
 release/fileworker.o
 release/gameboard.o
-release/gamewindow.o
 release/main.o
+release/printercards.o
+release/gamewindow.o
 release/mainwindow.o
 release/presettingwindow.o
-release/printercards.o
 release/windowrank.o
 release/windowsuit.o
 release/qrc_res.o

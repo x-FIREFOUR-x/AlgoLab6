@@ -1,7 +1,7 @@
 #include "gamewindow.h"
 #include "ui_gamewindow.h"
 #include "mainwindow.h"
-#include "gameboard.h"
+#include "logic/gameboard.h"
 #include <iostream>
 
 GameWindow::GameWindow(int max_score, bool g_with_pc, QWidget *parent) :

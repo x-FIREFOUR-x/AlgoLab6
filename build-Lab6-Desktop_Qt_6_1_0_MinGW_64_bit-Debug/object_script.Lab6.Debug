@@ -3,11 +3,11 @@ debug/cardshands.o
 debug/enemycomputer.o
 debug/fileworker.o
 debug/gameboard.o
-debug/gamewindow.o
 debug/main.o
+debug/printercards.o
+debug/gamewindow.o
 debug/mainwindow.o
 debug/presettingwindow.o
-debug/printercards.o
 debug/windowrank.o
 debug/windowsuit.o
 debug/qrc_res.o

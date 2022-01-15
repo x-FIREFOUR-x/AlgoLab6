@@ -7,8 +7,8 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QFileDialog>
-#include "gameboard.h"
-#include "fileworker.h"
+#include "logic/gameboard.h"
+#include "logic/fileworker.h"
 
 namespace Ui {
 class GameWindow;

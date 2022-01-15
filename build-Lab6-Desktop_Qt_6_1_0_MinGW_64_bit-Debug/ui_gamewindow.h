@@ -18,7 +18,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
-#include "gameboard.h"
+#include "logic/gameboard.h"
 
 QT_BEGIN_NAMESPACE
 

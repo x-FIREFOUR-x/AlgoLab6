@@ -3,8 +3,8 @@
 
 #include <vector>
 #include <algorithm>
-#include <cardshands.h>
-#include <printercards.h>
+#include <logic/cardshands.h>
+#include <logic/printercards.h>
 
 using namespace std;
 class CardsDeck
