@@ -9,10 +9,12 @@ debug/gamewindow.o
 debug/mainwindow.o
 debug/presettingwindow.o
 debug/windowrank.o
+debug/windowrules.o
 debug/windowsuit.o
 debug/qrc_res.o
 debug/moc_gamewindow.o
 debug/moc_mainwindow.o
 debug/moc_presettingwindow.o
 debug/moc_windowrank.o
+debug/moc_windowrules.o
 debug/moc_windowsuit.o

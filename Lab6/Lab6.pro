@@ -20,6 +20,7 @@ SOURCES += \
     windows/mainwindow.cpp \
     windows/presettingwindow.cpp \
     windows/windowrank.cpp \
+    windows/windowrules.cpp \
     windows/windowsuit.cpp \
 
 HEADERS += \
@@ -33,6 +34,7 @@ HEADERS += \
     windows/mainwindow.h \
     windows/presettingwindow.h \
     windows/windowrank.h \
+    windows/windowrules.h \
     windows/windowsuit.h \
 
 FORMS += \
@@ -40,6 +42,7 @@ FORMS += \
     windows/mainwindow.ui \
     windows/presettingwindow.ui \
     windows/windowrank.ui \
+    windows/windowrules.ui \
     windows/windowsuit.ui \
 
 # Default rules for deployment.

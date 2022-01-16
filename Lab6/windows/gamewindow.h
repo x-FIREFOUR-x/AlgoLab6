@@ -35,6 +35,8 @@ private slots:
     void on_Save_triggered();
     void on_SaveAs_triggered();
 
+    void on_Rules_triggered();
+
 private:
     void save_game();
     void download_game();

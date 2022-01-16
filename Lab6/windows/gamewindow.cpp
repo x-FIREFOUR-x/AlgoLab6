@@ -2,6 +2,7 @@
 #include "ui_gamewindow.h"
 #include "mainwindow.h"
 #include "logic/gameboard.h"
+#include "windows/windowrules.h"
 #include <iostream>
 
 GameWindow::GameWindow(int max_score, bool g_with_pc, QWidget *parent) :
@@ -120,3 +121,11 @@ void GameWindow::download_game()
     game_board->set_discardcards_deck(discard);
 
 }
+
+void GameWindow::on_Rules_triggered()
+{
+    WindowRules * window = new WindowRules();
+    window->setWindowTitle("Останній гравець");
+    window->show();
+}
+

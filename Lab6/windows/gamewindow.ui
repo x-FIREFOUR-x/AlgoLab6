@@ -168,6 +168,7 @@
     <addaction name="CloseEnd"/>
     <addaction name="SaveAs"/>
     <addaction name="Save"/>
+    <addaction name="Rules"/>
    </widget>
    <addaction name="menu"/>
   </widget>
@@ -184,6 +185,11 @@
   <action name="Save">
    <property name="text">
     <string>Зберегти</string>
+   </property>
+  </action>
+  <action name="Rules">
+   <property name="text">
+    <string>Правила</string>
    </property>
   </action>
  </widget>

@@ -61,5 +61,12 @@
         <file>PNG-cards/red_joker.png</file>
         <file>PNG-cards/spades.png</file>
         <file>PNG-cards/table.png</file>
+        <file>PNG-cards/rulesBack.png</file>
+        <file>PNG-cards/RulesPage1.png</file>
+        <file>PNG-cards/RulesPage2.png</file>
+        <file>PNG-cards/RulesPage3.png</file>
+        <file>PNG-cards/RulesPage4.png</file>
+        <file>PNG-cards/RulesPage5.png</file>
+        <file>PNG-cards/RulesPage6.png</file>
     </qresource>
 </RCC>
