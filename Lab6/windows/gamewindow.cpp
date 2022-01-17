@@ -32,6 +32,7 @@ GameWindow::GameWindow(QWidget *parent):
 GameWindow::~GameWindow()
 {
     delete ui;
+    delete game_board;
 }
 
 void GameWindow::on_CloseEnd_triggered()

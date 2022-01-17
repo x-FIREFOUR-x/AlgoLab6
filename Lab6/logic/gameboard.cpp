@@ -22,6 +22,10 @@ GameBoard::GameBoard( QWidget *parent):
 GameBoard::~GameBoard()
 {
     delete scene;
+    delete Deck_counter;
+    delete Score_player1;
+    delete Score_player2;
+    delete Score_max;
 }
 
 
