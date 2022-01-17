@@ -22,6 +22,7 @@ SOURCES += \
     windows/windowrank.cpp \
     windows/windowrules.cpp \
     windows/windowsuit.cpp \
+    windows/windowsworker.cpp
 
 HEADERS += \
     logic/cardsdeck.h \
@@ -36,6 +37,7 @@ HEADERS += \
     windows/windowrank.h \
     windows/windowrules.h \
     windows/windowsuit.h \
+    windows/windowsworker.h
 
 FORMS += \
     windows/gamewindow.ui \

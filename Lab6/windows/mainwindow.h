@@ -1,10 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+
 #include <QMainWindow>
 #include <QWidget>
-#include "gamewindow.h"
-#include "presettingwindow.h"
+
 
 
 QT_BEGIN_NAMESPACE

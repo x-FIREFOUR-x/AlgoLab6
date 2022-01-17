@@ -12,7 +12,7 @@ class WindowRank : public QDialog
     Q_OBJECT
 
 public:
-    explicit WindowRank(int& rank, QWidget *parent = nullptr);
+    explicit WindowRank(int* rank, QWidget *parent = nullptr);
     ~WindowRank();
 
 private slots:

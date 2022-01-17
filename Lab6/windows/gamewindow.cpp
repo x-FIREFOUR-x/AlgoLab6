@@ -1,9 +1,7 @@
 #include "gamewindow.h"
 #include "ui_gamewindow.h"
-#include "mainwindow.h"
-#include "logic/gameboard.h"
-#include "windows/windowrules.h"
 #include <iostream>
+#include "windows/windowsworker.h"
 
 GameWindow::GameWindow(int max_score, bool g_with_pc, QWidget *parent) :
     QMainWindow(parent),
@@ -34,15 +32,14 @@ GameWindow::GameWindow(QWidget *parent):
 GameWindow::~GameWindow()
 {
     delete ui;
+    delete game_board;
 }
 
 void GameWindow::on_CloseEnd_triggered()
 {
     FileWorker::set_filename("");
-    this->close();
-    MainWindow * menu = new MainWindow;
-    menu->setWindowTitle("Останній гравець");
-    menu->show();
+    WindowsWorker::open_MainWindow();
+    WindowsWorker::close_GameWindow();
 }
 
 void GameWindow::on_Save_triggered()
@@ -124,8 +121,6 @@ void GameWindow::download_game()
 
 void GameWindow::on_Rules_triggered()
 {
-    WindowRules * window = new WindowRules();
-    window->setWindowTitle("Останній гравець");
-    window->show();
+    WindowsWorker::open_WindowRules();
 }
 

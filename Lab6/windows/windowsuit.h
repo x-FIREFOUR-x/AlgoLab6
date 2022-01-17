@@ -1,7 +1,6 @@
 #ifndef WINDOWSUIT_H
 #define WINDOWSUIT_H
 
-#include <QMainWindow>
 #include <QDialog>
 
 namespace Ui {
@@ -13,7 +12,7 @@ class WindowSuit : public QDialog
     Q_OBJECT
 
 public:
-    explicit WindowSuit( int& suit, QWidget *parent = nullptr);
+    explicit WindowSuit( int* suit, QWidget *parent = nullptr);
     ~WindowSuit();
 
 private slots:

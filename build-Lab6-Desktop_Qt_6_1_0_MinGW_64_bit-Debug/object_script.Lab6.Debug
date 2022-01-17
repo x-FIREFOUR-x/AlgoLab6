@@ -11,6 +11,7 @@ debug/presettingwindow.o
 debug/windowrank.o
 debug/windowrules.o
 debug/windowsuit.o
+debug/windowsworker.o
 debug/qrc_res.o
 debug/moc_gamewindow.o
 debug/moc_mainwindow.o

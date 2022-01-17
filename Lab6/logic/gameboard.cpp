@@ -8,6 +8,7 @@
 #include <QTimer>
 #include <QBrush>
 #include <QPixmap>
+#include "windows/windowsworker.h"
 
 GameBoard::GameBoard( QWidget *parent):
     QGraphicsView(parent)
@@ -21,6 +22,10 @@ GameBoard::GameBoard( QWidget *parent):
 GameBoard::~GameBoard()
 {
     delete scene;
+    delete Deck_counter;
+    delete Score_player1;
+    delete Score_player2;
+    delete Score_max;
 }
 
 
@@ -788,9 +793,7 @@ void GameBoard::effect_eight()
 
     while (suit == -1 && (!game_with_pc || (game_with_pc && current_player == 2) ))
     {
-        WindowSuit* suit_window = new WindowSuit(suit, this);
-        suit_window->setWindowTitle("Останній гравець");
-        suit_window->exec();
+        WindowsWorker::open_WindowSuit(&suit);
     }
 
     if (game_with_pc && current_player == 1)
@@ -831,16 +834,12 @@ void GameBoard::effect_joker()
         suit = -1;
         while (rank == -1)
         {
-            WindowRank* rank_window = new WindowRank(rank, this);
-            rank_window->setWindowTitle("Останній гравець");
-            rank_window->exec();
+            WindowsWorker::open_WindowRank(&rank);
         }
 
         while (suit == -1)
         {
-            WindowSuit* suit_window = new WindowSuit(suit, this);
-            suit_window->setWindowTitle("Останній гравець");
-            suit_window->exec();
+            WindowsWorker::open_WindowSuit(&suit);
         }
        if( can_put_chosen_card(pair<int,int>(rank,suit)))
            correct_choose = true;
