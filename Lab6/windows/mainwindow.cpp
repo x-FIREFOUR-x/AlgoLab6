@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QApplication>
+#include "windows/windowsworker.h"
 
 MainWindow::MainWindow(QWidget *parent):
     QMainWindow(parent),
@@ -17,20 +18,16 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_ButtonStart_clicked()
 {
-    this->close();
-    PresettingWindow * preset_window = new PresettingWindow();
-    preset_window->setWindowTitle("Останній гравець");
-    preset_window->show();
+    WindowsWorker::open_PresettingWindow();
+    WindowsWorker::close_MainWindow();
 
 }
 
 void MainWindow::on_ButtonEnd_clicked()
 {
    QApplication::quit();
+
 }
-
-
-
 
 void MainWindow::on_ButtonDownload_clicked()
 {
@@ -38,11 +35,8 @@ void MainWindow::on_ButtonDownload_clicked()
     if (file_name != "")
     {
         FileWorker::set_filename(file_name);
-        this->close();
-        GameWindow * game_window = new GameWindow();
-
-        game_window->setWindowTitle("Останній гравець");
-        game_window->show();
+        WindowsWorker::open_GameWindow();
+        WindowsWorker::close_MainWindow();
     }
 
 }

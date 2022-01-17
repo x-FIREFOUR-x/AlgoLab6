@@ -2,7 +2,6 @@
 #define PRESETTINGWINDOW_H
 
 #include <QMainWindow>
-#include "gamewindow.h"
 
 namespace Ui {
 class PresettingWindow;

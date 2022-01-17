@@ -1,6 +1,6 @@
 #include "presettingwindow.h"
 #include "ui_presettingwindow.h"
-#include "mainwindow.h"
+#include "windows/windowsworker.h"
 
 PresettingWindow::PresettingWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -25,10 +25,9 @@ void PresettingWindow::on_ButtonGoGame_clicked()
         score = str_score.toInt();
         if (score > 0 && score < 1000)
         {
-            this->close();
-            GameWindow * game_window = new GameWindow(score, play_with_pc);
-            game_window->setWindowTitle("Останній гравець");
-            game_window->show();
+            WindowsWorker::open_GameWindow(score, play_with_pc);
+            WindowsWorker::close_PresettingWindow();
+
         }
     }
 
@@ -37,10 +36,8 @@ void PresettingWindow::on_ButtonGoGame_clicked()
 
 void PresettingWindow::on_ButtonBack_clicked()
 {
-    this->close();
-    MainWindow * menu = new MainWindow;
-    menu->setWindowTitle("Останній гравець");
-    menu->show();
+    WindowsWorker::open_MainWindow();
+    WindowsWorker::close_PresettingWindow();
 }
 
 

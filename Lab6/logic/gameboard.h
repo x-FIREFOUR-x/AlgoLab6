@@ -7,8 +7,6 @@
 #include "printercards.h"
 #include "cardshands.h"
 #include "cardsdeck.h"
-#include "windows/windowsuit.h"
-#include "windows/windowrank.h"
 #include <QLabel>
 #include "enemycomputer.h"
 

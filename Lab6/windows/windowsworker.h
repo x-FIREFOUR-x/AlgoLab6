@@ -1,6 +1,13 @@
 #ifndef WINDOWSWORKER_H
 #define WINDOWSWORKER_H
 
+class MainWindow;
+class PresettingWindow;
+class GameWindow;
+class WindowRank;
+class WindowSuit;
+class WindowRules;
+
 #include "gamewindow.h"
 #include "mainwindow.h"
 #include "presettingwindow.h"
@@ -29,12 +36,13 @@ public:
     static void close_PresettingWindow();
 
     static void open_GameWindow();
+    static void open_GameWindow(int score, bool play_with_pc);
     static void close_GameWindow();
 
-    static void open_WindowRank(int& rank);
+    static void open_WindowRank(int* rank);
     static void close_WindowRank();
 
-    static void open_WindowSuit(int& suit);
+    static void open_WindowSuit(int* suit);
     static void close_WindowSuit();
 
     static void open_WindowRules();

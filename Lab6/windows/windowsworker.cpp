@@ -47,6 +47,14 @@ void WindowsWorker::open_GameWindow()
     window_game->setWindowTitle("Останній гравець");
     window_game->show();
 }
+
+void WindowsWorker::open_GameWindow(int score, bool play_with_pc)
+{
+    window_game = new GameWindow(score, play_with_pc);
+    window_game->setWindowTitle("Останній гравець");
+    window_game->show();
+}
+
 void WindowsWorker::close_GameWindow()
 {
     window_game->close();
@@ -55,7 +63,7 @@ void WindowsWorker::close_GameWindow()
 }
 
 
-void WindowsWorker::open_WindowRank(int& rank)
+void WindowsWorker::open_WindowRank(int* rank)
 {
     window_rank = new WindowRank(rank);
     window_rank->setWindowTitle("Останній гравець");
@@ -69,7 +77,7 @@ void WindowsWorker::close_WindowRank()
 }
 
 
-void WindowsWorker::open_WindowSuit(int& suit)
+void WindowsWorker::open_WindowSuit(int* suit)
 {
     window_suit = new WindowSuit(suit);
     window_suit->setWindowTitle("Останній гравець");
@@ -87,7 +95,7 @@ void WindowsWorker::open_WindowRules()
 {
     window_rules = new WindowRules();
     window_rules->setWindowTitle("Останній гравець");
-    window_rank->show();
+    window_rules->show();
 }
 void WindowsWorker::close_WindowRules()
 {
