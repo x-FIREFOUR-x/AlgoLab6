@@ -1,4 +1,5 @@
-#include "windows/mainwindow.h"
+//#include "windows/mainwindow.h"
+#include "windows/windowsworker.h"
 
 #include <QApplication>
 #include <ctime>

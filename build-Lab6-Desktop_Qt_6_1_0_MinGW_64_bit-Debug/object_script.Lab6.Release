@@ -11,6 +11,7 @@ release/presettingwindow.o
 release/windowrank.o
 release/windowrules.o
 release/windowsuit.o
+release/windowsworker.o
 release/qrc_res.o
 release/moc_gamewindow.o
 release/moc_mainwindow.o
