@@ -28,6 +28,12 @@ private:
 public:
     WindowsWorker();
 
+    static MainWindow* get_MainWindow();
+    static PresettingWindow* get_PresettingWindow();
+    static GameWindow* get_GameWindow();
+    static WindowRank* get_WindowRank();
+    static WindowSuit* get_WindowSuit();
+    static WindowRules* get_WindowRules();
 
     static void open_MainWindow();
     static void close_MainWindow();
@@ -47,6 +53,10 @@ public:
 
     static void open_WindowRules();
     static void close_WindowRules();
+
+
+    static void hide_WindowGame();
+    static void show_WindowGame();
 };
 
 #endif // WINDOWSWORKER_H

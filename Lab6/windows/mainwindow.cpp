@@ -41,3 +41,10 @@ void MainWindow::on_ButtonDownload_clicked()
 
 }
 
+
+void MainWindow::on_ButtonRules_clicked()
+{
+    WindowsWorker::open_WindowRules();
+    WindowsWorker::close_MainWindow();
+}
+

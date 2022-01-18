@@ -12,6 +12,37 @@ WindowsWorker::WindowsWorker()
 }
 
 
+
+
+MainWindow* WindowsWorker::get_MainWindow()
+{
+    return window_main;
+}
+PresettingWindow* WindowsWorker::get_PresettingWindow()
+{
+    return window_presetting;
+}
+GameWindow* WindowsWorker::get_GameWindow()
+{
+    return window_game;
+}
+WindowRank* WindowsWorker::get_WindowRank()
+{
+    return window_rank;
+}
+WindowSuit* WindowsWorker::get_WindowSuit()
+{
+    return window_suit;
+}
+WindowRules* WindowsWorker::get_WindowRules()
+{
+    return window_rules;
+}
+
+
+
+
+
 void WindowsWorker::open_MainWindow()
 {
     window_main = new MainWindow();
@@ -65,7 +96,7 @@ void WindowsWorker::close_GameWindow()
 
 void WindowsWorker::open_WindowRank(int* rank)
 {
-    window_rank = new WindowRank(rank);
+    window_rank = new WindowRank(rank, window_game);
     window_rank->setWindowTitle("Останній гравець");
     window_rank->exec();
 }
@@ -79,7 +110,7 @@ void WindowsWorker::close_WindowRank()
 
 void WindowsWorker::open_WindowSuit(int* suit)
 {
-    window_suit = new WindowSuit(suit);
+    window_suit = new WindowSuit(suit, window_game);
     window_suit->setWindowTitle("Останній гравець");
     window_suit->exec();
 }
@@ -102,4 +133,13 @@ void WindowsWorker::close_WindowRules()
     window_rules->close();
     delete window_rules;
     window_rules = nullptr;
+}
+
+void WindowsWorker::hide_WindowGame()
+{
+    window_game->hide();
+}
+void WindowsWorker::show_WindowGame()
+{
+    window_game->show();
 }

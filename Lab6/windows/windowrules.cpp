@@ -1,5 +1,6 @@
 #include "windowrules.h"
 #include "ui_windowrules.h"
+#include "windows/windowsworker.h"
 
 WindowRules::WindowRules(QWidget *parent) :
     QMainWindow(parent),
@@ -33,7 +34,11 @@ WindowRules::~WindowRules()
 
 void WindowRules::on_CloseRuleButton_clicked()
 {
-
+    WindowsWorker::close_WindowRules();
+    if(WindowsWorker::get_GameWindow() != nullptr)
+        WindowsWorker::show_WindowGame();
+    else
+        WindowsWorker::open_MainWindow();
 }
 
 

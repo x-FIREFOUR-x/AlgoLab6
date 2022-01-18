@@ -28,6 +28,8 @@ private slots:
 
     void on_ButtonDownload_clicked();
 
+    void on_ButtonRules_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -122,5 +122,6 @@ void GameWindow::download_game()
 void GameWindow::on_Rules_triggered()
 {
     WindowsWorker::open_WindowRules();
+    WindowsWorker::hide_WindowGame();
 }
 
