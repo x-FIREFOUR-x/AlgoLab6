@@ -8,6 +8,7 @@ WindowSuit::WindowSuit(int* suit, QWidget *parent) :
 {
     ui->setupUi(this);
     suit_card = suit;
+    setFixedSize(this->width(),this->height());
 }
 
 WindowSuit::~WindowSuit()

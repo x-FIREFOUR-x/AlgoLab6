@@ -8,6 +8,7 @@ WindowRank::WindowRank(int* rank, QWidget *parent) :
 {
     ui->setupUi(this);
     rank_card = rank;
+    setFixedSize(this->width(),this->height());
 }
 
 WindowRank::~WindowRank()
