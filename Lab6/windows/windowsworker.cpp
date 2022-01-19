@@ -6,6 +6,8 @@ GameWindow* WindowsWorker::window_game = nullptr;
 WindowRank* WindowsWorker::window_rank = nullptr;
 WindowSuit* WindowsWorker::window_suit = nullptr;
 WindowRules* WindowsWorker::window_rules = nullptr;
+SaveWindow* WindowsWorker::window_save = nullptr;
+
 
 WindowsWorker::WindowsWorker()
 {
@@ -134,6 +136,21 @@ void WindowsWorker::close_WindowRules()
     delete window_rules;
     window_rules = nullptr;
 }
+
+void WindowsWorker::open_SaveWindow()
+{
+    window_save = new SaveWindow();
+    window_save->setWindowTitle("Останній гравець");
+    window_save->show();
+}
+void WindowsWorker::close_SaveWindow()
+{
+    window_save->close();
+    delete window_save;
+    window_save = nullptr;
+}
+
+
 
 void WindowsWorker::hide_WindowGame()
 {

@@ -12,6 +12,7 @@ class FileWorker
 {
 private:
     static QString filename;
+    static QString type_file ;
     static QString path;
 public:
     FileWorker();
@@ -31,6 +32,7 @@ public:
 
 private:
     static void input_cards(ifstream& fin, typeVec& cards);
+    static string all_name_file();
 };
 
 #endif // FILEWORKER_H

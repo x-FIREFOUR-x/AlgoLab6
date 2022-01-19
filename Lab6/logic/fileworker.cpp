@@ -2,7 +2,8 @@
 #include <iostream>
 
 QString FileWorker::filename = "";
-QString FileWorker::path = "\Saves";
+QString FileWorker::path = "\Saves\\";
+QString FileWorker::type_file = ".txt";
 
 FileWorker::FileWorker()
 {
@@ -25,10 +26,22 @@ void FileWorker::set_path(QString fpath)
     path = fpath;
 }
 
+string FileWorker::all_name_file()
+{
+    string all_filename;
+
+    string str_path = path.toStdString();
+    string str_filename = filename.toStdString();
+    string str_type = type_file.toStdString();
+    all_filename = str_path + str_filename + str_type;
+
+    return all_filename;
+}
+
 void FileWorker::save_game_state(bool game_with_pc, bool finished, int who_move_first, int current_player, vector<int> scores)
 {
     ofstream fout;
-    fout.open(filename.toStdString());
+    fout.open(all_name_file());
 
     fout << "LastPlayer" << "\n";
     fout << who_move_first << "\n";
@@ -43,7 +56,7 @@ void FileWorker::save_game_state(bool game_with_pc, bool finished, int who_move_
 void FileWorker::save_game_effects(vector<bool> flags, pair<int,int> converted)
 {
     ofstream fout;
-    fout.open(filename.toStdString(),ios::out | ios::app);
+    fout.open(all_name_file(),ios::out | ios::app);
         // flags effect 3 4 8 joker
     fout << flags[0] << " " << flags[1] << " " << flags[2] << " " << flags[3] << "\n";
     fout << converted.first << " " << converted.second << "\n";
@@ -53,7 +66,7 @@ void FileWorker::save_game_effects(vector<bool> flags, pair<int,int> converted)
 void FileWorker::save_game_cards(typeVec hands1, typeVec hands2, typeVec deck, pair<int,int> top_card, typeVec discard)
 {
     ofstream fout;
-    fout.open(filename.toStdString(),ios::out | ios::app);
+    fout.open(all_name_file(),ios::out | ios::app);
 
     fout << hands1.size() << "\n";
     for(int i =0; i <hands1.size(); i++)

@@ -8,6 +8,7 @@ release/printercards.o
 release/gamewindow.o
 release/mainwindow.o
 release/presettingwindow.o
+release/savewindow.o
 release/windowrank.o
 release/windowrules.o
 release/windowsuit.o
@@ -16,6 +17,7 @@ release/qrc_res.o
 release/moc_gamewindow.o
 release/moc_mainwindow.o
 release/moc_presettingwindow.o
+release/moc_savewindow.o
 release/moc_windowrank.o
 release/moc_windowrules.o
 release/moc_windowsuit.o

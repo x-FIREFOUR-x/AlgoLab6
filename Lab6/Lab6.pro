@@ -19,6 +19,7 @@ SOURCES += \
     windows/gamewindow.cpp \
     windows/mainwindow.cpp \
     windows/presettingwindow.cpp \
+    windows/savewindow.cpp \
     windows/windowrank.cpp \
     windows/windowrules.cpp \
     windows/windowsuit.cpp \
@@ -34,6 +35,7 @@ HEADERS += \
     windows/gamewindow.h \
     windows/mainwindow.h \
     windows/presettingwindow.h \
+    windows/savewindow.h \
     windows/windowrank.h \
     windows/windowrules.h \
     windows/windowsuit.h \
@@ -43,6 +45,7 @@ FORMS += \
     windows/gamewindow.ui \
     windows/mainwindow.ui \
     windows/presettingwindow.ui \
+    windows/savewindow.ui \
     windows/windowrank.ui \
     windows/windowrules.ui \
     windows/windowsuit.ui \

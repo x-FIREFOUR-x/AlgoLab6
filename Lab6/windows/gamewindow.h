@@ -37,7 +37,7 @@ private slots:
 
     void on_Rules_triggered();
 
-private:
+public:
     void save_game();
     void download_game();
 };
