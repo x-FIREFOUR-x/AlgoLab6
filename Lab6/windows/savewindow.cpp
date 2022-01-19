@@ -3,6 +3,7 @@
 #include "windows/windowsworker.h"
 
 #include <QMessageBox>
+#include <string>
 
 #include "logic/fileworker.h"
 
@@ -11,6 +12,8 @@ SaveWindow::SaveWindow(QWidget *parent) :
     ui(new Ui::SaveWindow)
 {
     ui->setupUi(this);
+    setFixedSize(this->width(),this->height());
+    this->setWindowFlags( (Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowMinMaxButtonsHint) & ~Qt::WindowCloseButtonHint );
 }
 
 SaveWindow::~SaveWindow()
@@ -34,14 +37,14 @@ void SaveWindow::on_SaveButton_clicked()
     {
         FileWorker::set_filename(file_name);
         WindowsWorker::get_GameWindow()->save_game();
-        QMessageBox::about(this, "Збережено", "Файл успішно збережено");
+        QMessageBox::about(this, "Збережено", "Гра успішно збережено");
         WindowsWorker::close_SaveWindow();
         WindowsWorker::show_WindowGame();
     }
     else
     {
         ui->labelFilename->setText("");
-        QMessageBox::about(this, "Некоректне ім'я", "Ви повинні ввести назву для збереження гри. Назва збереження гри не повинно містити символів '.' ");
+        QMessageBox::about(this, "Некоректне ім'я", "Ви повинні ввести назву для збереження гри. Назва може містити цифри, букви англійського алфавіту, символ '_'.");
     }
 
 }
@@ -55,8 +58,17 @@ bool SaveWindow::is_correct_filename()
         correct_name = false;
 
     string file = name_file.toStdString();
-    //if(file.find(".") == file.npos)
-       // correct_name = false;
+    if(file.find(".") != file.npos)
+        correct_name = false;
+
+    for(int i = 0; i< file.length(); i++)
+    {
+        if(!((file[i] >= '0' && file[i] <= '9') || (file[i] >= 'A' && file[i] <= 'Z')|| (file[i] >= 'a' && file[i] <= 'z') || file[i] == '_'))
+        {
+            correct_name = false;
+            break;
+        }
+    }
 
     return correct_name;
 }

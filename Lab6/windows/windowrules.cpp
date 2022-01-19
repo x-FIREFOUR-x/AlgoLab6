@@ -7,6 +7,7 @@ WindowRules::WindowRules(QWidget *parent) :
     ui(new Ui::WindowRules)
 {
     ui->setupUi(this);
+    this->setWindowFlags( (Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowMinMaxButtonsHint) & ~Qt::WindowCloseButtonHint );
 
     float width = ui->graphicsView->width();
     float height = ui->graphicsView->height();

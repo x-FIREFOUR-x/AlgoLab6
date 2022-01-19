@@ -50,7 +50,7 @@ void GameWindow::on_Save_triggered()
     else
     {
         save_game();
-        QMessageBox::about(this, "Збережено", "Файл успішно збережено");
+        QMessageBox::about(this, "Збережено", "Гра успішно збережено");
     }
 
 }
