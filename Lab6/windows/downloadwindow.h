@@ -2,6 +2,8 @@
 #define DOWNLOADWINDOW_H
 
 #include <QMainWindow>
+#include <QPushButton>
+#include <QVector>
 
 
 namespace Ui {
@@ -18,10 +20,17 @@ public:
 
 private:
     Ui::DownloadWindow *ui;
+    QList<QPushButton*> buttons;
 
 private:
     void list_file();
+    void create_button(QString filename, int index);
+
+
     void closeEvent(QCloseEvent *event);
+
+private slots:
+    void clicked();
 
 };
 
