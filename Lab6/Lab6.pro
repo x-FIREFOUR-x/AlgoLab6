@@ -16,6 +16,7 @@ SOURCES += \
     logic/gameboard.cpp \
     main.cpp \
     logic/printercards.cpp \
+    windows/downloadwindow.cpp \
     windows/gamewindow.cpp \
     windows/mainwindow.cpp \
     windows/presettingwindow.cpp \
@@ -32,6 +33,7 @@ HEADERS += \
     logic/fileworker.h \
     logic/gameboard.h \
     logic/printercards.h \
+    windows/downloadwindow.h \
     windows/gamewindow.h \
     windows/mainwindow.h \
     windows/presettingwindow.h \
@@ -42,6 +44,7 @@ HEADERS += \
     windows/windowsworker.h
 
 FORMS += \
+    windows/downloadwindow.ui \
     windows/gamewindow.ui \
     windows/mainwindow.ui \
     windows/presettingwindow.ui \

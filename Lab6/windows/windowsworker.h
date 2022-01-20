@@ -8,6 +8,7 @@ class WindowRank;
 class WindowSuit;
 class WindowRules;
 class SaveWindow;
+class DownloadWindow;
 
 #include "gamewindow.h"
 #include "mainwindow.h"
@@ -16,6 +17,7 @@ class SaveWindow;
 #include "windowrules.h"
 #include "windowsuit.h"
 #include "savewindow.h"
+#include "downloadwindow.h"
 
 class WindowsWorker
 {
@@ -27,6 +29,7 @@ private:
     static WindowSuit* window_suit;
     static WindowRules* window_rules;
     static SaveWindow* window_save;
+    static DownloadWindow* window_download;
 
 public:
     WindowsWorker();
@@ -59,6 +62,9 @@ public:
 
     static void open_SaveWindow();
     static void close_SaveWindow();
+
+    static void open_DownloadWindow();
+    static void close_DownloadWindow();
 
 
     static void hide_WindowGame();

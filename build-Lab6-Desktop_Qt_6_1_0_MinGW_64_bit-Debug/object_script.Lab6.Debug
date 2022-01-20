@@ -5,6 +5,7 @@ debug/fileworker.o
 debug/gameboard.o
 debug/main.o
 debug/printercards.o
+debug/downloadwindow.o
 debug/gamewindow.o
 debug/mainwindow.o
 debug/presettingwindow.o
@@ -14,6 +15,7 @@ debug/windowrules.o
 debug/windowsuit.o
 debug/windowsworker.o
 debug/qrc_res.o
+debug/moc_downloadwindow.o
 debug/moc_gamewindow.o
 debug/moc_mainwindow.o
 debug/moc_presettingwindow.o

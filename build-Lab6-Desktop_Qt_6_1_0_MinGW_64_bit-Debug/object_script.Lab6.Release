@@ -5,6 +5,7 @@ release/fileworker.o
 release/gameboard.o
 release/main.o
 release/printercards.o
+release/downloadwindow.o
 release/gamewindow.o
 release/mainwindow.o
 release/presettingwindow.o
@@ -14,6 +15,7 @@ release/windowrules.o
 release/windowsuit.o
 release/windowsworker.o
 release/qrc_res.o
+release/moc_downloadwindow.o
 release/moc_gamewindow.o
 release/moc_mainwindow.o
 release/moc_presettingwindow.o
