@@ -104,7 +104,7 @@ void FileWorker::save_game_cards(typeVec hands1, typeVec hands2, typeVec deck, p
 void FileWorker::download_game_state(bool& game_with_pc, bool& finished, int& who_move_first, int& current_player, vector<int>& scores)
 {
     ifstream fin;
-    fin.open(filename.toStdString());
+    fin.open(all_name_file());
 
     string read_str;
     fin >> read_str;
@@ -139,7 +139,7 @@ void FileWorker::download_game_state(bool& game_with_pc, bool& finished, int& wh
 void FileWorker::download_game_effects(vector<bool>& flags, pair<int,int>& converted)
 {
     ifstream fin;
-    fin.open(filename.toStdString());
+    fin.open(all_name_file());
 
     string read_str;
     fin >> read_str;
@@ -169,7 +169,7 @@ void FileWorker::download_game_effects(vector<bool>& flags, pair<int,int>& conve
 void FileWorker::download_game_cards(typeVec& hands1, typeVec& hands2, typeVec& deck, pair<int,int>& top_card, typeVec& discard)
 {
     ifstream fin;
-    fin.open(filename.toStdString());
+    fin.open(all_name_file());
 
     string read_str;
     fin >> read_str;
