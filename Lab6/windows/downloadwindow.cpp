@@ -5,7 +5,6 @@
 #include <iostream>
 #include <string>
 #include "logic/fileworker.h"
-//#include <filesystem>
 
 
 DownloadWindow::DownloadWindow(QWidget *parent) :
@@ -38,10 +37,10 @@ void DownloadWindow::closeEvent(QCloseEvent *event)
 
 void DownloadWindow::list_file()
 {
-    QDir directory(FileWorker::get_path());
-    QStringList files = directory.entryList(QStringList() << "*.txt" << "*.txt",QDir::Files);
 
+    QStringList files = FileWorker::list_files();
     int index = 0;
+
     foreach(QString filename, files)
     {
         string f_name = filename.toStdString();
@@ -78,7 +77,6 @@ void DownloadWindow::create_button(QString filename, int index)
 void DownloadWindow::clicked()
 {
     QPushButton *btn = qobject_cast<QPushButton *>(sender());
-    cout << endl << btn->text().toStdString() << endl;
     FileWorker::set_filename(btn->text());
     WindowsWorker::open_GameWindow();
     WindowsWorker::close_DownloadWindow();

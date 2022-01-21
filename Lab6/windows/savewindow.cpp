@@ -33,11 +33,19 @@ void SaveWindow::on_SaveButton_clicked()
 
     if (correct_name)
     {
-        FileWorker::set_filename(file_name);
-        WindowsWorker::get_GameWindow()->save_game();
-        QMessageBox::about(this, "Збережено", "Гра успішно збережено");
-        WindowsWorker::close_SaveWindow();
-        WindowsWorker::show_WindowGame();
+        if (!FileWorker::is_already_file(file_name))
+        {
+            FileWorker::set_filename(file_name);
+            WindowsWorker::get_GameWindow()->save_game();
+            QMessageBox::about(this, "Збережено", "Гра успішно збережено");
+            WindowsWorker::close_SaveWindow();
+            WindowsWorker::show_WindowGame();
+        }
+        else
+        {
+
+        }
+
     }
     else
     {
@@ -70,3 +78,4 @@ bool SaveWindow::is_correct_filename()
 
     return correct_name;
 }
+

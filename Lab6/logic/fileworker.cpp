@@ -38,6 +38,29 @@ string FileWorker::all_name_file()
     return all_filename;
 }
 
+QStringList FileWorker::list_files()
+{
+    QDir directory(FileWorker::get_path());
+    QStringList files = directory.entryList(QStringList() << "*.txt" << "*.txt",QDir::Files);
+
+    return files;
+}
+
+bool FileWorker::is_already_file(QString fname)
+{
+    bool file_exist = false;
+    QStringList files = FileWorker::list_files();
+    foreach(QString filename, files)
+    {
+        if (filename == fname + type_file)
+        {
+            file_exist = true;
+            break;
+        }
+    }
+    return file_exist;
+}
+
 void FileWorker::save_game_state(bool game_with_pc, bool finished, int who_move_first, int current_player, vector<int> scores)
 {
     ofstream fout;

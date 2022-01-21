@@ -68,6 +68,7 @@ public:
         //встановити параметри стану гри (для загрузки збереженої гри)
     void set_stategame_download(int who_move, int cur_move, bool game_pc, bool finished,vector<int> scores);
 
+        //почати завантажену гру
     void start_download_game(float height, float width);
 
 protected:
