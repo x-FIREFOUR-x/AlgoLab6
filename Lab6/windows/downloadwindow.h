@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QVector>
 #include <QGridLayout>
+#include <QFrame>
 
 
 namespace Ui {
@@ -22,9 +23,11 @@ public:
 private:
     Ui::DownloadWindow *ui;
 
+    QList<QFrame*> frames;
     QList<QPushButton*> buttons;            //масив кнопок відповідаючих збереженям гри
     QList<QPushButton*> buttons_delete;     //масив кнопок відповідаючих за видалення збережень
 
+    //QList<QHorizontalLayout>
     QGridLayout *pLayout;
 
 private:
@@ -36,6 +39,7 @@ private:
 
 private slots:
     void clicked();             //слот привязаний до кнопок збережень завантажує потрібне збереження
+    void clicked_delete();      //слот привязаний до кнопок видалення збережень
 
 };
 
