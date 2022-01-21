@@ -26,6 +26,11 @@ DownloadWindow::~DownloadWindow()
         delete buttons[i];
         buttons[i] = nullptr;
     }
+    for (int i = 0; i < buttons_delete.size(); i++ ) {
+        delete buttons_delete[i];
+        buttons_delete[i] = nullptr;
+    }
+    delete pLayout;
 }
 
 void DownloadWindow::closeEvent(QCloseEvent *event)
@@ -95,7 +100,7 @@ void DownloadWindow::create_button_delete(int index)
 
     QObject::connect(button, SIGNAL(clicked()), this, SLOT(clicked_delete()));
 
-    buttons.append(button);
+    buttons_delete.append(button);
     pLayout->addWidget(button,index, 1);
 }
 
@@ -111,9 +116,27 @@ void DownloadWindow::clicked()
 
 void DownloadWindow::clicked_delete()
 {
+    int index;
     QPushButton *btn = qobject_cast<QPushButton *>(sender());
-   // FileWorker::set_filename(btn->text());
-   // WindowsWorker::open_GameWindow();
-   // WindowsWorker::close_DownloadWindow();
 
+    for (int i = 0; i < buttons_delete.size(); i++ )
+    {
+        if (buttons_delete[i] == btn)
+            index = i;
+    }
+    QString message = "Ви впевненні, що хочете видалити збереження: '" + buttons[index]->text() + "' ?";
+
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Видалити збереження", message ,QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+
+        FileWorker::remove_file(buttons[index]->text());
+
+        delete buttons_delete[index];
+        delete buttons[index];
+
+        buttons.erase(buttons.begin()+index);
+        buttons_delete.erase(buttons_delete.begin()+index);
+    }
 }

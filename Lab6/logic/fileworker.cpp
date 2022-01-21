@@ -60,6 +60,12 @@ bool FileWorker::is_already_file(QString fname)
     }
     return file_exist;
 }
+void FileWorker::remove_file(QString fname)
+{
+    QString all_fname = path + fname + type_file;
+    QDir dir;
+    dir.remove(all_fname);
+}
 
 void FileWorker::save_game_state(bool game_with_pc, bool finished, int who_move_first, int current_player, vector<int> scores)
 {
