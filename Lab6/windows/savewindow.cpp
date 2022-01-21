@@ -3,6 +3,7 @@
 #include "windows/windowsworker.h"
 
 #include <QMessageBox>
+#include <QDebug>
 #include <string>
 
 #include "logic/fileworker.h"
@@ -43,7 +44,20 @@ void SaveWindow::on_SaveButton_clicked()
         }
         else
         {
-
+            QMessageBox::StandardButton reply;
+            reply = QMessageBox::question(this, "Збереження існує", "Збереження з таким ім'ям уже існує. Перезаписати його?",QMessageBox::Yes|QMessageBox::No);
+            if (reply == QMessageBox::Yes)
+            {
+                FileWorker::set_filename(file_name);
+                WindowsWorker::get_GameWindow()->save_game();
+                QMessageBox::about(this, "Збережено", "Гра успішно збережена");
+                WindowsWorker::close_SaveWindow();
+                WindowsWorker::show_WindowGame();
+            }
+            else
+            {
+                ui->labelFilename->setText("");
+            }
         }
 
     }
