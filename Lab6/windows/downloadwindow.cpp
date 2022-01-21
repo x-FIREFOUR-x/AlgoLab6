@@ -46,6 +46,7 @@ void DownloadWindow::list_file()
         string f_name = filename.toStdString();
         f_name = f_name.substr(0, f_name.find("."));
         create_button(QString::fromUtf8(f_name), index);
+        create_button_delete(index);
         index++;
     }
     ui->scrollArea->widget()->setLayout(pLayout);
@@ -67,12 +68,37 @@ void DownloadWindow::create_button(QString filename, int index)
     QPushButton *button = new QPushButton(filename, this);
     button->setGeometry(x, y, button_width, button_height);
     button->setMinimumSize(QSize(button_width, button_height));
-    button->setStyleSheet("background-color:red;");
+    button->setStyleSheet("background-color:yellow; border:2px;");
     QObject::connect(button, SIGNAL(clicked()), this, SLOT(clicked()));
     buttons.append(button);
 
     pLayout->addWidget(button);
 }
+
+void DownloadWindow::create_button_delete(int index)
+{
+    float top = this->height() / 10;
+    float left = this->width()/8;
+
+    float button_height = this->height() / 10;
+    float button_width = button_height;
+
+    float backdown = this->height() / 5;
+
+    float x = left;
+    float y = (index * button_height) + top + (backdown * index);
+
+    QPushButton *button = new QPushButton("X", this);
+    button->setGeometry(x, y, button_width, button_height);
+    button->setMinimumSize(QSize(button_width, button_height));
+    button->setMaximumSize(QSize(button_width, button_height));
+    button->setStyleSheet("background-color:red; border:2px;");
+    QObject::connect(button, SIGNAL(clicked()), this, SLOT(clicked()));
+    buttons.append(button);
+
+    pLayout->addWidget(button);
+}
+
 
 void DownloadWindow::clicked()
 {

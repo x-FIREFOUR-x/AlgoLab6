@@ -21,14 +21,16 @@ public:
 
 private:
     Ui::DownloadWindow *ui;
+
     QList<QPushButton*> buttons;            //масив кнопок відповідаючих збереженям гри
+    QList<QPushButton*> buttons_delete;     //масив кнопок відповідаючих за видалення збережень
 
     QGridLayout *pLayout;
 
 private:
     void list_file();                                   //створити список збережень(кнопок)
     void create_button(QString filename, int index);    //створити кнопку
-
+    void create_button_delete(int index);
 
     void closeEvent(QCloseEvent *event);        //подія тригер спрацьовує на нажимання хрестика закриває дане вікно
 
