@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>300</width>
-    <height>300</height>
+    <height>232</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,19 +38,6 @@
     </property>
     <property name="text">
      <string>Зберегти гру</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="CloseButton">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>180</y>
-      <width>140</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Повернутися назад</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">

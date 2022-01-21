@@ -22,6 +22,7 @@ class DownloadWindow;
 class WindowsWorker
 {
 private:
+            //вказівники на відповідні вікна
     static MainWindow* window_main;
     static PresettingWindow* window_presetting;
     static GameWindow* window_game;
@@ -40,6 +41,10 @@ public:
     static WindowRank* get_WindowRank();
     static WindowSuit* get_WindowSuit();
     static WindowRules* get_WindowRules();
+
+
+
+            // методи закриття і відкриття відповідних вікон
 
     static void open_MainWindow();
     static void close_MainWindow();
@@ -67,6 +72,8 @@ public:
     static void close_DownloadWindow();
 
 
+
+            //методи приховання і показу вікна WindowGame
     static void hide_WindowGame();
     static void show_WindowGame();
 };

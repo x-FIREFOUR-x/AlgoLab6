@@ -15,14 +15,14 @@ public:
     explicit SaveWindow(QWidget *parent = nullptr);
     ~SaveWindow();
 
-private slots:
-    void on_CloseButton_clicked();
-
-    void on_SaveButton_clicked();
+private slots:    
+    void on_SaveButton_clicked();           //зберегти гру під введеною назвою
 
 private:
-    bool is_correct_filename();
-    void save_game();
+    void closeEvent(QCloseEvent *event);    //подія яка спрацьовує на нажимання хрестика закриває дане вікно і показує вікно гри
+
+    bool is_correct_filename();             //перевіряє коректність введеної назви для збереження
+
 private:
     Ui::SaveWindow *ui;
 };

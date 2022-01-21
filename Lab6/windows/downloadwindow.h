@@ -21,19 +21,19 @@ public:
 
 private:
     Ui::DownloadWindow *ui;
-    QList<QPushButton*> buttons;
+    QList<QPushButton*> buttons;            //масив кнопок відповідаючих збереженям гри
 
     QGridLayout *pLayout;
 
 private:
-    void list_file();
-    void create_button(QString filename, int index);
+    void list_file();                                   //створити список збережень(кнопок)
+    void create_button(QString filename, int index);    //створити кнопку
 
 
-    void closeEvent(QCloseEvent *event);
+    void closeEvent(QCloseEvent *event);        //подія тригер спрацьовує на нажимання хрестика закриває дане вікно
 
 private slots:
-    void clicked();
+    void clicked();             //слот привязаний до кнопок збережень завантажує потрібне збереження
 
 };
 

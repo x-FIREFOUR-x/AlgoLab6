@@ -54,7 +54,7 @@ void WindowRules::on_PreviousPageButton_clicked()
 }
 
 
-void WindowRules::on_NextPageButton_2_clicked()
+void WindowRules::on_NextPageButton_clicked()
 {
     if (current_page == 6)
         current_page = 1;

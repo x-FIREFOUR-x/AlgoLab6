@@ -13,7 +13,6 @@ SaveWindow::SaveWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setFixedSize(this->width(),this->height());
-    this->setWindowFlags( (Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowMinMaxButtonsHint) & ~Qt::WindowCloseButtonHint );
 }
 
 SaveWindow::~SaveWindow()
@@ -21,12 +20,11 @@ SaveWindow::~SaveWindow()
     delete ui;
 }
 
-void SaveWindow::on_CloseButton_clicked()
+void SaveWindow::closeEvent(QCloseEvent *event)
 {
     WindowsWorker::close_SaveWindow();
     WindowsWorker::show_WindowGame();
 }
-
 
 void SaveWindow::on_SaveButton_clicked()
 {

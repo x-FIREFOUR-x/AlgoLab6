@@ -17,25 +17,25 @@ public:
     ~WindowRules();
 
 private slots:
-    void on_CloseRuleButton_clicked();
+    void on_CloseRuleButton_clicked();              //закрити вікно правил
 
-    void on_PreviousPageButton_clicked();
+    void on_PreviousPageButton_clicked();           //відкрити попередню сторінку правил (зображення)
 
-    void on_NextPageButton_2_clicked();
+    void on_NextPageButton_clicked();              //відкрити попередню сторінку правил (зображення)
 
 private:
     Ui::WindowRules *ui;
 
-    QString path = ":/image/PNG-cards/";
-    QString name_file = "RulesPage";
-    int current_page;
-    QString type_file = ".png";
+    QString path = ":/image/PNG-cards/";        //шлях до зображеннь
+    QString name_file = "RulesPage";            //головна частина імені зображення + номер зображення
+    int current_page;                           //номер поточного зображення
+    QString type_file = ".png";                 //розширення зображення
 
-    int amount_page = 6;
+    int amount_page = 6;                        //кількість зображень сторінок правил
 
 private:
-    void set_NumberPage();
-    void paint_page_rules();
+    void set_NumberPage();                      //установити номер поточного зображення
+    void paint_page_rules();                    //відобразити номер поточного зображення на label
 };
 
 #endif // WINDOWRULES_H
