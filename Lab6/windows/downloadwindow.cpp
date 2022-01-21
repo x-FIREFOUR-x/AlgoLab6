@@ -14,6 +14,9 @@ DownloadWindow::DownloadWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setFixedSize(width(), height());
+
+    pLayout = new QGridLayout();
+
     list_file();
 }
 
@@ -46,6 +49,7 @@ void DownloadWindow::list_file()
         create_button(QString::fromUtf8(f_name), index);
         index++;
     }
+    ui->scrollArea->widget()->setLayout(pLayout);
 }
 
 void DownloadWindow::create_button(QString filename, int index)
@@ -56,16 +60,19 @@ void DownloadWindow::create_button(QString filename, int index)
     float button_height = this->height() / 10;
     float button_width = this->width() - 2 *left;
 
-    float backdown = this->height() / 20;
+    float backdown = this->height() / 5;
 
     float x = left;
     float y = (index * button_height) + top + (backdown * index);
 
     QPushButton *button = new QPushButton(filename, this);
     button->setGeometry(x, y, button_width, button_height);
+    button->setMinimumSize(QSize(button_width, button_height));
     button->setStyleSheet("background-color:red;");
     QObject::connect(button, SIGNAL(clicked()), this, SLOT(clicked()));
     buttons.append(button);
+
+    pLayout->addWidget(button);
 }
 
 void DownloadWindow::clicked()

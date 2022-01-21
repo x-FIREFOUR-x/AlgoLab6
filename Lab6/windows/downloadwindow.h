@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QVector>
+#include <QGridLayout>
 
 
 namespace Ui {
@@ -21,6 +22,8 @@ public:
 private:
     Ui::DownloadWindow *ui;
     QList<QPushButton*> buttons;
+
+    QGridLayout *pLayout;
 
 private:
     void list_file();

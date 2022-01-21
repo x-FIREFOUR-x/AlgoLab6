@@ -11,9 +11,10 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QScrollBar>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 
@@ -23,7 +24,9 @@ class Ui_DownloadWindow
 {
 public:
     QWidget *centralwidget;
-    QScrollBar *verticalScrollBar;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QLabel *label;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -34,10 +37,17 @@ public:
         DownloadWindow->resize(401, 405);
         centralwidget = new QWidget(DownloadWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        verticalScrollBar = new QScrollBar(centralwidget);
-        verticalScrollBar->setObjectName(QString::fromUtf8("verticalScrollBar"));
-        verticalScrollBar->setGeometry(QRect(380, 0, 20, 370));
-        verticalScrollBar->setOrientation(Qt::Vertical);
+        scrollArea = new QScrollArea(centralwidget);
+        scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
+        scrollArea->setGeometry(QRect(1, 21, 400, 361));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 398, 359));
+        scrollArea->setWidget(scrollAreaWidgetContents);
+        label = new QLabel(centralwidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(120, 0, 151, 20));
         DownloadWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(DownloadWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -55,6 +65,7 @@ public:
     void retranslateUi(QMainWindow *DownloadWindow)
     {
         DownloadWindow->setWindowTitle(QCoreApplication::translate("DownloadWindow", "MainWindow", nullptr));
+        label->setText(QCoreApplication::translate("DownloadWindow", "\320\236\320\261\320\265\321\200\321\226\321\202\321\214 \320\267\320\261\320\265\321\200\320\265\320\266\320\265\320\275\320\275\321\217 \320\263\321\200\320\270 ", nullptr));
     } // retranslateUi
 
 };
