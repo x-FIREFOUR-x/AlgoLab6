@@ -1,6 +1,7 @@
 #include "gamewindow.h"
 #include "ui_gamewindow.h"
 #include <iostream>
+#include <QMessageBox>
 #include "windows/windowsworker.h"
 
 GameWindow::GameWindow(int max_score, bool g_with_pc, QWidget *parent) :
@@ -47,15 +48,19 @@ void GameWindow::on_Save_triggered()
     if(FileWorker::get_filename() == "")
         on_SaveAs_triggered();
     else
+    {
         save_game();
+        QMessageBox::about(this, "Збережено", "Гра успішно збережено");
+    }
+
 }
 
 
 void GameWindow::on_SaveAs_triggered()
 {
-    QString file_name = QFileDialog::getSaveFileName(this, tr("Збереження файла"), FileWorker::get_path(), tr("Текстовий файл(*.txt)"));
-    FileWorker::set_filename(file_name);
-    save_game();
+    WindowsWorker::open_SaveWindow();
+    WindowsWorker::hide_WindowGame();
+    //save_game();
 }
 
 void GameWindow::save_game()

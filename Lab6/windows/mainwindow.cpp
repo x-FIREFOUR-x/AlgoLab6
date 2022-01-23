@@ -31,13 +31,15 @@ void MainWindow::on_ButtonEnd_clicked()
 
 void MainWindow::on_ButtonDownload_clicked()
 {
-    QString file_name = QFileDialog::getOpenFileName(this, tr("Відкрити файл"), FileWorker::get_path(), tr("Текстовий файл(*.txt)"));
+   /* QString file_name = QFileDialog::getOpenFileName(this, tr("Відкрити файл"), FileWorker::get_path(), tr("Текстовий файл(*.txt)"));
     if (file_name != "")
     {
         FileWorker::set_filename(file_name);
         WindowsWorker::open_GameWindow();
         WindowsWorker::close_MainWindow();
-    }
+    }*/
+    WindowsWorker::open_DownloadWindow();
+    WindowsWorker::close_MainWindow();
 
 }
 

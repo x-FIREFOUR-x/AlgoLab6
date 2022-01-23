@@ -28,7 +28,7 @@ public:
     QGraphicsView *graphicsView;
     QLabel *NumberPage;
     QPushButton *PreviousPageButton;
-    QPushButton *NextPageButton_2;
+    QPushButton *NextPageButton;
     QPushButton *CloseRuleButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -52,9 +52,9 @@ public:
         PreviousPageButton = new QPushButton(centralwidget);
         PreviousPageButton->setObjectName(QString::fromUtf8("PreviousPageButton"));
         PreviousPageButton->setGeometry(QRect(360, 470, 70, 30));
-        NextPageButton_2 = new QPushButton(centralwidget);
-        NextPageButton_2->setObjectName(QString::fromUtf8("NextPageButton_2"));
-        NextPageButton_2->setGeometry(QRect(470, 470, 70, 30));
+        NextPageButton = new QPushButton(centralwidget);
+        NextPageButton->setObjectName(QString::fromUtf8("NextPageButton"));
+        NextPageButton->setGeometry(QRect(470, 470, 70, 30));
         CloseRuleButton = new QPushButton(centralwidget);
         CloseRuleButton->setObjectName(QString::fromUtf8("CloseRuleButton"));
         CloseRuleButton->setGeometry(QRect(30, 470, 131, 28));
@@ -77,7 +77,7 @@ public:
         WindowRules->setWindowTitle(QCoreApplication::translate("WindowRules", "MainWindow", nullptr));
         NumberPage->setText(QCoreApplication::translate("WindowRules", "1", nullptr));
         PreviousPageButton->setText(QCoreApplication::translate("WindowRules", "\320\237\320\276\320\277\320\265\321\200\320\265\320\264\320\275\321\217", nullptr));
-        NextPageButton_2->setText(QCoreApplication::translate("WindowRules", "\320\235\320\260\321\201\321\202\321\203\320\277\320\275\320\260", nullptr));
+        NextPageButton->setText(QCoreApplication::translate("WindowRules", "\320\235\320\260\321\201\321\202\321\203\320\277\320\275\320\260", nullptr));
         CloseRuleButton->setText(QCoreApplication::translate("WindowRules", "\320\237\320\276\320\262\320\265\321\200\320\275\321\203\321\202\320\270\321\201\321\217 \320\275\320\260\320\267\320\260\320\264", nullptr));
     } // retranslateUi
 

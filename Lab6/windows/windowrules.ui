@@ -59,7 +59,7 @@
      <string>Попередня</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="NextPageButton_2">
+   <widget class="QPushButton" name="NextPageButton">
     <property name="geometry">
      <rect>
       <x>470</x>

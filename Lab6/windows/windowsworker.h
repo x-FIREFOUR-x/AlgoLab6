@@ -7,6 +7,8 @@ class GameWindow;
 class WindowRank;
 class WindowSuit;
 class WindowRules;
+class SaveWindow;
+class DownloadWindow;
 
 #include "gamewindow.h"
 #include "mainwindow.h"
@@ -14,16 +16,21 @@ class WindowRules;
 #include "windowrank.h"
 #include "windowrules.h"
 #include "windowsuit.h"
+#include "savewindow.h"
+#include "downloadwindow.h"
 
 class WindowsWorker
 {
 private:
+            //вказівники на відповідні вікна
     static MainWindow* window_main;
     static PresettingWindow* window_presetting;
     static GameWindow* window_game;
     static WindowRank* window_rank;
     static WindowSuit* window_suit;
     static WindowRules* window_rules;
+    static SaveWindow* window_save;
+    static DownloadWindow* window_download;
 
 public:
     WindowsWorker();
@@ -34,6 +41,10 @@ public:
     static WindowRank* get_WindowRank();
     static WindowSuit* get_WindowSuit();
     static WindowRules* get_WindowRules();
+
+
+
+            // методи закриття і відкриття відповідних вікон
 
     static void open_MainWindow();
     static void close_MainWindow();
@@ -54,7 +65,15 @@ public:
     static void open_WindowRules();
     static void close_WindowRules();
 
+    static void open_SaveWindow();
+    static void close_SaveWindow();
 
+    static void open_DownloadWindow();
+    static void close_DownloadWindow();
+
+
+
+            //методи приховання і показу вікна WindowGame
     static void hide_WindowGame();
     static void show_WindowGame();
 };

@@ -26,8 +26,10 @@ private slots:
         // слот кнопки ButtonEnd закриття програми
     void on_ButtonEnd_clicked();
 
+        //слот кнопки ButtonDownload загрузки гри
     void on_ButtonDownload_clicked();
 
+        //слот кнопки ButtonRules правила гри
     void on_ButtonRules_clicked();
 
 private:
