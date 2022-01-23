@@ -32,12 +32,12 @@ public:
     pair<int,int> get_top_card();               // отримати значення останньої покладеної карти
     void set_top_card(pair<int,int> top_c);     // встановити значення останньої покладеної карти
 
-    int get_amount_card_in_deck();       //отримати кількість карт в колоді
-    int get_amount_descarded_card();     //отримати кількість скинутих карт(крім верхньої)
+    int get_amount_card_in_deck();        //отримати кількість карт в колоді
+    int get_amount_descarded_card();      //отримати кількість скинутих карт(крім верхньої)
     bool is_card_no_in_players();         // повертає true якщо є скинуті карти(крім верхньої) чи в колоді
 
-    vector<pair<int,int>> get_deck_cards();         //повертає список карт в колоді
-    void set_deck_cards(vector<pair<int,int>> deck);           //встановити список карт в колоді
+    vector<pair<int,int>> get_deck_cards();                     //повертає список карт в колоді
+    void set_deck_cards(vector<pair<int,int>> deck);            //встановити список карт в колоді
 
     vector<pair<int,int>> get_discarded_cards();    //повертає список скинутих карт (включно з верхньою)
 

@@ -26,6 +26,8 @@ struct StepNode
      pair<int,int> card_converted;  //перетворена карта
 
      float value;       //цінність вузла
+
+
      StepNode(t_list card_deck, t_list discard_cards ,t_list hands_computer, t_list hands_player);
      void calculate_value();             //підрахунок цінності (0 термінальний стан виграша 1000 програш)
 };
