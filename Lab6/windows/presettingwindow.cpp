@@ -46,10 +46,10 @@ void PresettingWindow::style()
     this->setWindowTitle("Останній гравець");
     this->setStyleSheet("background-color:#2c8616;");
 
-    ui->ButtonBack->setStyleSheet("background-color:yellow; border: 1px solid black; font: italic 16pt Monotype Corsiva; font-weight: 570;");
-    ui->ButtonGoGame->setStyleSheet("background-color:yellow; border: 1px solid black; font: italic 16pt Monotype Corsiva; font-weight: 570;");
+    ui->ButtonBack->setStyleSheet("background-color:yellow; border: 1px solid black; font: italic 16pt Monotype Corsiva; font-weight: 555;");
+    ui->ButtonGoGame->setStyleSheet("background-color:yellow; border: 1px solid black; font: italic 16pt Monotype Corsiva; font-weight: 555;");
 
-    ui->Score->setStyleSheet("background-color:white; border: 1px solid black; font: italic 10pt Calibri;");
+    ui->Score->setStyleSheet("background-color:white; border: 1px solid black;");
 
     ui->label->setStyleSheet("color:yellow; font: italic 16pt Monotype Corsiva; font-weight: 550;");
     ui->label_2->setStyleSheet("color:yellow; font: italic 16pt Monotype Corsiva; font-weight: 550;");

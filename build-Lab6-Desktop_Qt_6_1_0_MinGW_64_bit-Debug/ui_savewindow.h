@@ -36,7 +36,7 @@ public:
     {
         if (SaveWindow->objectName().isEmpty())
             SaveWindow->setObjectName(QString::fromUtf8("SaveWindow"));
-        SaveWindow->resize(300, 232);
+        SaveWindow->resize(300, 200);
         centralwidget = new QWidget(SaveWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         labelFilename = new QLineEdit(centralwidget);
@@ -48,7 +48,7 @@ public:
         SaveButton->setGeometry(QRect(80, 120, 140, 30));
         label = new QLabel(centralwidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(50, 40, 211, 16));
+        label->setGeometry(QRect(30, 40, 251, 20));
         SaveWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(SaveWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -67,7 +67,7 @@ public:
     {
         SaveWindow->setWindowTitle(QCoreApplication::translate("SaveWindow", "MainWindow", nullptr));
         SaveButton->setText(QCoreApplication::translate("SaveWindow", "\320\227\320\261\320\265\321\200\320\265\320\263\321\202\320\270 \320\263\321\200\321\203", nullptr));
-        label->setText(QCoreApplication::translate("SaveWindow", "\320\222\320\262\320\265\320\264\321\226\321\202\321\214 \320\275\320\260\320\267\320\262\321\203 \320\267\320\261\320\265\321\200\320\265\320\266\320\265\320\275\320\275\321\217 \320\264\320\273\321\217 \320\263\321\200\320\270", nullptr));
+        label->setText(QCoreApplication::translate("SaveWindow", "\320\222\320\262\320\265\320\264\321\226\321\202\321\214 \320\275\320\260\320\267\320\262\321\203 \320\267\320\261\320\265\321\200\320\265\320\266\320\265\320\275\320\275\321\217 \320\263\321\200\320\270", nullptr));
     } // retranslateUi
 
 };

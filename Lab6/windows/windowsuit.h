@@ -16,7 +16,7 @@ public:
     ~WindowSuit();
 
 private:
-    void style();
+    void style();            //стилізує вікно
 
 private slots:
     void on_ButtonHeart_clicked();      //вибір масті черви для перетворення карти

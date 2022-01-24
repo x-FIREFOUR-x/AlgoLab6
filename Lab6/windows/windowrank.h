@@ -16,7 +16,7 @@ public:
     ~WindowRank();
 
 private:
-    void style();
+    void style();           //стилізує вікно
 
 private slots:
 

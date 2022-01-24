@@ -47,7 +47,7 @@ public:
         scrollArea->setWidget(scrollAreaWidgetContents);
         label = new QLabel(centralwidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(120, 0, 151, 20));
+        label->setGeometry(QRect(90, 0, 211, 20));
         DownloadWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(DownloadWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));

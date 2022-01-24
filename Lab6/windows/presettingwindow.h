@@ -16,7 +16,7 @@ public:
     ~PresettingWindow();
 
 private:
-    void style();
+    void style();           //стилізує вікно
 
 private slots:
         // перейти до гри (з вибраними параметрами)

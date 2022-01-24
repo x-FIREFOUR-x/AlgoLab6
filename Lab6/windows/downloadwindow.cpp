@@ -12,11 +12,12 @@ DownloadWindow::DownloadWindow(QWidget *parent) :
     ui(new Ui::DownloadWindow)
 {
     ui->setupUi(this);
+
     setFixedSize(width(), height());
 
     pLayout = new QGridLayout();
-
     list_file();
+    style();
 }
 
 DownloadWindow::~DownloadWindow()
@@ -76,8 +77,6 @@ void DownloadWindow::create_button(QString filename, int index)
 
     button->setMinimumSize(QSize(button_width, button_height));
 
-    button->setStyleSheet("background-color:yellow;");
-
     QObject::connect(button, SIGNAL(clicked()), this, SLOT(clicked()));
     buttons.append(button);
 
@@ -95,8 +94,6 @@ void DownloadWindow::create_button_delete(int index)
 
     button->setMinimumSize(QSize(button_width, button_height));
     button->setMaximumSize(QSize(button_width, button_height));
-
-    button->setStyleSheet("background-color:red;");
 
     QObject::connect(button, SIGNAL(clicked()), this, SLOT(clicked_delete()));
 
@@ -139,4 +136,22 @@ void DownloadWindow::clicked_delete()
         buttons.erase(buttons.begin()+index);
         buttons_delete.erase(buttons_delete.begin()+index);
     }
+}
+
+void DownloadWindow::style()
+{
+    this->setWindowTitle("Останній гравець");
+
+    //ui->centralwidget->setStyleSheet("background-color:#2c8616;");
+    //ui->scrollArea->setStyleSheet("background-color:white;");
+    ui->scrollAreaWidgetContents->setStyleSheet("background-color:#2c8616;");
+
+    ui->label->setStyleSheet("color:black; font: italic 16pt Monotype Corsiva; font-weight: 550;") ;
+
+    for (int i = 0; i < buttons.size(); i++ )
+    {
+        buttons[i]->setStyleSheet("background-color:yellow; border: 1px solid black; font: italic 12pt Calibri;") ;
+        buttons_delete[i]->setStyleSheet("background-color:red; border: 1px solid black; font: 16pt;") ;
+    }
+
 }

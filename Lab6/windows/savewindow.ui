@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>300</width>
-    <height>232</height>
+    <height>200</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -43,14 +43,14 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>30</x>
       <y>40</y>
-      <width>211</width>
-      <height>16</height>
+      <width>251</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>Введіть назву збереження для гри</string>
+     <string>Введіть назву збереження гри</string>
     </property>
    </widget>
   </widget>

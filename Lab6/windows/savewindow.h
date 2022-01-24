@@ -23,6 +23,8 @@ private:
 
     bool is_correct_filename();             //перевіряє коректність введеної назви для збереження
 
+    void style();               //стилізує вікно
+
 private:
     Ui::SaveWindow *ui;
 };

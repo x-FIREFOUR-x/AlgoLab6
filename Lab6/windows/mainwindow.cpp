@@ -22,10 +22,10 @@ void MainWindow::style()
     this->setWindowTitle("Останній гравець");
     this->setStyleSheet("background-color:#2c8616;");
 
-    ui->ButtonStart->setStyleSheet("background-color:yellow; border: 1px solid black; font: italic 16pt Monotype Corsiva; font-weight: 570;");
-    ui->ButtonDownload->setStyleSheet("background-color:yellow; border: 1px solid black; font: italic 16pt Monotype Corsiva; font-weight: 570;");
-    ui->ButtonEnd->setStyleSheet("background-color:yellow; border: 1px solid black; font: italic 16pt Monotype Corsiva; font-weight: 570;");
-    ui->ButtonRules->setStyleSheet("background-color:yellow; border: 1px solid black; font: italic 16pt Monotype Corsiva; font-weight: 570;");
+    ui->ButtonStart->setStyleSheet("background-color:yellow; border: 1px solid black; font: italic 16pt Monotype Corsiva; font-weight: 555;");
+    ui->ButtonDownload->setStyleSheet("background-color:yellow; border: 1px solid black; font: italic 16pt Monotype Corsiva; font-weight: 555;");
+    ui->ButtonEnd->setStyleSheet("background-color:yellow; border: 1px solid black; font: italic 16pt Monotype Corsiva; font-weight: 555;");
+    ui->ButtonRules->setStyleSheet("background-color:yellow; border: 1px solid black; font: italic 16pt Monotype Corsiva; font-weight: 555;");
 }
 
 void MainWindow::on_ButtonStart_clicked()
