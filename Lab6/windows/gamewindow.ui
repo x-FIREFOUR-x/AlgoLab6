@@ -172,24 +172,40 @@
    </widget>
    <addaction name="menu"/>
   </widget>
-  <action name="CloseEnd">
-   <property name="text">
-    <string>Закрити гру</string>
-   </property>
-  </action>
   <action name="SaveAs">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/image/PNG-cards/icon/saveAs.png</normaloff>:/image/PNG-cards/icon/saveAs.png</iconset>
+   </property>
    <property name="text">
     <string>Зберегти як</string>
    </property>
   </action>
   <action name="Save">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/image/PNG-cards/icon/save.png</normaloff>:/image/PNG-cards/icon/save.png</iconset>
+   </property>
    <property name="text">
     <string>Зберегти</string>
    </property>
   </action>
   <action name="Rules">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/image/PNG-cards/icon/rules.png</normaloff>:/image/PNG-cards/icon/rules.png</iconset>
+   </property>
    <property name="text">
     <string>Правила</string>
+   </property>
+  </action>
+  <action name="CloseEnd">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/image/PNG-cards/icon/close.png</normaloff>:/image/PNG-cards/icon/close.png</iconset>
+   </property>
+   <property name="text">
+    <string>Закрити гру</string>
    </property>
   </action>
  </widget>
@@ -200,6 +216,8 @@
    <header>gameboard.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../res.qrc"/>
+ </resources>
  <connections/>
 </ui>

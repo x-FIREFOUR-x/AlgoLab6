@@ -25,10 +25,10 @@ QT_BEGIN_NAMESPACE
 class Ui_GameWindow
 {
 public:
-    QAction *CloseEnd;
     QAction *SaveAs;
     QAction *Save;
     QAction *Rules;
+    QAction *CloseEnd;
     QWidget *centralwidget;
     GameBoard *graphicsView;
     QLabel *CountCardDeck;
@@ -47,14 +47,26 @@ public:
         if (GameWindow->objectName().isEmpty())
             GameWindow->setObjectName(QString::fromUtf8("GameWindow"));
         GameWindow->resize(900, 550);
-        CloseEnd = new QAction(GameWindow);
-        CloseEnd->setObjectName(QString::fromUtf8("CloseEnd"));
         SaveAs = new QAction(GameWindow);
         SaveAs->setObjectName(QString::fromUtf8("SaveAs"));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/image/PNG-cards/icon/saveAs.png"), QSize(), QIcon::Normal, QIcon::Off);
+        SaveAs->setIcon(icon);
         Save = new QAction(GameWindow);
         Save->setObjectName(QString::fromUtf8("Save"));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/image/PNG-cards/icon/save.png"), QSize(), QIcon::Normal, QIcon::Off);
+        Save->setIcon(icon1);
         Rules = new QAction(GameWindow);
         Rules->setObjectName(QString::fromUtf8("Rules"));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/image/PNG-cards/icon/rules.png"), QSize(), QIcon::Normal, QIcon::Off);
+        Rules->setIcon(icon2);
+        CloseEnd = new QAction(GameWindow);
+        CloseEnd->setObjectName(QString::fromUtf8("CloseEnd"));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/image/PNG-cards/icon/close.png"), QSize(), QIcon::Normal, QIcon::Off);
+        CloseEnd->setIcon(icon3);
         centralwidget = new QWidget(GameWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         graphicsView = new GameBoard(centralwidget);
@@ -119,10 +131,10 @@ public:
     void retranslateUi(QMainWindow *GameWindow)
     {
         GameWindow->setWindowTitle(QCoreApplication::translate("GameWindow", "MainWindow", nullptr));
-        CloseEnd->setText(QCoreApplication::translate("GameWindow", "\320\227\320\260\320\272\321\200\320\270\321\202\320\270 \320\263\321\200\321\203", nullptr));
         SaveAs->setText(QCoreApplication::translate("GameWindow", "\320\227\320\261\320\265\321\200\320\265\320\263\321\202\320\270 \321\217\320\272", nullptr));
         Save->setText(QCoreApplication::translate("GameWindow", "\320\227\320\261\320\265\321\200\320\265\320\263\321\202\320\270", nullptr));
         Rules->setText(QCoreApplication::translate("GameWindow", "\320\237\321\200\320\260\320\262\320\270\320\273\320\260", nullptr));
+        CloseEnd->setText(QCoreApplication::translate("GameWindow", "\320\227\320\260\320\272\321\200\320\270\321\202\320\270 \320\263\321\200\321\203", nullptr));
         CountCardDeck->setText(QCoreApplication::translate("GameWindow", "0", nullptr));
         labelScore1->setText(QCoreApplication::translate("GameWindow", "0", nullptr));
         labelScore2->setText(QCoreApplication::translate("GameWindow", "0", nullptr));

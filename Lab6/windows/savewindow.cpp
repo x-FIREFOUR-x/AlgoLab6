@@ -98,9 +98,9 @@ void SaveWindow::style()
 {
     this->setWindowTitle("Останній гравець");
 
-    this->setStyleSheet("background-color:#2c8616;");
+    //this->setStyleSheet("background-color:#2c8616;");
     ui->SaveButton->setStyleSheet("background-color:yellow; border: 1px solid black; font: italic 16pt Monotype Corsiva; font-weight: 555;");
-    ui->label->setStyleSheet("color:yellow; font: italic 16pt Monotype Corsiva; font-weight: 550;");
+    ui->label->setStyleSheet("color:black; font: italic 16pt Monotype Corsiva; font-weight: 550;");
 
     ui->labelFilename->setStyleSheet("background-color:white; border: 1px solid black;");
 }

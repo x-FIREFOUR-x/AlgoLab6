@@ -68,5 +68,9 @@
         <file>PNG-cards/RulesPage4.png</file>
         <file>PNG-cards/RulesPage5.png</file>
         <file>PNG-cards/RulesPage6.png</file>
+        <file>PNG-cards/icon/save.png</file>
+        <file>PNG-cards/icon/saveAs.png</file>
+        <file>PNG-cards/icon/close.png</file>
+        <file>PNG-cards/icon/rules.png</file>
     </qresource>
 </RCC>
