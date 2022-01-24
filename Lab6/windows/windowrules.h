@@ -36,6 +36,7 @@ private:
 private:
     void set_NumberPage();                      //установити номер поточного зображення
     void paint_page_rules();                    //відобразити номер поточного зображення на label
+    void style();
 };
 
 #endif // WINDOWRULES_H

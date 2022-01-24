@@ -15,6 +15,9 @@ public:
     explicit WindowRank(int* rank, QWidget *parent = nullptr);
     ~WindowRank();
 
+private:
+    void style();
+
 private slots:
 
     void on_radioButtonTwo_clicked();         //вибір рангу карти 2 для перетвореної

@@ -19,6 +19,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private:
+    void style();       //стилізує вікно
+
+     void closeEvent(QCloseEvent *event);        //перегрузка кнопки закриття
+
 private slots:
         // слот кнопки ButtonStart початок нової гри(відкриває вікно GameWindow)
     void on_ButtonStart_clicked();

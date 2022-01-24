@@ -8,7 +8,9 @@ WindowSuit::WindowSuit(int* suit, QWidget *parent) :
 {
     ui->setupUi(this);
     suit_card = suit;
+    //this->setWindowFlags( (Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowMinMaxButtonsHint) & ~Qt::WindowCloseButtonHint );
     setFixedSize(this->width(),this->height());
+    style();
 }
 
 WindowSuit::~WindowSuit()
@@ -43,3 +45,10 @@ void WindowSuit::on_ButtonDiamonds_clicked()
     WindowsWorker::close_WindowSuit();
 }
 
+void WindowSuit::style()
+{
+    //this->setWindowTitle("Останній гравець");
+    this->setStyleSheet("background-color:#2c8616;");
+    ui->label->setStyleSheet("color:yellow; font: italic 16pt Monotype Corsiva; font-weight: 550;");
+
+}

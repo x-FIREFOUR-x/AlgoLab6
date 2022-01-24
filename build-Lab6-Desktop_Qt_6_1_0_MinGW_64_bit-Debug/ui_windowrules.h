@@ -37,7 +37,7 @@ public:
     {
         if (WindowRules->objectName().isEmpty())
             WindowRules->setObjectName(QString::fromUtf8("WindowRules"));
-        WindowRules->resize(900, 550);
+        WindowRules->resize(900, 560);
         centralwidget = new QWidget(WindowRules);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         graphicsView = new QGraphicsView(centralwidget);
@@ -45,19 +45,19 @@ public:
         graphicsView->setGeometry(QRect(0, 0, 900, 470));
         NumberPage = new QLabel(centralwidget);
         NumberPage->setObjectName(QString::fromUtf8("NumberPage"));
-        NumberPage->setGeometry(QRect(430, 470, 40, 30));
+        NumberPage->setGeometry(QRect(430, 470, 40, 40));
         NumberPage->setStyleSheet(QString::fromUtf8("font: 12pt \"MS Shell Dlg 2\";"));
         NumberPage->setLineWidth(1);
         NumberPage->setAlignment(Qt::AlignCenter);
         PreviousPageButton = new QPushButton(centralwidget);
         PreviousPageButton->setObjectName(QString::fromUtf8("PreviousPageButton"));
-        PreviousPageButton->setGeometry(QRect(360, 470, 70, 30));
+        PreviousPageButton->setGeometry(QRect(350, 470, 80, 40));
         NextPageButton = new QPushButton(centralwidget);
         NextPageButton->setObjectName(QString::fromUtf8("NextPageButton"));
-        NextPageButton->setGeometry(QRect(470, 470, 70, 30));
+        NextPageButton->setGeometry(QRect(470, 470, 80, 40));
         CloseRuleButton = new QPushButton(centralwidget);
         CloseRuleButton->setObjectName(QString::fromUtf8("CloseRuleButton"));
-        CloseRuleButton->setGeometry(QRect(30, 470, 131, 28));
+        CloseRuleButton->setGeometry(QRect(30, 470, 150, 40));
         WindowRules->setCentralWidget(centralwidget);
         menubar = new QMenuBar(WindowRules);
         menubar->setObjectName(QString::fromUtf8("menubar"));

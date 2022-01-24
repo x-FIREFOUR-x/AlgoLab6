@@ -9,6 +9,7 @@ WindowRank::WindowRank(int* rank, QWidget *parent) :
     ui->setupUi(this);
     rank_card = rank;
     setFixedSize(this->width(),this->height());
+    style();
 }
 
 WindowRank::~WindowRank()
@@ -106,3 +107,24 @@ void WindowRank::on_radioButtonAce_clicked()
     WindowsWorker::close_WindowRank();
 }
 
+void WindowRank::style()
+{
+    //this->setWindowTitle("Останній гравець");
+    this->setStyleSheet("background-color:#2c8616;");
+
+    ui->label->setStyleSheet("color:yellow; font: italic 16pt Monotype Corsiva; font-weight: 550;");
+
+    ui->radioButtonTwo->setStyleSheet("color:yellow; font: italic 16pt Monotype Corsiva; ");
+    ui->radioButtonThree->setStyleSheet("color:yellow; font: italic 16pt Monotype Corsiva; ");
+    ui->radioButtonFour->setStyleSheet("color:yellow; font: italic 16pt Monotype Corsiva; ");
+    ui->radioButtonFive->setStyleSheet("color:yellow; font: italic 16pt Monotype Corsiva; ");
+    ui->radioButtonSix->setStyleSheet("color:yellow; font: italic 16pt Monotype Corsiva; ");
+    ui->radioButtonSeven->setStyleSheet("color:yellow; font: italic 16pt Monotype Corsiva; ");
+    ui->radioButtonEight->setStyleSheet("color:yellow; font: italic 16pt Monotype Corsiva; ");
+    ui->radioButtonNine->setStyleSheet("color:yellow; font: italic 16pt Monotype Corsiva; ");
+    ui->radioButtonTen->setStyleSheet("color:yellow; font: italic 16pt Monotype Corsiva; ");
+    ui->radioButtonJack->setStyleSheet("color:yellow; font: italic 16pt Monotype Corsiva; ");
+    ui->radioButtonQueen->setStyleSheet("color:yellow; font: italic 16pt Monotype Corsiva; ");
+    ui->radioButtonKing->setStyleSheet("color:yellow; font: italic 16pt Monotype Corsiva; ");
+    ui->radioButtonAce->setStyleSheet("color:yellow; font: italic 16pt Monotype Corsiva; ");
+}

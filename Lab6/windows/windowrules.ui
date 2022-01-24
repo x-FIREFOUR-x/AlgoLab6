@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>900</width>
-    <height>550</height>
+    <height>560</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,7 +30,7 @@
       <x>430</x>
       <y>470</y>
       <width>40</width>
-      <height>30</height>
+      <height>40</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -49,10 +49,10 @@
    <widget class="QPushButton" name="PreviousPageButton">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>350</x>
       <y>470</y>
-      <width>70</width>
-      <height>30</height>
+      <width>80</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="text">
@@ -64,8 +64,8 @@
      <rect>
       <x>470</x>
       <y>470</y>
-      <width>70</width>
-      <height>30</height>
+      <width>80</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="text">
@@ -77,8 +77,8 @@
      <rect>
       <x>30</x>
       <y>470</y>
-      <width>131</width>
-      <height>28</height>
+      <width>150</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="text">

@@ -73,7 +73,7 @@ public:
         ButtonSpades->setIconSize(QSize(150, 150));
         label = new QLabel(centralwidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(100, 10, 91, 16));
+        label->setGeometry(QRect(90, -1, 121, 30));
         menubar = new QMenuBar(WindowSuit);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 300, 26));
@@ -93,7 +93,7 @@ public:
         ButtonClubs->setText(QString());
         ButtonDiamonds->setText(QString());
         ButtonSpades->setText(QString());
-        label->setText(QCoreApplication::translate("WindowSuit", "\320\222\320\270\320\261\320\265\321\200\321\226\321\202\321\214 \320\274\320\260\321\201\321\202\321\214 ", nullptr));
+        label->setText(QCoreApplication::translate("WindowSuit", "\320\236\320\261\320\265\321\200\321\226\321\202\321\214 \320\274\320\260\321\201\321\202\321\214 ", nullptr));
     } // retranslateUi
 
 };

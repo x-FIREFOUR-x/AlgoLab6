@@ -15,6 +15,9 @@ public:
     explicit WindowSuit( int* suit, QWidget *parent = nullptr);
     ~WindowSuit();
 
+private:
+    void style();
+
 private slots:
     void on_ButtonHeart_clicked();      //вибір масті черви для перетворення карти
 

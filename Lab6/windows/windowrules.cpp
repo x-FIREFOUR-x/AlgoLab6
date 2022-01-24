@@ -25,6 +25,7 @@ WindowRules::WindowRules(QWidget *parent) :
     scene = nullptr;
     ui->graphicsView->scene()->setSceneRect(0, 0, width, height);
 
+    style();
     paint_page_rules();
 }
 
@@ -75,4 +76,14 @@ void WindowRules::paint_page_rules()
     QPixmap image_board(all_path);
     image_board = image_board.scaled(ui->graphicsView->width(), ui->graphicsView->height());
      ui->graphicsView->scene()->setBackgroundBrush(image_board);
+}
+
+void WindowRules::style()
+{
+    this->setWindowTitle("Останній гравець");
+    //this->setStyleSheet("background-color:#2c8616;");
+
+    ui->PreviousPageButton->setStyleSheet("background-color:yellow; border: 1px solid black; font: italic 12pt Calibri;");
+    ui->NextPageButton->setStyleSheet("background-color:yellow; border: 1px solid black; font: italic 12pt Calibri;");
+    ui->CloseRuleButton->setStyleSheet("background-color:yellow; border: 1px solid black; font: italic 14pt Monotype Corsiva; font-weight: 570;");
 }

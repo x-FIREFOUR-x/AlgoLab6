@@ -15,6 +15,9 @@ public:
     explicit PresettingWindow(QWidget *parent = nullptr);
     ~PresettingWindow();
 
+private:
+    void style();
+
 private slots:
         // перейти до гри (з вибраними параметрами)
     void on_ButtonGoGame_clicked();
