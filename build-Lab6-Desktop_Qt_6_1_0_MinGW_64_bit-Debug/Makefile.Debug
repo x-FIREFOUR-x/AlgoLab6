@@ -243,6 +243,8 @@ debug/qrc_res.cpp: ../Lab6/res.qrc \
 		../Lab6/PNG-cards/6_of_hearts.png \
 		../Lab6/PNG-cards/6_of_clubs.png \
 		../Lab6/PNG-cards/icon/saveAs.png \
+		../Lab6/PNG-cards/icon/icon.jpg \
+		../Lab6/PNG-cards/icon/icon.png \
 		../Lab6/PNG-cards/icon/close.png \
 		../Lab6/PNG-cards/icon/rules.png \
 		../Lab6/PNG-cards/icon/save.png

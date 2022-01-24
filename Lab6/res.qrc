@@ -72,5 +72,7 @@
         <file>PNG-cards/icon/saveAs.png</file>
         <file>PNG-cards/icon/close.png</file>
         <file>PNG-cards/icon/rules.png</file>
+        <file>PNG-cards/icon/icon.jpg</file>
+        <file>PNG-cards/icon/icon.png</file>
     </qresource>
 </RCC>
