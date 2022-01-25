@@ -78,7 +78,7 @@ void PrinterCards::push_namefile_bigcards(std::string name)
 
 QGraphicsItem* PrinterCards::print_back(QGraphicsScene*& scene ,int x, int y)
 {
-    QPixmap image_deck(":/image/PNG-cards/back.png");
+    QPixmap image_deck(":/image/PNG-cards/cards/back.png");
     image_deck = image_deck.scaled(width, height);
     QGraphicsItem* ptr_gi_card = scene->addPixmap(image_deck);
     ptr_gi_card->setPos(x, y);
@@ -92,7 +92,7 @@ QGraphicsItem* PrinterCards::print_back(QGraphicsScene*& scene ,int x, int y)
      int index_card = 4 * (card.first - 2) + card.second;
 
      std::string namefile_card = namefile_cards[index_card];
-     namefile_card = ":/image/PNG-cards/" + namefile_card;
+     namefile_card = ":/image/PNG-cards/cards/" + namefile_card;
      QString path;
      path = QString::fromStdString(namefile_card);
 
@@ -106,7 +106,7 @@ QGraphicsItem* PrinterCards::print_back(QGraphicsScene*& scene ,int x, int y)
  QGraphicsItem* PrinterCards::print_backcard(std::pair<int,int> card ,QGraphicsScene*& scene, int x, int y)
  {
 
-     QPixmap image_deck(":/image/PNG-cards/back.png");
+     QPixmap image_deck(":/image/PNG-cards/cards/back.png");
      image_deck = image_deck.scaled(width, height);
      QGraphicsItem* ptr_gi_card = scene->addPixmap(image_deck);
      ptr_gi_card->setPos(x, y);
@@ -118,7 +118,7 @@ QGraphicsItem* PrinterCards::print_back(QGraphicsScene*& scene ,int x, int y)
      delete ptr_card_deck;
      ptr_card_deck = nullptr;
 
-     QPixmap image_deck(":/image/PNG-cards/back.png");
+     QPixmap image_deck(":/image/PNG-cards/cards/back.png");
      image_deck = image_deck.scaled(width, height);
      ptr_card_deck = scene->addPixmap(image_deck);
      ptr_card_deck->setPos(x_cards_deck, y_cards_deck);
@@ -131,7 +131,7 @@ QGraphicsItem* PrinterCards::print_back(QGraphicsScene*& scene ,int x, int y)
      int index_card = 4 * (card.first - 2) + card.second;
 
      std::string namefile_card = namefile_cards[index_card];
-     namefile_card = ":/image/PNG-cards/" + namefile_card;
+     namefile_card = ":/image/PNG-cards/cards/" + namefile_card;
      QString path;
      path = QString::fromStdString(namefile_card);
 
@@ -166,7 +166,7 @@ QGraphicsItem* PrinterCards::print_back(QGraphicsScene*& scene ,int x, int y)
      y_mark_move_player1 = y_mark_player1;
      y_mark_move_player2 = y_mark_player2;
 
-     QPixmap image_mark(":/image/PNG-cards/mark.png");
+     QPixmap image_mark(":/image/PNG-cards/other/mark.png");
      image_mark = image_mark.scaled(size, size);
      ptr_mark_move = scene->addPixmap(image_mark);
 

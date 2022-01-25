@@ -63,7 +63,7 @@ void GameBoard::set_graphic_parameters(float height, float width)
     printer.set_coordinate(x_deck, y, x_top, y);
 
     setFixedSize(width_side_px, height_side_px);
-    QPixmap image_board(":/image/PNG-cards/table.png");
+    QPixmap image_board(":/image/PNG-cards/other/table.png");
     image_board = image_board.scaled(this->width(),this->height());
     scene->setSceneRect(0,0,image_board.width(),image_board.height());
     scene->setBackgroundBrush(image_board);

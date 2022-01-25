@@ -39,7 +39,7 @@
     </property>
     <property name="icon">
      <iconset resource="../res.qrc">
-      <normaloff>:/image/PNG-cards/hearts.png</normaloff>:/image/PNG-cards/hearts.png</iconset>
+      <normaloff>:/image/PNG-cards/other/hearts.png</normaloff>:/image/PNG-cards/other/hearts.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -65,7 +65,7 @@
     </property>
     <property name="icon">
      <iconset resource="../res.qrc">
-      <normaloff>:/image/PNG-cards/clubs.png</normaloff>:/image/PNG-cards/clubs.png</iconset>
+      <normaloff>:/image/PNG-cards/other/clubs.png</normaloff>:/image/PNG-cards/other/clubs.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -88,7 +88,7 @@
     </property>
     <property name="icon">
      <iconset resource="../res.qrc">
-      <normaloff>:/image/PNG-cards/diamonds.png</normaloff>:/image/PNG-cards/diamonds.png</iconset>
+      <normaloff>:/image/PNG-cards/other/diamonds.png</normaloff>:/image/PNG-cards/other/diamonds.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -111,7 +111,7 @@
     </property>
     <property name="icon">
      <iconset resource="../res.qrc">
-      <normaloff>:/image/PNG-cards/spades.png</normaloff>:/image/PNG-cards/spades.png</iconset>
+      <normaloff>:/image/PNG-cards/other/spades.png</normaloff>:/image/PNG-cards/other/spades.png</iconset>
     </property>
     <property name="iconSize">
      <size>

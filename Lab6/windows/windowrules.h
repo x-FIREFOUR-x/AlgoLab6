@@ -26,7 +26,7 @@ private slots:
 private:
     Ui::WindowRules *ui;
 
-    QString path = ":/image/PNG-cards/";        //шлях до зображеннь
+    QString path = ":/image/PNG-cards/rules/";        //шлях до зображеннь
     QString name_file = "RulesPage";            //головна частина імені зображення + номер зображення
     int current_page;                           //номер поточного зображення
     QString type_file = ".png";                 //розширення зображення
