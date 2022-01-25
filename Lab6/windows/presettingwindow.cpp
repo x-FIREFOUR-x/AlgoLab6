@@ -7,6 +7,7 @@ PresettingWindow::PresettingWindow(QWidget *parent) :
     ui(new Ui::PresettingWindow)
 {
     ui->setupUi(this);
+    setFixedSize(width(), height());
     style();
 }
 

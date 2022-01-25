@@ -39,7 +39,6 @@ void SaveWindow::on_SaveButton_clicked()
         {
             FileWorker::set_filename(file_name);
             WindowsWorker::get_GameWindow()->save_game();
-            QMessageBox::about(this, "Збережено", "Гра успішно збережена");
             WindowsWorker::close_SaveWindow();
             WindowsWorker::show_WindowGame();
         }
@@ -51,7 +50,6 @@ void SaveWindow::on_SaveButton_clicked()
             {
                 FileWorker::set_filename(file_name);
                 WindowsWorker::get_GameWindow()->save_game();
-                QMessageBox::about(this, "Збережено", "Гра успішно збережена");
                 WindowsWorker::close_SaveWindow();
                 WindowsWorker::show_WindowGame();
             }

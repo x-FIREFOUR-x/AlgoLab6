@@ -50,7 +50,6 @@ void GameWindow::on_Save_triggered()
     else
     {
         save_game();
-        QMessageBox::about(this, "Збережено", "Гра успішно збережено");
     }
 
 }
@@ -87,6 +86,8 @@ void GameWindow::save_game()
     vector<pair<int,int>> discard = game_board->get_diacardcards_deck();
 
     FileWorker::save_game_cards(hands1, hands2, deck, top_card, discard);
+
+    QMessageBox::about(this, "Збережено", "Гра успішно збережена");
 }
 
 void GameWindow::download_game()
