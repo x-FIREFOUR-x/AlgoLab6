@@ -30,6 +30,7 @@ public:
     QPushButton *PreviousPageButton;
     QPushButton *NextPageButton;
     QPushButton *CloseRuleButton;
+    QLabel *label;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -58,6 +59,11 @@ public:
         CloseRuleButton = new QPushButton(centralwidget);
         CloseRuleButton->setObjectName(QString::fromUtf8("CloseRuleButton"));
         CloseRuleButton->setGeometry(QRect(30, 470, 150, 40));
+        label = new QLabel(centralwidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(554, 480, 341, 20));
+        label->setStyleSheet(QString::fromUtf8("font: 14pt \"Calibri\";"));
+        label->setAlignment(Qt::AlignCenter);
         WindowRules->setCentralWidget(centralwidget);
         menubar = new QMenuBar(WindowRules);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -79,6 +85,7 @@ public:
         PreviousPageButton->setText(QCoreApplication::translate("WindowRules", "\320\237\320\276\320\277\320\265\321\200\320\265\320\264\320\275\321\217", nullptr));
         NextPageButton->setText(QCoreApplication::translate("WindowRules", "\320\235\320\260\321\201\321\202\321\203\320\277\320\275\320\260", nullptr));
         CloseRuleButton->setText(QCoreApplication::translate("WindowRules", "\320\237\320\276\320\262\320\265\321\200\320\275\321\203\321\202\320\270\321\201\321\217 \320\275\320\260\320\267\320\260\320\264", nullptr));
+        label->setText(QCoreApplication::translate("WindowRules", "\320\240\320\276\320\267\321\200\320\276\320\261\320\275\320\270\320\272: \320\237\320\260\321\201\320\260\320\273\321\214\321\201\321\214\320\272\320\270\320\271 \320\236\320\273\320\265\320\272\321\201\320\260\320\275\320\264\321\200", nullptr));
     } // retranslateUi
 
 };
